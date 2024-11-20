@@ -1,0 +1,275 @@
+.restaurant-signup {
+    background-color: #25b27c;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .restaurant-signup .div {
+    background-color: #25b27c;
+    height: 760px;
+    overflow-x: hidden;
+    position: relative;
+    width: 1600px;
+  }
+  
+  .restaurant-signup .overlap {
+    background-color: #25b27c;
+    height: 760px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1600px;
+  }
+  
+  .restaurant-signup .LOGIN-TEXTBOXES {
+    background-color: #ffffff;
+    border: 0;
+    border-radius: 50px;
+    height: 451px;
+    left: 1025px;
+    padding: 0;
+    position: absolute;
+    top: 206px;
+    width: 461px;
+  }
+  
+  .restaurant-signup .group {
+    height: 399px;
+    left: 38px;
+    position: relative;
+    top: 26px;
+    width: 389px;
+  }
+  
+  .restaurant-signup .restaurant-sign-up {
+    background-color: transparent;
+    border: 0;
+    color: #25b27c;
+    font-family: "Manrope-ExtraBold", Helvetica;
+    font-size: 36px;
+    font-weight: 800;
+    height: 39px;
+    left: 21px;
+    letter-spacing: 0;
+    line-height: normal;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    white-space: nowrap;
+    width: 344px;
+  }
+  
+  .restaurant-signup .overlap-group {
+    border-radius: 15px;
+    height: 57px;
+    left: 0;
+    position: absolute;
+    top: 342px;
+    width: 385px;
+  }
+  
+  .restaurant-signup .rectangle {
+    background-color: #f6c925;
+    border: 0;
+    border-radius: 15px;
+    height: 57px;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 385px;
+  }
+  
+  .restaurant-signup .text-wrapper {
+    color: #25b27c;
+    font-family: "Manrope-ExtraBold", Helvetica;
+    font-size: 24px;
+    font-weight: 800;
+    left: 148px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    text-align: center;
+    top: 12px;
+  }
+  
+  .restaurant-signup .overlap-group-wrapper {
+    height: 57px;
+    left: 0;
+    position: absolute;
+    top: 61px;
+    width: 387px;
+  }
+  
+  .restaurant-signup .input {
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #c0c0c0;
+    border-radius: 15px;
+    color: #c0c0c0;
+    font-family: "Manrope-Regular", Helvetica;
+    font-size: 20px;
+    font-weight: 400;
+    height: 27px;
+    left: 19px;
+    letter-spacing: 0;
+    line-height: normal;
+    padding: 0;
+    top: 14px;
+    width: 385px;
+  }
+  
+  .restaurant-signup .overlap-wrapper {
+    height: 57px;
+    left: 0;
+    position: absolute;
+    top: 131px;
+    width: 387px;
+  }
+  
+  .restaurant-signup .password-wrapper {
+    height: 57px;
+    left: 0;
+    position: absolute;
+    top: 202px;
+    width: 387px;
+  }
+  
+  .restaurant-signup .password-again-wrapper {
+    height: 57px;
+    left: 0;
+    position: absolute;
+    top: 272px;
+    width: 387px;
+  }
+  
+  .restaurant-signup .header-navbar {
+    background-color: #1d9265;
+    height: 103px;
+    left: 76px;
+    position: absolute;
+    top: 0;
+    width: 1449px;
+  }
+  
+  .restaurant-signup .LOGIN-BUTTON {
+    height: 50px;
+    left: 943px;
+    position: absolute;
+    top: 26px;
+    width: 131px;
+  }
+  
+  .restaurant-signup .login {
+    background-color: transparent;
+    border: 0;
+    color: #ffffff;
+    font-family: "Manrope-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    height: 33px;
+    left: 64px;
+    letter-spacing: 0;
+    line-height: normal;
+    padding: 0;
+    position: absolute;
+    top: 8px;
+    width: 100px;
+  }
+  
+  .restaurant-signup .untitled {
+    height: 50px;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 49px;
+  }
+  
+  .restaurant-signup .signup-BUTTON {
+    height: 50px;
+    left: 1139px;
+    position: absolute;
+    top: 26px;
+    width: 156px;
+  }
+  
+  .restaurant-signup .sign-up {
+    background-color: transparent;
+    border: 0;
+    color: #ffffff;
+    font-family: "Manrope-Bold", Helvetica;
+    font-size: 24px;
+    font-weight: 700;
+    height: 33px;
+    left: 64px;
+    letter-spacing: 0;
+    line-height: normal;
+    padding: 0;
+    position: absolute;
+    top: 8px;
+    width: 100px;
+  }
+  
+  .restaurant-signup .images {
+    height: 50px;
+    left: 1360px;
+    object-fit: cover;
+    position: absolute;
+    top: 26px;
+    width: 50px;
+  }
+  
+  .restaurant-signup .bitescout {
+    height: 152px;
+    left: 113px;
+    object-fit: cover;
+    position: relative;
+    top: 355px;
+    width: 799px;
+  }
+  
+  .restaurant-signup .dropdown {
+    height: 679px;
+    left: 1620px;
+    position: absolute;
+    top: 0;
+    width: 224px;
+  }
+  
+  .restaurant-signup .overlap-2 {
+    height: 469px;
+    left: -15px;
+    position: absolute;
+    top: -15px;
+    width: 254px;
+  }
+  
+  .restaurant-signup .signup-dropdown {
+    height: 236px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 254px;
+  }
+  
+  .restaurant-signup .login-dropdown {
+    height: 236px;
+    left: 11px;
+    position: absolute;
+    top: 233px;
+    width: 229px;
+  }
+  
+  .restaurant-signup .language-dropdown {
+    height: 236px;
+    left: 2px;
+    position: absolute;
+    top: 458px;
+    width: 154px;
+  }
+  
