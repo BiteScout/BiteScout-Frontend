@@ -1,4 +1,4 @@
-import { RestaurantSignup } from "./components/RestaurantSignup";
+import { RestaurantSignup } from "./pages/RestaurantSignup";
 
 function App() {
   return <RestaurantSignup />;
