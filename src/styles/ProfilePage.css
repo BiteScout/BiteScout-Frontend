@@ -1,0 +1,70 @@
+.header__section {
+    display: flex;
+    align-items: center; /* Align image and text vertically centered */
+  }
+  
+  .header__section img {
+    background-color: #1d9265;
+    border: 3px solid rgb(160, 160, 160);
+    height: 100px;
+    border-radius: 50%;
+    width: 100px;
+    margin-right: 20px; /* Space between image and text */
+  }
+  
+  .header__text {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column; /* Stack the name and username vertically */
+  }
+  
+  .header__text h1 {
+    font-family: "Manrope";
+    font-size: 50px;
+    color: #1d9265;
+    margin: 0;
+  }
+  
+  .header__username {
+
+    font-family: "Manrope";
+    font-size: 20px; /* Adjust the size for "Username" */
+    color: #1d9265; /* Optional: Different color for "Username" */
+    margin: 0px 0px 0px 5px;
+  }
+
+.buttons__section{
+    position: relative;
+    top: 50px;
+}
+
+.buttons__section__button{
+    cursor: pointer;
+    transition: color 0.3s;
+    width: 150vh;
+    background-color: transparent;
+    border: 0px solid white;
+    color: white;
+    border-radius: 9px;
+    border-color: #1d9265;
+    
+}
+
+.buttons__section__button:hover{
+    background-color: #f6c825;
+}
+
+.buttons__section__button:hover p{
+    color: #1d9265;
+}
+
+.buttons__section__button p{
+    font-family: "Manrope";
+    font-size: 30px;
+    font-weight: 600;
+    margin: 10px 0px 10px 0px;
+    color: #a3a3a3;
+    float:left;
+}
+
+
