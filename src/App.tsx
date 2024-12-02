@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import "./App.css";
 import { MenuButton } from "./components/MenuButton";
+import { ProfilePage } from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Header />
       <Sidebar />
       <div className="mainbody">
-        <h1>SA</h1>
+        <ProfilePage />
       </div>
     </>
   );
