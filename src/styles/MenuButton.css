@@ -1,0 +1,17 @@
+.menubutton {
+    background-color: transparent;
+    border: 0px solid white;
+    color: white;
+    height: 40px;
+    width: 50px;
+    border-radius: 9px;
+    border-color: #1d9265;
+    cursor: pointer;
+  }
+  .menubutton:hover{
+    background-color: #9b9b9b;
+}
+
+.menubutton img{
+    height: 30px;
+}

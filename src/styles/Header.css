@@ -1,0 +1,41 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1d9265;
+    border-radius: 0px 0px 20px 20px;
+    color: white;
+    width: 85%;
+    top: 0px;
+    left: 100px;
+    right: 100px;
+    box-sizing: border-box;
+    position: fixed;
+  }
+  
+  .header__logo {
+    width: 150px;
+  }
+  
+  .header__nav {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .header__button {
+    background-color: transparent;
+    font-family: "Manrope", sans-serif;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 9px;
+    border-color: #1d9265;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .header__button:hover {
+    background-color: white;
+    color: #282c34;
+  }
