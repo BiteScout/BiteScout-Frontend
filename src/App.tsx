@@ -2,7 +2,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import "./App.css";
 import { MenuButton } from "./components/MenuButton";
-import { ProfilePage } from "./pages/ProfilePage";
+import NotificationPage from "./pages/NotificationPage";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <Sidebar />
       <div className="mainbody">
-        <ProfilePage />
+        <NotificationPage />
       </div>
     </>
   );
