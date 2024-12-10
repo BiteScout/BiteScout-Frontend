@@ -1,0 +1,110 @@
+/* Kartların Arka Planı Başlık Tonunda */
+.reservation-card {
+  background-color: #e6f7e6; /* Light green background */
+  border-radius: 12px; /* Yuvarlak köşeler */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Gölge efekti */
+  padding: 20px;
+  display: flex;
+  justify-content: space-between; /* İçerik arası boşluk */
+  align-items: center; /* Ortada hizalama */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hover efekti */
+  margin-bottom: 20px; /* Kartlar arasındaki boşluk */
+  font-family: 'Manrope', sans-serif; /* Yazı tipi */
+  width: 100%; /* Kart genişliği ekranla uyumlu */
+  max-width: 600px; /* Kart genişliğini sınırlama */
+  height: auto; /* Kart boyutunun içeriğe göre ayarlanması */
+  flex-shrink: 0; /* Kartların sıkışmaması */
+}
+
+.reservation-card:hover {
+  transform: scale(1.02); /* Hover efektinde kartın büyümesi */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Hover'da daha belirgin gölge */
+}
+
+/* Restoran ismi ve durum */
+.reservation-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.reservation-text {
+  font-size: 18px; /* Yazı boyutunu büyüttük */
+  font-weight: bold;
+}
+
+.restaurant {
+  font-size: 14px;
+  color: black;
+  margin-top: 5px;
+  font-family: 'Manrope', sans-serif; /* 'Manrope' fontunu restoran ismi için kullanıyoruz */
+}
+
+.status {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.status.pending {
+  color: orange;
+}
+
+.status.approved {
+  color: green;
+}
+
+.status.cancelled {
+  color: red;
+}
+
+.cancel-button {
+  background-color: #e74c3c; /* Cancel butonu için kırmızı */
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  align-self: center;
+  transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+  background-color: #c0392b;
+}
+
+.my-reservations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reservations-content {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.reservations-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #66bb6a; /* Başlık için açık yeşil */
+  margin-bottom: 20px;
+  font-family: 'Manrope', sans-serif; /* Başlık kısmı için Manrope fontunu kullanalım */
+}
+
+.reservations-list {
+  display: flex;
+  flex-wrap: wrap; /* Kartlar yanlamasına saracak şekilde */
+  justify-content: space-between; /* Kartlar arasındaki boşluğu ayarlıyoruz */
+  gap: 20px; /* Kartlar arasındaki boşluk */
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* You made a reservation.. kısmının fontunu değiştirmek için */
+.reservation-text {
+  font-family: 'Arial', sans-serif; /* Değiştirilen font */
+    color: #2c3e50;
+
+}
+
