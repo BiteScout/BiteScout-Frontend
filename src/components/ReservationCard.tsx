@@ -8,9 +8,13 @@ interface ReservationCardProps {
     time: string;
     status: string;
   };
+  showCancelButton?: boolean; // Yeni prop eklendi
 }
 
-const ReservationCard: React.FC<ReservationCardProps> = ({ reservation }) => {
+const ReservationCard: React.FC<ReservationCardProps> = ({
+  reservation,
+  showCancelButton = true,
+}) => {
   const handleCancel = () => {
     alert(`Reservation at ${reservation.restaurant} has been cancelled.`);
   };
@@ -24,9 +28,11 @@ const ReservationCard: React.FC<ReservationCardProps> = ({ reservation }) => {
           {reservation.status}
         </span>
       </div>
-      <button className="cancel-button" onClick={handleCancel}>
-        Cancel Reservation
-      </button>
+      {showCancelButton && (
+        <button className="cancel-button" onClick={handleCancel}>
+          Cancel Reservation
+        </button>
+      )}
     </div>
   );
 };
