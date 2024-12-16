@@ -1,32 +1,32 @@
 import { useState } from "react";
-import "../styles/UserReviewsPage.css";
+import "../styles/RestaurantReviewsPage.css";
 import filterIcon from "../assets/filter-icon.png";
 
-const UserReviewsPage = () => {
+const RestaurantReviewsPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [reviews, setReviews] = useState([
     {
       id: 1,
-      restaurantName: "Sushi House",
+      username: "John Doe",
       rating: 5,
-      comment: "Amazing sushi, will definitely come again!",
-      likes: 12,
+      comment: "Fantastic experience! Highly recommend this place.",
+      likes: 15,
       dislikes: 2,
     },
     {
       id: 2,
-      restaurantName: "Pasta Paradise",
+      username: "Jane Smith",
       rating: 4,
-      comment: "Good pasta, but the service was a bit slow.",
-      likes: 8,
+      comment: "Great food, but service could be faster.",
+      likes: 10,
       dislikes: 1,
     },
     {
       id: 3,
-      restaurantName: "Grill Master",
+      username: "Alex Brown",
       rating: 3,
-      comment: "Average steak, nothing special.",
-      likes: 4,
+      comment: "Average food, but nice ambiance.",
+      likes: 5,
       dislikes: 3,
     },
   ]);
@@ -45,9 +45,9 @@ const UserReviewsPage = () => {
   };
 
   return (
-    <div className="user-reviews-page">
+    <div className="restaurant-reviews-page">
       <div className="sub-header">
-        <h1 className="title">All Reviews</h1>
+        <h1 className="title">Restaurant Reviews</h1>
         <div className="filter-container">
           {" "}
           {/* Buton ve pop-up için parent */}
@@ -72,7 +72,7 @@ const UserReviewsPage = () => {
         {reviews.map((review) => (
           <div key={review.id} className="review">
             <div className="review-content">
-              <h3>{review.restaurantName}</h3>
+              <h3>{review.username}</h3>
               <p>⭐ {review.rating}/5</p>
               <p>{review.comment}</p>
               <div className="review-actions">
@@ -88,4 +88,4 @@ const UserReviewsPage = () => {
   );
 };
 
-export default UserReviewsPage;
+export default RestaurantReviewsPage;

@@ -8,6 +8,7 @@ import "./App.css";
 //import ReservationApprovalPage from "./pages/ReservationApprovalPage";
 //import RestaurantPage from "./pages/RestaurantPage";
 import UserReviewsPage from "./pages/UserReviewsPage";
+//import RestaurantReviewsPage from "./pages/RestaurantReviewPage";
 function App() {
   return (
     <div className="app-container">
