@@ -1,0 +1,29 @@
+.restaurant-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .restaurant-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .restaurant-info {
+    font-family: "Manrope", sans-serif;
+  }
+  
+  .restaurant-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1d9265;
+  }
+  
+  .restaurant-rating,
+  .restaurant-rank {
+    font-size: 16px;
+    color: #555;
+  }
+  

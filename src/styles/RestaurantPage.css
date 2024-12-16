@@ -1,0 +1,80 @@
+/* Restaurant Page Genel Stili */
+.restaurant-page {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    font-family: 'Manrope', sans-serif;
+  }
+  
+  .main-content {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  /* Menü Stili */
+  .restaurant-menu {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .restaurant-menu h2 {
+    font-size: 28px;
+    color: #1d9265;
+    margin-bottom: 20px;
+  }
+  
+  .restaurant-menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .restaurant-menu li {
+    margin-bottom: 20px;
+  }
+  
+  .restaurant-menu li strong {
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .restaurant-menu li p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+ /* Yorumlar Stili */
+.review-list {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .review-list h2 {
+    font-size: 28px;
+    color: #1d9265;
+    margin-bottom: 20px;
+  }
+  
+  .review-list .review {
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .review-list a {
+    text-decoration: none; /* Alt çizgi kaldırıldı */
+    color: #333; /* Normal durumda okunabilir renk */
+    font-weight: bold;
+    opacity: 1; /* Her zaman tam görünürlük */
+    transition: color 0.3s ease, opacity 0.3s ease; /* Yumuşak geçişler */
+  }
+  
+
+  
