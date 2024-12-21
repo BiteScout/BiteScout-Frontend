@@ -1,0 +1,115 @@
+.restaurant-reviews-page {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    padding: 20px;
+    font-family: "Manrope", sans-serif;
+  }
+  
+  /* Sub-header: Restaurant Reviews başlığı ve filtre butonu */
+  .sub-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #ffffff; /* Beyaz arka plan */
+    padding: 15px 20px; /* İç boşluk */
+    border-radius: 8px; /* Yuvarlatılmış köşeler */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    gap: 15px; /* Başlık ve buton arasında boşluk */
+    position: relative; /* Filtre pop-up'un doğru hizalanması için gerekli */
+  }
+  
+  .title {
+    font-size: 32px; /* Daha büyük başlık */
+    color: #1d9265; /* Yeşil renk */
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .filter-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 50px; /* Boyutu büyüttük */
+    height: 50px;
+  }
+  
+  .filter-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  /* Filtre Pop-up */
+  .filter-popup {
+    position: absolute; /* Parent elemente göre hizalanır */
+    top: 100%; /* Butonun hemen altına yerleşir */
+    right: 0; /* Sağ kenara hizalar */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 2; /* Üstte görünür */
+    min-width: 150px; /* Genişlik ayarlanır */
+  }
+  
+  .filter-popup p {
+    margin: 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .filter-popup p:hover {
+    background-color: #f1f1f1;
+  }
+  
+  
+  /* Review List */
+  .review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .review {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .review-content h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #1d9265;
+  }
+  
+  .review-content p {
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  .review-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .review-actions button {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .like-button:hover,
+  .dislike-button:hover,
+  .reply-button:hover {
+    text-decoration: underline;
+  }
+  
