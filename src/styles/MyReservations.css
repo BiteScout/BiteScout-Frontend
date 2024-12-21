@@ -1,54 +1,27 @@
-/* Sayfa ve içerik için temel stiller */
 .my-reservations-page {
-  background-color: #ffffff;
-  min-height: 100vh; /* Sayfanın tamamını kapsar */
+  min-height: 100vh; /* Ekran yüksekliğini kaplar */
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-/* Bildirim İçeriği */
-.reservation-content {
-  width: 100%;
-  max-width: 1200px; /* Genişlik sınırı */
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Başlık Stili */
-.reservation-title {
+  justify-content: center; /* Yatayda merkezler */
+  align-items: flex-start; /* Yukarıdan hizalar */
+  padding: 20px; /* Dışarıya olan boşluk */
   font-family: 'Manrope', sans-serif;
+  box-sizing: border-box; /* Padding'i dahil eder */
+}
+.reservation-title {
   font-size: 32px;
   font-weight: 700;
-  color: #1d9265; /* Yeşil renk */
+  color: #1d9265; 
   margin-bottom: 30px;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+  letter-spacing: 1.5px;
 }
 
-/* Listelerdeki Rezervasyon Kartları */
-.reservations-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-}
-
-/* Mobil uyumlu stiller */
-@media (max-width: 768px) {
-  .reservation-title {
-    font-size: 28px; /* Mobilde biraz daha küçük başlık */
-  }
-
-  .reservations-list {
-    gap: 10px; /* Mobilde daha az boşluk */
-    overflow: auto; /* Yatay ve dikey kaydırmayı sağlar */
-
-  }
+.reservation-content {
+  width: 100%; /* Genişlik %100 olur */
+  max-width: 1200px; /* Maksimum genişlik sınırı */
+  border-radius: 12px; /* Yuvarlak köşeler */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+  padding: 20px; /* İçerik iç boşlukları */
+  box-sizing: border-box; /* Padding genişliğe dahil */
 }

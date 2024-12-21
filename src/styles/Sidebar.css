@@ -1,19 +1,13 @@
 /* Fixed sidebar below the header */
 .sidebar {
-    position: fixed;
-    top: 100px; /* Adjust based on your header height */
-    left: 0;
-    width: 200px;
-    height: 470px; /* Full height minus header */
-    background-color: white;
-    color: black;
-    padding: 20px;
-    box-sizing: border-box;
-    border-color: #aaa;
-    border-width: 0px;
-    border-style: solid;
-    border-radius: 50px;
-  }
+  width: 200px;
+  min-height: calc(100vh - 80px); /* Header yüksekliği çıkarılarak kalan alan */
+  background-color: #f8f9fa;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+
   
   .sidebar__menu {
     list-style: none;
