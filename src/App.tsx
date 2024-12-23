@@ -13,14 +13,16 @@ import "./App.css";
 //import StartPage from "./pages/StartPage";
 //import SignInPage from "./pages/SignInPage";
 //import PasswordChangeApprovalPage from "./pages/PasswordChangeApprovalPage";
-import PasswordChangePage from "./pages/PasswordChangePage";
+//import PasswordChangePage from "./pages/PasswordChangePage";
+import HomePage from "./pages/HomePage";
+
 function App() {
   return (
     <div className="app-container">
       <Header />
       <div className="mainbody">
         <Sidebar />
-        <PasswordChangePage />
+        <HomePage />
       </div>
     </div>
   );
