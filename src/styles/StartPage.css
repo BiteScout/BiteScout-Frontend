@@ -1,0 +1,72 @@
+.start-page {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #1d9265, #3ca674); /* Yeşil tonlarında geçiş */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Manrope", sans-serif;
+    color: white;
+  }
+  
+  .content {
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out; /* Yumuşak animasyon */
+  }
+  
+  .logo {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .catchphrase {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: 300;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-btn,
+  .signup-btn {
+    background-color: #146a48; /* Her iki buton aynı ton */
+  }
+  
+  .login-btn:hover,
+  .signup-btn:hover {
+    background-color: #0e5f33; /* Hover için aynı koyu ton */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

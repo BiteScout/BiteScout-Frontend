@@ -9,14 +9,15 @@ import "./App.css";
 //import RestaurantPage from "./pages/RestaurantPage";
 //import UserReviewsPage from "./pages/UserReviewsPage";
 //import RestaurantReviewsPage from "./pages/RestaurantReviewPage";
-import LoginPage from "./pages/LoginPage";
+//import LoginPage from "./pages/LoginPage";
+import StartPage from "./pages/StartPage";
 function App() {
   return (
     <div className="app-container">
       <Header />
       <div className="mainbody">
         <Sidebar />
-        <LoginPage />
+        <StartPage />
       </div>
     </div>
   );
