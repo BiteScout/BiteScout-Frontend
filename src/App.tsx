@@ -7,15 +7,16 @@ import "./App.css";
 //import FavoritesPage from "./pages/FavoritesPage";
 //import ReservationApprovalPage from "./pages/ReservationApprovalPage";
 //import RestaurantPage from "./pages/RestaurantPage";
-import UserReviewsPage from "./pages/UserReviewsPage";
+//import UserReviewsPage from "./pages/UserReviewsPage";
 //import RestaurantReviewsPage from "./pages/RestaurantReviewPage";
+import LoginPage from "./pages/LoginPage";
 function App() {
   return (
     <div className="app-container">
       <Header />
       <div className="mainbody">
         <Sidebar />
-        <UserReviewsPage />
+        <LoginPage />
       </div>
     </div>
   );
