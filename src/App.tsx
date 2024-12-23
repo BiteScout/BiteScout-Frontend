@@ -11,14 +11,16 @@ import "./App.css";
 //import RestaurantReviewsPage from "./pages/RestaurantReviewPage";
 //import LoginPage from "./pages/LoginPage";
 //import StartPage from "./pages/StartPage";
-import SignInPage from "./pages/SignInPage";
+//import SignInPage from "./pages/SignInPage";
+//import PasswordChangeApprovalPage from "./pages/PasswordChangeApprovalPage";
+import PasswordChangePage from "./pages/PasswordChangePage";
 function App() {
   return (
     <div className="app-container">
       <Header />
       <div className="mainbody">
         <Sidebar />
-        <SignInPage />
+        <PasswordChangePage />
       </div>
     </div>
   );
