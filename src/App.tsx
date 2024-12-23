@@ -10,14 +10,15 @@ import "./App.css";
 //import UserReviewsPage from "./pages/UserReviewsPage";
 //import RestaurantReviewsPage from "./pages/RestaurantReviewPage";
 //import LoginPage from "./pages/LoginPage";
-import StartPage from "./pages/StartPage";
+//import StartPage from "./pages/StartPage";
+import SignInPage from "./pages/SignInPage";
 function App() {
   return (
     <div className="app-container">
       <Header />
       <div className="mainbody">
         <Sidebar />
-        <StartPage />
+        <SignInPage />
       </div>
     </div>
   );
