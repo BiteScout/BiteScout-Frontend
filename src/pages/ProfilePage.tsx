@@ -2,7 +2,7 @@ import "../styles/ProfilePage.css";
 import profile from "../assets/Untitled-1.png";
 import { Button } from "../components/ButtonWithImageAndText";
 
-export const ProfilePage = () => {
+const ProfilePage = () => {
   function notify(msg: string) {
     alert(msg);
   }
@@ -51,3 +51,4 @@ export const ProfilePage = () => {
     </>
   );
 };
+export default ProfilePage;
