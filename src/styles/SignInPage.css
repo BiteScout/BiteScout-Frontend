@@ -1,0 +1,93 @@
+.sign-in-page {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #1d9265, #3ca674); /* Yeşil tonlarında geçiş */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Manrope", sans-serif;
+    color: white;
+  }
+  
+  .sign-in-form-container {
+    width: 400px;
+    padding: 30px;
+    background-color: #ffffff; /* Beyaz arka plan */
+    border-radius: 16px; /* Daha yuvarlak köşeler */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.5s ease-in-out; /* Yumuşak görünüm */
+  }
+  
+  .header__logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+    align-self: center; /* Logoyu tam ortalar */
+  }
+  
+  .sign-in-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .input-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .input-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px; /* Daha yuvarlak köşeler */
+    font-size: 14px;
+  }
+  
+  .input-group input:focus {
+    outline: none;
+    border-color: #1d9265;
+  }
+  
+  .sign-in-button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #1d9265;
+    color: #fff;
+    border: none;
+    border-radius: 10px; /* Daha yuvarlak köşeler */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sign-in-button:hover {
+    background-color: #146a48;
+  }
+  
+  .login-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .login-link a {
+    color: #1d9265;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
