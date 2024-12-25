@@ -5,17 +5,24 @@ import "./App.css";
 //import NotificationPage from "./pages/NotificationPage";
 //import MyReservations from "./pages/MyReservations";
 //import FavoritesPage from "./pages/FavoritesPage";
-//import ReservationApprovalPage from "./pages/ReservationApprovalPage";
+import ReservationApprovalPage from "./pages/ReservationApprovalPage";
 //import RestaurantPage from "./pages/RestaurantPage";
-import UserReviewsPage from "./pages/UserReviewsPage";
+//import UserReviewsPage from "./pages/UserReviewsPage";
 //import RestaurantReviewsPage from "./pages/RestaurantReviewPage";
+//import LoginPage from "./pages/LoginPage";
+//import StartPage from "./pages/StartPage";
+//import SignInPage from "./pages/SignInPage";
+//import PasswordChangeApprovalPage from "./pages/PasswordChangeApprovalPage";
+//import PasswordChangePage from "./pages/PasswordChangePage";
+//import HomePage from "./pages/HomePage";
+
 function App() {
   return (
     <div className="app-container">
       <Header />
       <div className="mainbody">
         <Sidebar />
-        <UserReviewsPage />
+        <ReservationApprovalPage />
       </div>
     </div>
   );

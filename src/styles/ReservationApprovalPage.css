@@ -8,13 +8,15 @@
   }
 
   .reservation-title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #1d9265;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-align: center; /* Başlığı ortala */
+    font-family: 'Manrope', sans-serif;
+    font-size: 32px; /* Larger font size */
+    font-weight: 700; /* Bold text */
+    color: #1d9265; /* Green color */
+    margin-bottom: 30px; /* Space below the title */
+    text-align: center; /* Center the title */
+    text-transform: uppercase; /* Capitalize all letters */
+    letter-spacing: 2px; /* Slight letter spacing */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 
   }
 
@@ -46,9 +48,11 @@
 
   .reservation-info {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     color: #333;
-    text-align: left; /* İçeriği sola hizalar */
+    margin: 0;
+    flex-grow: 1; /* This ensures the message takes up the remaining space */
+    padding-right: 20px; /* Space between the text and buttons */
   }
 
   .reservation-status {
