@@ -1,5 +1,8 @@
 .header {
-  width: 100%;
+  width: 80%;
+  min-height: 80px;
+  right: 10%;
+  left: 10%;
   height: 80px; 
   background-color: #1d9265;
   color: white;
@@ -11,6 +14,7 @@
   z-index: 10; /* İçeriğin altında kalmasını önler */
   padding: 0 20px; /* İçeriğe sağ-sol boşluk ekler */
   box-sizing: border-box;
+  border-radius: 0 0 20px 20px;
 }
 
 

@@ -5,6 +5,8 @@
 }
 
 .mainbody {
+  margin-top: 50px;
+  margin-left: 230px;
   display: flex;
   flex: 1;
 }

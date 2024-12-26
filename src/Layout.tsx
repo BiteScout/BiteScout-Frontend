@@ -8,8 +8,8 @@ export const Layout = () => {
         <>
             <div className="app-container">
                 <Header />
+                <Sidebar />
                 <div className="mainbody">
-                    <Sidebar />
                     <Outlet />
                 </div>
             </div>

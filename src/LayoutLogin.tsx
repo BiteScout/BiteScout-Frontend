@@ -6,10 +6,7 @@ export const LayoutLogin = () => {
     return (
         <>
             <div className="app-container">
-                <Header />
-                <div className="mainbody">
-                    <Outlet />
-                </div>
+                <Outlet />
             </div>
         </>
     )

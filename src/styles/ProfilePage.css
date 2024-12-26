@@ -36,12 +36,14 @@
 .buttons__section{
     position: relative;
     top: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .buttons__section__button{
     cursor: pointer;
     transition: color 0.3s;
-    width: 150vh;
+    width: 200vh;
     background-color: transparent;
     border: 0px solid white;
     color: white;

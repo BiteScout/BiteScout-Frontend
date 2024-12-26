@@ -18,7 +18,7 @@ const SignInPage = lazy(() => import("./pages/SignInPage"))
 const PasswordChangeApprovalPage = lazy(()=>import("./pages/PasswordChangeApprovalPage"))
 const PasswordChangePage = lazy(()=>import("./pages/PasswordChangePage"))
 const HomePage = lazy(()=>import("./pages/HomePage"))
-const ProfilePage = lazy(() => import("./pages/ProfilePage.tsx"))
+const MyProfilePage = lazy(() => import("./pages/MyProfilePage.tsx"))
 
 
 
@@ -49,8 +49,8 @@ function App() {
                     element = {<StartPage />} />
 
                 <Route
-                    path = "/userProfile/:userId"
-                    element = {<ProfilePage />} />
+                    path = "/userProfile"
+                    element = {<MyProfilePage />} />
                 <Route path = "/userReviews/:userId"
                        element = {<UserReviewsPage />} />
                 <Route
