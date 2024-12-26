@@ -1,30 +1,80 @@
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
+import {HashRouter, Routes, Route} from "react-router-dom";
+import {lazy} from "react"
+import {Layout} from "./Layout.tsx";
+import {LayoutLogin} from "./LayoutLogin.tsx"
 import "./App.css";
-//import { MenuButton } from "./components/MenuButton";
-//import NotificationPage from "./pages/NotificationPage";
-//import MyReservations from "./pages/MyReservations";
-//import FavoritesPage from "./pages/FavoritesPage";
-import ReservationApprovalPage from "./pages/ReservationApprovalPage";
-//import RestaurantPage from "./pages/RestaurantPage";
-//import UserReviewsPage from "./pages/UserReviewsPage";
-//import RestaurantReviewsPage from "./pages/RestaurantReviewPage";
-//import LoginPage from "./pages/LoginPage";
-//import StartPage from "./pages/StartPage";
-//import SignInPage from "./pages/SignInPage";
-//import PasswordChangeApprovalPage from "./pages/PasswordChangeApprovalPage";
-//import PasswordChangePage from "./pages/PasswordChangePage";
-//import HomePage from "./pages/HomePage";
+
+
+const NotificationPage = lazy(() => import("./pages/NotificationPage"));
+const MyReservations = lazy(() => import("./pages/MyReservations"));
+const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
+const ReservationApprovalPage = lazy(() => import("./pages/ReservationApprovalPage"));
+const RestaurantPage = lazy(() => import("./pages/RestaurantPage"));
+const UserReviewsPage = lazy(() => import("./pages/UserReviewsPage"));
+const RestaurantReviewsPage = lazy(() => import("./pages/RestaurantReviewPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"))
+const StartPage = lazy(() => import("./pages/StartPage"))
+const SignInPage = lazy(() => import("./pages/SignInPage"))
+const PasswordChangeApprovalPage = lazy(()=>import("./pages/PasswordChangeApprovalPage"))
+const PasswordChangePage = lazy(()=>import("./pages/PasswordChangePage"))
+const HomePage = lazy(()=>import("./pages/HomePage"))
+const MyProfilePage = lazy(() => import("./pages/MyProfilePage.tsx"))
+
+
 
 function App() {
   return (
-    <div className="app-container">
-      <Header />
-      <div className="mainbody">
-        <Sidebar />
-        <ReservationApprovalPage />
-      </div>
-    </div>
+    <HashRouter>
+        <Routes>
+            <Route element={<LayoutLogin />}>
+                <Route
+                    path="/login"
+                    element={<LoginPage />} />
+                <Route
+                    path="/signin"
+                    element={<SignInPage />} />
+                <Route
+                    path="/changePassword"
+                    element={<PasswordChangePage />} />
+                <Route
+                    path="/approvePassword"
+                    element = {<PasswordChangeApprovalPage />} />
+            </Route>
+            <Route element = {<Layout />}>
+                <Route
+                    path="/"
+                    element={<HomePage />} />
+                <Route
+                    path = "/start"
+                    element = {<StartPage />} />
+
+                <Route
+                    path = "/userProfile"
+                    element = {<MyProfilePage />} />
+                <Route path = "/userReviews/:userId"
+                       element = {<UserReviewsPage />} />
+                <Route
+                    path="/notifications"
+                    element={<NotificationPage />} />
+                <Route
+                    path="/reservations"
+                    element={<MyReservations />} />
+                <Route
+                    path="/reservationApproval"
+                    element={<ReservationApprovalPage />} />
+
+                <Route
+                    path="/favorites"
+                    element={<FavoritesPage />} />
+                <Route
+                    path="/restaurantPage/:restaurantId"
+                    element={<RestaurantPage />} />
+                <Route
+                    path="/restaurantReviews/:restaurantId"
+                    element={<RestaurantReviewsPage />}/>
+            </Route>
+        </Routes>
+    </HashRouter>
   );
 }
 

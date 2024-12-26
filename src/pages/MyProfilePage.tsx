@@ -1,11 +1,40 @@
 import "../styles/ProfilePage.css";
 import profile from "../assets/Untitled-1.png";
 import { Button } from "../components/ButtonWithImageAndText";
+import {useEffect, useState} from "react";
+import * as axios from "axios";
+import useAxios from "../interceptors/AxiosInstance.tsx";
 
-export const ProfilePage = () => {
+const MyProfilePage = () => {
+  const[userName, setUserName] = useState("");
+  const[name, setName] = useState("");
+  const[surname, setSurname] = useState("");
+  const[profilePhoto, setProfilePhoto] = useState(null);
+  const axiosInstance = useAxios();
+
+
+  const handleUserDataFetch = async () => {
+    try{
+      const response =await axiosInstance.get("/users/8c7b39c4-26fd-4b91-bc15-374ccdcbc99d")
+      if (response.status === 200) {
+        setUserName(response.data.username);
+
+      }
+    }
+    catch(err){
+      console.log(err);
+    }
+
+  }
+
+  useEffect(() => {
+    handleUserDataFetch()
+  })
+
   function notify(msg: string) {
     alert(msg);
   }
+
   return (
     <>
       <div className="profile__page">
@@ -13,7 +42,7 @@ export const ProfilePage = () => {
           <img src={profile} alt="Profile" />
           <div className="header__text">
             <h1>Name Surname</h1>
-            <p className="header__username">Username</p>
+            <p className="header__username">{userName}</p>
           </div>
         </div>
         <br></br>
@@ -51,3 +80,4 @@ export const ProfilePage = () => {
     </>
   );
 };
+export default MyProfilePage;
