@@ -58,6 +58,105 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.notification-menu {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  width: 320px;
+  max-height: 400px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-20px);
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+}
+
+/* Open state styles */
+.notification-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0s;
+}
+
+
+/* Notification List */
+.notification-menu .notification-list {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  gap: 8px;
+}
+
+.notification-menu::-webkit-scrollbar {
+  width: 10px; 
+  background: transparent; 
+}
+.notification-menu::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.3); 
+  border-radius: 10px;
+}
+.notification-menu::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 100, 100, 0.5); 
+}
+.notification-menu::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+
+/* Notification Items */
+.notification-menu .notification-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notification-menu .notification-item:hover {
+  background-color: #f1f1f1;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Notification Message */
+.notification-menu .notification-item .notification-message {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Notification Actions */
+.notification-menu .notification-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Buttons */
+.notification-menu .notification-button {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.notification-menu .notification-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .header {
@@ -94,6 +193,7 @@
     font-size: 14px; 
   }
 }
+
 
 @media (max-width: 480px) {
   .header {
