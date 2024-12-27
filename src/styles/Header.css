@@ -1,20 +1,20 @@
 .header {
-  width: 80%;
+  width: 100%; 
   min-height: 80px;
-  right: 10%;
-  left: 10%;
-  height: 80px; 
+  height: auto;
   background-color: #1d9265;
   color: white;
   display: flex;
-  align-items: center; /* Dikey hizalamayı düzeltir */
-  justify-content: space-between; /* Elemanları yatayda dağıtır */
-  position: sticky; /* Akışa dahil olup, üstte sabitlenir */
+  flex-wrap: wrap; 
+  align-items: center;
+  justify-content: space-between;
+  position: sticky; 
   top: 0;
-  z-index: 10; /* İçeriğin altında kalmasını önler */
-  padding: 0 20px; /* İçeriğe sağ-sol boşluk ekler */
+  z-index: 10;
+  padding: 10px 20px; 
   box-sizing: border-box;
-  border-radius: 0 0 20px 20px;
+  border-radius: 0 0 30px 30px;
+  transition: all 0.3s ease; 
 }
 
 .header__logo {
@@ -26,50 +26,86 @@
 .header__logo:hover {
   transform: scale(1.1);
 }
-  
+
+.header__nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center; 
+}
+
+.header__button {
+  background-color: transparent;
+  font-family: "Manrope", sans-serif;
+  border: 1px solid white;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header__button:hover {
+  background-color: white;
+  color: #1d9265;
+  transform: scale(1.05);
+}
+
+.header__button:active {
+  background-color: #ffe082;
+  color: #128255;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .header {
+    flex-direction: column;
+    padding: 10px;
+    text-align: center; 
+  }
+
   .header__nav {
-    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .header__button {
+    margin: 5px 0; 
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 10px;
+  }
+
+  .header__logo {
+    width: 120px;
+  }
+
+  .header__nav {
     gap: 10px;
   }
-  
+
   .header__button {
-    background-color: transparent;
-    font-family: "Manrope", sans-serif;
-    border: 1px solid white;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 6px 12px; 
+    font-size: 14px; 
   }
-  
-  .header__button:hover {
-    background-color: white;
-    color: #1d9265;
-    transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 8px;
   }
-  
-  .header__button:active {
-    background-color: #ffe082;
-    color: #128255;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  .header__logo {
+    width: 100px; 
   }
-  
-  @media (max-width: 768px) {
-    .header {
-      flex-direction: column;
-      padding: 10px;
-      height: auto;
-    }
-  
-    .header__nav {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-  
-    .header__button {
-      margin-top: 10px;
-    }
+
+  .header__button {
+    padding: 5px 10px;
+    font-size: 12px;
   }
+}
