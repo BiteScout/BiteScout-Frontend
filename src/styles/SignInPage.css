@@ -1,93 +1,122 @@
 .sign-in-page {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(to bottom right, #1d9265, #3ca674); /* Yeşil tonlarında geçiş */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Manrope", sans-serif;
-    color: white;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #1d9265, #3ca674); /* Green gradient */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Manrope", sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+.sign-in-form-container {
+  width: 380px;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.7s ease-in-out;
+  backdrop-filter: blur(10px);
+}
+
+.header__logo {
+  width: 140px;
+  height: auto;
+  margin-bottom: 30px;
+  align-self: center; /* Center the logo */
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.sign-in-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.input-group {
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+  margin-left: 3px;
+}
+
+.input-group input {
+  width: 94%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #1d9265;
+  background-color: #e6f9f0;
+}
+
+.sign-in-button {
+  padding: 14px;
+  font-size: 18px;
+  background-color: #1d9265;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sign-in-button:hover {
+  background-color: #146a48;
+  transform: scale(1.05);
+}
+
+.sign-in-button:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(29, 146, 101, 0.5);
+}
+
+.login-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.login-link a {
+  color: #1d9265;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
   }
-  
-  .sign-in-form-container {
-    width: 400px;
-    padding: 30px;
-    background-color: #ffffff; /* Beyaz arka plan */
-    border-radius: 16px; /* Daha yuvarlak köşeler */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation: fadeIn 0.5s ease-in-out; /* Yumuşak görünüm */
+  to {
+      opacity: 1;
+      transform: translateY(0);
   }
-  
-  .header__logo {
-    width: 150px;
-    height: auto;
-    margin-bottom: 20px;
-    align-self: center; /* Logoyu tam ortalar */
-  }
-  
-  .sign-in-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  
-  .input-group label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .input-group input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 10px; /* Daha yuvarlak köşeler */
-    font-size: 14px;
-  }
-  
-  .input-group input:focus {
-    outline: none;
-    border-color: #1d9265;
-  }
-  
-  .sign-in-button {
-    padding: 12px;
-    font-size: 16px;
-    background-color: #1d9265;
-    color: #fff;
-    border: none;
-    border-radius: 10px; /* Daha yuvarlak köşeler */
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .sign-in-button:hover {
-    background-color: #146a48;
-  }
-  
-  .login-link {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  .login-link a {
-    color: #1d9265;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  .login-link a:hover {
-    text-decoration: underline;
-  }
-  
+}

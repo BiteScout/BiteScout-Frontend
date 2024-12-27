@@ -1,27 +1,75 @@
 .my-reservations-page {
-  min-height: 100vh; /* Ekran yüksekliğini kaplar */
+  min-height: 100vh; /* Full screen height */
   display: flex;
-  justify-content: center; /* Yatayda merkezler */
-  align-items: flex-start; /* Yukarıdan hizalar */
-  padding: 20px; /* Dışarıya olan boşluk */
+  justify-content: center; /* Center horizontally */
+  align-items: flex-start; /* Align from the top */
+  padding: 20px;
   font-family: 'Manrope', sans-serif;
-  box-sizing: border-box; /* Padding'i dahil eder */
+  box-sizing: border-box;
 }
+
 .reservation-title {
-  font-size: 32px;
+  font-size: 36px; /* Larger font size for more impact */
   font-weight: 700;
-  color: #1d9265; 
-  margin-bottom: 30px;
+  color: #2c7f51; /* Slightly darker shade of green */
+  margin-bottom: 40px; /* Increased margin for spacing */
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px; /* More space between letters */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for title */
 }
 
 .reservation-content {
-  width: 100%; /* Genişlik %100 olur */
-  max-width: 1200px; /* Maksimum genişlik sınırı */
-  border-radius: 12px; /* Yuvarlak köşeler */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge */
-  padding: 20px; /* İçerik iç boşlukları */
-  box-sizing: border-box; /* Padding genişliğe dahil */
+  width: 100%;
+  max-width: 1200px;
+  border-radius: 16px; /* Slightly more rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Softer shadow for depth */
+  padding: 30px; /* More padding for a comfortable layout */
+  box-sizing: border-box;
+  background-color: #ffffff; /* White background for content */
+  overflow: hidden; /* Prevents content overflow */
+  transform: scale(1); /* Subtle zoom effect when focused or hovered */
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+.reservation-content:hover {
+  transform: scale(1.02); /* Slight zoom effect on hover */
+}
+
+
+/* Reservation status styling */
+.status {
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  text-transform: uppercase;
+  max-width: fit-content;
+}
+
+.status.confirmed {
+  background-color: #28a745;
+  color: white;
+}
+
+.status.pending {
+  background-color: #ffc107;
+  color: white;
+}
+
+.status.cancelled {
+  background-color: #ff0019;
+  color: white;
+}
+
+
+/* Additional Styling for Responsive Design */
+@media (max-width: 768px) {
+  .reservation-title {
+    font-size: 28px; /* Smaller title on smaller screens */
+  }
+
+  .reservation-content {
+    padding: 20px; /* Reduced padding for smaller screens */
+  }
 }

@@ -1,41 +1,61 @@
-.button__ img{
-    height: 23px;
-    float:left;
-    margin: 5px 0px 5px 0px;
+.button__ img {
+    height: 24px;
+    float: left;
+    margin: 5px 8px 5px 5px;
 }
 
 .button__ {
-    background-color: transparent;
-    border: 0px solid white;
+    background-color: #1d9265;
+    border: transparent;
     color: white;
-    border-radius: 9px;
-    border-color: #1d9265;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 14px;
     cursor: pointer;
-  }
-.button__:hover{
-    background-color: #1d805a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.button__ p{
-    float:right;
+.button__:hover {
+    background-color: #176a4a;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button__ p {
+    margin: 0;
+    padding: 0 8px;
     font-family: "Manrope", sans-serif;
     font-weight: 800;
-    margin: 5px 0px 5px 7px;
-    bottom: 10px;
+    font-size: 14px;
+    color: white;
 }
 
 .button__onlyimg {
     background-color: transparent;
-    border: 0px solid white;
-    color: white;
-    border-radius: 9px;
-    border-color: #1d9265;
+    border: none;
     cursor: pointer;
-  }
-  .button__onlyimg:hover{
-    background-color: #1d805a;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
 }
 
-.button__onlyimg img{
-    height: 20px;
+.button__onlyimg:hover {
+    transform: scale(1.1); 
 }
+
+.button__onlyimg img {
+    height: 24px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.button__onlyimg:hover img {
+    transform: scale(1.2); 
+    filter: brightness(1.2);
+}
+

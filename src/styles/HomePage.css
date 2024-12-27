@@ -1,116 +1,146 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: visible; /* Taşmaları doğal bırak */
-  }
-  
-  .main-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    overflow-y: auto; /* Yalnızca dikey kaydırmayı etkinleştir */
-    width: 100%;
-  }
-  
-  .home-page {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-  
-  .search-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', sans-serif; /* Modern font for clean look */
+  color: #333; /* Softer text color */
+  background-color: #f4f4f9; /* Subtle background for contrast */
+  overflow: visible; /* Allow natural overflow */
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  overflow-y: auto; /* Yalnızca dikey kaydırmayı etkinleştir */
+  width: 100%;
+}
+
+.home-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.search-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  outline: none;
+  background: #f8f9fa;
+}
+
+.search-button {
+  padding: 15px 20px;
+  background-color: #146a48;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: #0f5c3a;
+  transform: translateY(-2px);
+}
+
+.content-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.trending-restaurants h2,
+.recently-visited h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #146a48;
+  font-weight: 700;
+  text-align: center;
+}
+
+.restaurant-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.restaurant-card {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.restaurant-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.restaurant-image {
+  width: 100%;
+  max-width: 250px;
+  height: 180px;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.restaurant-card:hover .restaurant-image {
+  transform: scale(1.05);
+}
+
+/* Extra touch: Responsiveness */
+@media (max-width: 768px) {
   .search-form {
-    display: flex;
+    flex-direction: column;
     gap: 10px;
-    width: 100%;
-    max-width: 600px;
   }
-  
-  .search-input {
-    flex-grow: 1;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-  }
-  
+
   .search-button {
-    padding: 15px;
-    background-color: #1d9265;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .search-button:hover {
-    background-color: #146a48;
-  }
-  
-  .content-section {
-    flex-grow: 1; /* Alanı tamamen kullanır */
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-  
-  .trending-restaurants h2,
-  .recently-visited h2 {
-    margin: 0;
-    margin-bottom: 20px; /* Başlık ve kartlar arasına boşluk ekler */
-    font-size: 24px;
-    color: #1d9265; /* Başlıkları yeşil yapar */
-    font-weight: bold;
-    text-align: center; /* Başlıkları ortalar */
-  }
-  
-  .restaurant-list {
-    flex-grow: 1; /* Restoran listesi alanı doldurur */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Fotoğrafları büyütmek için */
-    gap: 30px; /* Kartlar arasındaki mesafeyi artırır */
-  }
-  
-  .restaurant-card {
-    padding: 15px;
-    background-color: #e8f5e9; /* Açık yeşil arka plan */
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .restaurant-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .restaurant-image {
     width: 100%;
-    max-width: 200px; /* Görselin maksimum boyutunu büyüt */
-    height: 150px; /* Görsellerin yüksekliğini ayarla */
-    border-radius: 8px;
-    object-fit: cover; /* Görselin düzgün kırpılması */
   }
-  
+
+  .restaurant-image {
+    max-width: 200px;
+    height: 150px;
+  }
+}

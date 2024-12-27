@@ -1,49 +1,55 @@
 .notification-actions {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     justify-content: flex-end;
     margin-left: auto;
 }
 
 .notification-button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-size: 16px;
-    font-weight: bold;
-    border-radius: 6px;
+    font-weight: 600;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    min-width: 120px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 130px;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
 }
 
 .notification-button:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Button colors */
 .notification-approve {
-    background-color: #28a745;
+    background: linear-gradient(135deg, #28a745, #218838);
     color: #fff;
+    border: 1px solid #218838;
 }
 
 .notification-approve:hover {
-    background-color: #218838;
+    background: linear-gradient(135deg, #218838, #28a745);
 }
 
 .notification-reject {
-    background-color: #dc3545;
+    background: linear-gradient(135deg, #dc3545, #c82333);
     color: #fff;
+    border: 1px solid #c82333;
 }
 
 .notification-reject:hover {
-    background-color: #c82333;
+    background: linear-gradient(135deg, #c82333, #dc3545);
 }
 
 .notification-mark {
-    background-color: #007bff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     color: #fff;
+    border: 1px solid #0056b3;
 }
 
 .notification-mark:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #0056b3, #007bff);
 }

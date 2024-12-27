@@ -1,18 +1,40 @@
 .notification-page .notification-content .notification-title {
-    font-family: 'Manrope', sans-serif;
-    font-size: 32px; /* Larger font size */
-    font-weight: 700; /* Bold text */
-    color: #1d9265; /* Green color */
-    margin-bottom: 30px; /* Space below the title */
-    text-align: center; /* Center the title */
-    text-transform: uppercase; /* Capitalize all letters */
-    letter-spacing: 2px; /* Slight letter spacing */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-family: 'Roboto', sans-serif; /* Use a modern, clean font */
+    font-size: 36px; /* Larger font size for prominence */
+    font-weight: 700; /* Bold text for importance */
+    color: #1d9265; /* Green color for a fresh, modern look */
+    margin-bottom: 40px; /* More space below the title */
+    text-align: center; /* Center the title for better balance */
+    text-transform: uppercase; /* All caps for a strong presence */
+    letter-spacing: 3px; /* Increased letter-spacing for a sleek look */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1); /* Softer and larger shadow for depth */
+    line-height: 1.2; /* Improved line-height for better readability */
+    background: linear-gradient(to right, #28a745, #218838); /* Subtle gradient effect */
+    -webkit-background-clip: text; /* Clip the background to text */
+    color: transparent; /* Make text color transparent to show the gradient */
 }
 
 /* Responsive Styling */
 @media (max-width: 768px) {
     .notification-page .notification-content .notification-title {
-        font-size: 28px; /* Slightly smaller font on mobile */
+        font-size: 28px; /* Slightly smaller font on mobile for better fitting */
+        letter-spacing: 2px; /* Less letter-spacing on mobile */
+        margin-bottom: 20px; /* Less space on mobile */
     }
+}
+
+/* Additional enhancements */
+.notification-page .notification-content {
+    padding: 20px;
+    background: #f9f9f9; /* Soft background color */
+    border-radius: 12px; /* Rounded corners for modern look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow around content */
+    max-width: 90%;
+    margin: 0 auto; /* Center the content */
+}
+
+.notification-page .notification-content .notification-title {
+    background-color: #fff; /* Background to make the title stand out */
+    padding: 10px;
+    border-radius: 6px; /* Rounded corners for the title box */
 }
