@@ -39,14 +39,14 @@ function App() {
                 <Route
                     path="/approvePassword"
                     element = {<PasswordChangeApprovalPage />} />
+                <Route
+                    path = "/start"
+                    element = {<StartPage />} />
             </Route>
             <Route element = {<Layout />}>
                 <Route
                     path="/"
                     element={<HomePage />} />
-                <Route
-                    path = "/start"
-                    element = {<StartPage />} />
 
                 <Route
                     path = "/userProfile"

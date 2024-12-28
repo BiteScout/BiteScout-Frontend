@@ -1,5 +1,5 @@
 import "../styles/LoginPage.css";
-import bitescoutLogo11 from "../assets/bitescout-logo1-1.png";
+import bitescoutLogo11 from "../assets/bitescout-green.png";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../context/AuthContext.tsx";

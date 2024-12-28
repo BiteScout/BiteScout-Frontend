@@ -15,7 +15,7 @@ const MyProfilePage = () => {
 
   const handleUserDataFetch = async () => {
     try{
-      const response =await axiosInstance.get("/users/8c7b39c4-26fd-4b91-bc15-374ccdcbc99d")
+      const response =await axiosInstance.get("/restaurants/")
       if (response.status === 200) {
         setUserName(response.data.username);
 
