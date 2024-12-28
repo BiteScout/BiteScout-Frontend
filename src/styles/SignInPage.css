@@ -44,6 +44,15 @@
   gap: 25px;
 }
 
+.sign-in-form h1{
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+  margin-left: 3px;
+  text-align: center;
+}
+
 .input-group {
   text-align: left;
 }

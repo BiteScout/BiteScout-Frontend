@@ -12,13 +12,19 @@ const ReservationApprovalPage = lazy(() => import("./pages/ReservationApprovalPa
 const RestaurantPage = lazy(() => import("./pages/RestaurantPage"));
 const UserReviewsPage = lazy(() => import("./pages/UserReviewsPage"));
 const RestaurantReviewsPage = lazy(() => import("./pages/RestaurantReviewPage"));
-const LoginPage = lazy(() => import("./pages/LoginPage"))
+/*const LoginPage = lazy(() => import("./pages/LoginPage"))*/
+import LoginPage from "./pages/LoginPage"
 const StartPage = lazy(() => import("./pages/StartPage"))
-const SignInPage = lazy(() => import("./pages/SignInPage"))
+/*const SignInPage = lazy(() => import("./pages/SignInPage"))*/
+import SignInPage from "./pages/SignInPage.tsx";
+import {AuthActionsProvider} from "./services/AuthFunctions.tsx";
+import {UserActionsProvider} from "./services/UserFunctions.tsx";
 const PasswordChangeApprovalPage = lazy(()=>import("./pages/PasswordChangeApprovalPage"))
 const PasswordChangePage = lazy(()=>import("./pages/PasswordChangePage"))
-const HomePage = lazy(()=>import("./pages/HomePage"))
-const MyProfilePage = lazy(() => import("./pages/MyProfilePage.tsx"))
+/*const HomePage = lazy(()=>import("./pages/HomePage"))*/
+import HomePage from "./pages/HomePage.tsx";
+/*const MyProfilePage = lazy(() => import("./pages/MyProfilePage.tsx"))*/
+import MyProfilePage from "./pages/MyProfilePage.tsx";
 
 
 
@@ -29,10 +35,16 @@ function App() {
             <Route element={<LayoutLogin />}>
                 <Route
                     path="/login"
-                    element={<LoginPage />} />
+                    element={
+                        <AuthActionsProvider>
+                            <LoginPage />
+                        </AuthActionsProvider>} />
                 <Route
-                    path="/signin"
-                    element={<SignInPage />} />
+                    path="/signin/:userType"
+                    element={
+                        <AuthActionsProvider>
+                            <SignInPage />
+                        </AuthActionsProvider>} />
                 <Route
                     path="/changePassword"
                     element={<PasswordChangePage />} />
@@ -50,7 +62,10 @@ function App() {
 
                 <Route
                     path = "/userProfile"
-                    element = {<MyProfilePage />} />
+                    element = {
+                        <UserActionsProvider>
+                            <MyProfilePage />
+                        </UserActionsProvider>} />
                 <Route path = "/userReviews/:userId"
                        element = {<UserReviewsPage />} />
                 <Route

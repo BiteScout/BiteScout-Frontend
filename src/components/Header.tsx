@@ -8,13 +8,17 @@ import { ImgButton } from "./ButtonWithImage";
 import globe from "../assets/globe.png";
 import "../styles/Button.css";
 import NotificationList from "./NotificationList";
+import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {RootState} from "../store.tsx";
 
 const Header = () => {
   const [isNotificationMenuOpen, setIsNotificationMenuOpen] = useState(false);
   const notificationMenuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const notify = (msg: string) => alert(msg);
-
+  const userName = useSelector((state: RootState) => state.name);
   const toggleNotificationMenu = () => {
     setIsNotificationMenuOpen((prevState) => !prevState);
   };
@@ -46,8 +50,8 @@ const Header = () => {
         <Button
           class="button__"
           src={profile}
-          text="Username"
-          func={notify}
+          text={userName === undefined ? "Username" : userName}
+          func={() => navigate("/userProfile")}
           msg="profile"
         />
         <ImgButton

@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/PasswordChangePage.css";
-import bitescoutLogo11 from "../assets/bitescout-logo1-1.png";
+import bitescoutLogo11 from "../assets/bitescout-green.png";
 
 const PasswordChangePage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

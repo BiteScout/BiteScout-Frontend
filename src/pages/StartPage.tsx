@@ -11,11 +11,11 @@ const StartPage = () => {
           Your go-to platform for restaurant reservations
         </p>
         <div className="buttons">
-          <a href="/login" className="btn login-btn">
+          <a href="/#/login" className="btn login-btn">
             Log In
           </a>
-          <a href="/signup" className="btn signup-btn">
-            Sign Up
+          <a href="/#/signin/Customer" className="btn signup-btn">
+            Sign In
           </a>
         </div>
       </div>
