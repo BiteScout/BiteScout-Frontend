@@ -1,0 +1,78 @@
+.settings-page {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #f4f7fc; /* Light blue background */
+    padding: 40px;
+    font-family: "Manrope", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .form-container {
+    width: 500px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #2d6a4f; /* A refined green color */
+  }
+  
+  .settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .input-group {
+    text-align: left;
+  }
+  
+  .input-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+  }
+  
+  .input-group input:focus {
+    outline: none;
+    border-color: #1d9265;
+    background-color: #e6f9f0;
+  }
+  
+  .update-button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #1d9265;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .update-button:hover {
+    background-color: #146a48;
+    transform: scale(1.05);
+  }
+  
