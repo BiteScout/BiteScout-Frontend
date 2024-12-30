@@ -1,0 +1,130 @@
+.edit-restaurant-page {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    font-family: "Manrope", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+  }
+
+  .page-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1d9265;
+    margin-bottom: 30px;
+  }
+
+  .form-container {
+    width: 80%;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .input-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .input-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+  }
+
+  .input-group input:focus {
+    outline: none;
+    border-color: #1d9265;
+    background-color: #e6f9f0;
+  }
+
+  .menu-items {
+    margin-top: 20px;
+  }
+
+  .menu-items h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1d9265;
+    margin-bottom: 10px;
+  }
+
+  .menu-item {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .save-button {
+    padding: 10px 20px;
+    background-color: #1d9265;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .save-button:hover {
+    background-color: #146a48;
+  }
+
+  .cancel-button {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .cancel-button:hover {
+    background-color: #a71d2a;
+  }
+
+  .delete-button {
+    padding: 10px 20px;
+    background-color: #ff6f61;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .delete-button:hover {
+    background-color: #e63946;
+  }

@@ -31,7 +31,8 @@ import HomePage from "./pages/HomePage.tsx";
 /*const MyProfilePage = lazy(() => import("./pages/MyProfilePage.tsx"))*/
 import MyProfilePage from "./pages/MyProfilePage.tsx";
 //import SettingsPage from "./pages/SettingsPage.tsx";
-
+import MyRestaurantsPage from "./pages/MyRestaurantsPage.tsx";
+import EditRestaurantPage from "./pages/EditRestaurantPage.tsx";
 function App() {
   return (
     <HashRouter>
@@ -79,7 +80,7 @@ function App() {
             element={<ReservationApprovalPage />}
           />
 
-          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/favorites" element={<EditRestaurantPage />} />
           <Route
             path="/restaurantPage/:restaurantId"
             element={<RestaurantPage />}
