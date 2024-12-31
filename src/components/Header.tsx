@@ -1,22 +1,23 @@
 import "../styles/Header.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import bitescoutLogo11 from "../assets/bitescout-logo1-1.png";
 import notification from "../assets/ios-notification.png";
-import { Button } from "./ButtonWithImageAndText";
+import {Button} from "./ButtonWithImageAndText";
 import profile from "../assets/Untitled-1.png";
-import { ImgButton } from "./ButtonWithImage";
+import {ImgButton} from "./ButtonWithImage";
 import globe from "../assets/globe.png";
 import "../styles/Button.css";
 import NotificationList from "./NotificationList";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState} from "../store.tsx";
+import {useAuth} from "../context/AuthContext.tsx";
 
 const Header = () => {
   const [isNotificationMenuOpen, setIsNotificationMenuOpen] = useState(false);
   const notificationMenuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-
+    const {isAuthenticated, logout} = useAuth();
   const notify = (msg: string) => alert(msg);
   const userName = useSelector((state: RootState) => state.name);
   const toggleNotificationMenu = () => {
@@ -50,10 +51,18 @@ const Header = () => {
         <Button
           class="button__"
           src={profile}
-          text={userName === undefined ? "Username" : userName}
-          func={() => navigate("/userProfile")}
+          text={userName === undefined || userName === "" ? "Username" : userName}
+          func={() => {
+              isAuthenticated ? navigate("/userProfile") : navigate("/login")
+          }}
           msg="profile"
         />
+          {isAuthenticated && (
+              <button className="button__" onClick={() => {
+                  navigate("/");
+                  logout()
+              }}>Logout</button>
+          )}
         <ImgButton
           class="button__onlyimg"
           src={notification}

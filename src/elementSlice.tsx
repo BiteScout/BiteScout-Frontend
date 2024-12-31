@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 // Define the Element type
 interface Element {
@@ -6,6 +6,7 @@ interface Element {
     name: string;
     role: string;
     userId: string;
+    isAuthenticated: boolean;
     // Add other properties if needed
 }
 
@@ -15,6 +16,7 @@ const initialState: Element = {
     name:"",
     role:"",
     userId:"",
+    isAuthenticated: false
 };
 
 const elementsSlice = createSlice({
@@ -26,10 +28,18 @@ const elementsSlice = createSlice({
                 state.name = action.payload.name;
                 state.role = action.payload.role;
                 state.userId = action.payload.userId;
+            state.isAuthenticated = true
         },
+        removeElement: (state) => {
+            state.id = 0;
+            state.name = "";
+            state.role = "";
+            state.userId = "";
+            state.isAuthenticated = false;
+        }
     },
 });
 
 // Export actions and reducer
-export const { addElement } = elementsSlice.actions;
+export const {addElement, removeElement} = elementsSlice.actions;
 export default elementsSlice.reducer;

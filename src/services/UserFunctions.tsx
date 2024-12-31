@@ -1,10 +1,16 @@
 import useAxios from "../interceptors/AxiosInstance.tsx";
-
-import {useSelector, useDispatch} from "react-redux";
 import React, {createContext, ReactNode, useContext} from "react";
 
+interface user {
+    id: string,
+    username: string,
+    email: string,
+    enabled: boolean
+}
+
+
 interface UserActionsContextProps {
-    handleFetchUser: (userId:string) => Promise<{} | undefined>;
+    handleFetchUser: (userId: string) => Promise<user | undefined>;
 }
 
 interface UserActionsProviderProps {
@@ -29,27 +35,14 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
         try{
             const response =await useAxios().get("/users/"+ userId )
             if (response.status === 200) {
-                data = {
-                    id: response.data.id,
-                    username: response.data.username,
-                    password: response.data.password,
-                    firstName: response.data.firstName,
-                    lastName: response.data.lastName,
-                    phoneNumber: response.data.phoneNumber,
-                    country: response.data.country,
-                    city: response.data.city,
-                    postalCode: response.data.postalCode,
-                    address: response.data.address,
-                    profilePicture: response.data.profilePicture
-                }
-
-                return data;
+                return response.data;
             }
         }
         catch(err){
             console.log(err);
         }
     }
+
     return (
         <UserActionsContext.Provider value={{ handleFetchUser }}>
             {children}

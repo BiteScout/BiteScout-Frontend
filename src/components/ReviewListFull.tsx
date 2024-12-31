@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import {review, reviewReply, useRestaurantActions} from "../services/RestaurantFunctions.tsx";
 import {useSelector} from "react-redux";
 import {RootState} from "../store.tsx";
-import {useNavigate} from "react-router-dom";
 
 
 interface realReview {
@@ -23,14 +22,12 @@ interface realReview {
 interface ReviewListProps {
     reviews: review[] | undefined; // Review tipinde bir dizi
     setEdited: React.Dispatch<React.SetStateAction<boolean>>;
-    restaurantId: string;
 }
 
-const ReviewList: React.FC<ReviewListProps> = ({
-  reviews,
-                                                   setEdited,
-                                                   restaurantId
-}) => {
+const ReviewListFull: React.FC<ReviewListProps> = ({
+                                                       reviews,
+                                                       setEdited,
+                                                   }) => {
     const {handleFetchUser} = useUserActions()
     const {
         handleFetchReviewInteractions,
@@ -50,7 +47,6 @@ const ReviewList: React.FC<ReviewListProps> = ({
     const [replyComment, setReplyComment] = useState("");
     const [replyRating, setReplyRating] = useState(0);
     const [replyResponse, setReplyResponse] = useState<any>(undefined)
-    const navigate = useNavigate();
 
     const userName = useSelector((state: RootState) => state.name)
     /*const [replies, setReplies] = useState<reviewReply[]>([])*/
@@ -159,91 +155,87 @@ const ReviewList: React.FC<ReviewListProps> = ({
     }, [editOrReply]);
 
 
-  return (
-    <div className="review-list">
-      <h2>Top Reviews</h2>
-        <button onClick={() => {
-            navigate("/restaurantReviews/" + restaurantId)
-        }}>See All Reviews
-        </button>
-        {realReviews.slice(0, realReviews.length < 5 ? realReviews.length : 5).map((review: realReview, index: number) => (
-            <div key={index} className="review">
-                <p>
-                    Rating: {review.rating}
-                </p>
-          <p>
-              <strong>{review.customerName}</strong>: {review.comment}
-          </p>
-                <p> {"creationDate: "} {review.createdAt} </p>
-                {review.updatedAt !== review.createdAt ? <p>{"updateDate: "}{review.updatedAt}</p> : null}
-                <p>Likes: {review.likeCount}</p>
-                <button onClick={() => {
-                    handleSendingInteraction(review.id, "LIKE")
-                }}> Like
-                </button>
-                <button onClick={() => {
-                    handleSendingInteraction(review.id, "DISLIKE")
-                }}> Dislike
-                </button>
-                <button onClick={() => {
-                    setReplyCommentOn((prevArray) => prevArray.map(() => false))
-                    setReplyCommentOn((prevArray) => {
-                        const newArray = [...prevArray];
-                        newArray[index] = true;
-                        return newArray;
-                    });
-                    setEditOrReply(false)
-                }}>Reply
-                </button>
-                {review.customerName === userName ? <button onClick={() => {
-                    setEditReviewOn((prevArray) => prevArray.map(() => false))
-                    setEditReviewOn((prevArray) => {
-                        const newArray = [...prevArray];
-                        newArray[index] = true;
-                        return newArray;
-                    });
-                    setEditOrReply(true)
-                }}>Edit</button> : null}
-
-
-                {replyCommentOn[index] ?
-                    <div>
-                        <label>
-                            Comment:
-                            <input type={"text"} value={replyComment}
-                                   onChange={(e) => setReplyComment(e.target.value)}/>
-                        </label>
-                        <button onClick={() => {
-                            setReplyResponse(handleSendingReply(review.id, replyComment));
-                        }}>Send Reply
-                        </button>
-
-
-                    </div>
-                    : null}
-
-
-                {editReviewOn[index] ? <div>
-                    <input type={"text"} value={editComment} onChange={(e) => setEditComment(e.target.value)}/>
-                    <input type={"number"} value={editRating} onChange={(e) => setEditRating(Number(e.target.value))}/>
+    return (
+        <div className="review-list">
+            <h2>All Reviews</h2>
+            {realReviews.map((review: realReview, index: number) => (
+                <div key={index} className="review">
+                    <p>
+                        Rating: {review.rating}
+                    </p>
+                    <p>
+                        <strong>{review.customerName}</strong>: {review.comment}
+                    </p>
+                    <p> {"creationDate: "} {review.createdAt} </p>
+                    {review.updatedAt !== review.createdAt ? <p>{"updateDate: "}{review.updatedAt}</p> : null}
+                    <p>Likes: {review.likeCount}</p>
                     <button onClick={() => {
-                        handleEditReview(review.id, editRating, editComment);
-                        setEdited(true)
-                    }}>Send
+                        handleSendingInteraction(review.id, "LIKE")
+                    }}> Like
                     </button>
-                </div> : null}
-                {review.replies.slice(0, review.replies.length < 5 ? review.replies.length : 5).map((reply: reviewReply, replyIndex: number) => (
-                    <div key={replyIndex} className="review" style={{marginLeft: "50px"}}>
-                        <p>
-                            <strong>{reply.interactingUserId}</strong>: {reply.replyText}
-                        </p>
-                        {/*{reply.interactingUserId === userName ? <button>Edit</button> : null}*/}
-                    </div>
-                ))}
-            </div>
-        ))}
-    </div>
-  );
+                    <button onClick={() => {
+                        handleSendingInteraction(review.id, "DISLIKE")
+                    }}> Dislike
+                    </button>
+                    <button onClick={() => {
+                        setReplyCommentOn((prevArray) => prevArray.map(() => false))
+                        setReplyCommentOn((prevArray) => {
+                            const newArray = [...prevArray];
+                            newArray[index] = true;
+                            return newArray;
+                        });
+                        setEditOrReply(false)
+                    }}>Reply
+                    </button>
+                    {review.customerName === userName ? <button onClick={() => {
+                        setEditReviewOn((prevArray) => prevArray.map(() => false))
+                        setEditReviewOn((prevArray) => {
+                            const newArray = [...prevArray];
+                            newArray[index] = true;
+                            return newArray;
+                        });
+                        setEditOrReply(true)
+                    }}>Edit</button> : null}
+
+
+                    {replyCommentOn[index] ?
+                        <div>
+                            <label>
+                                Comment:
+                                <input type={"text"} value={replyComment}
+                                       onChange={(e) => setReplyComment(e.target.value)}/>
+                            </label>
+                            <button onClick={() => {
+                                setReplyResponse(handleSendingReply(review.id, replyComment));
+                            }}>Send Reply
+                            </button>
+
+
+                        </div>
+                        : null}
+
+
+                    {editReviewOn[index] ? <div>
+                        <input type={"text"} value={editComment} onChange={(e) => setEditComment(e.target.value)}/>
+                        <input type={"number"} value={editRating}
+                               onChange={(e) => setEditRating(Number(e.target.value))}/>
+                        <button onClick={() => {
+                            handleEditReview(review.id, editRating, editComment);
+                            setEdited(true)
+                        }}>Send
+                        </button>
+                    </div> : null}
+                    {review.replies.map((reply: reviewReply, replyIndex: number) => (
+                        <div key={replyIndex} className="review" style={{marginLeft: "50px"}}>
+                            <p>
+                                <strong>{reply.interactingUserId}</strong>: {reply.replyText}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            ))}
+        </div>
+    );
 };
 
-export default ReviewList;
+export default ReviewListFull;
