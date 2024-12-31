@@ -33,6 +33,9 @@ import MyProfilePage from "./pages/MyProfilePage.tsx";
 //import SettingsPage from "./pages/SettingsPage.tsx";
 import MyRestaurantsPage from "./pages/MyRestaurantsPage.tsx";
 import EditRestaurantPage from "./pages/EditRestaurantPage.tsx";
+import OffersPage from "./pages/OffersPage.tsx";
+import AddOfferPage from "./pages/AddOfferPage.tsx";
+import CustomerOffersPage from "./pages/CustomerOffersPage.tsx";
 function App() {
   return (
     <HashRouter>
@@ -80,7 +83,7 @@ function App() {
             element={<ReservationApprovalPage />}
           />
 
-          <Route path="/favorites" element={<EditRestaurantPage />} />
+          <Route path="/favorites" element={<CustomerOffersPage />} />
           <Route
             path="/restaurantPage/:restaurantId"
             element={<RestaurantPage />}
