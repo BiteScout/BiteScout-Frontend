@@ -2,34 +2,37 @@ import "../styles/ProfilePage.css";
 import profile from "../assets/Untitled-1.png";
 import { Button } from "../components/ButtonWithImageAndText";
 import {useEffect, useState} from "react";
+import {useUserActions} from "../services/UserFunctions.tsx";
+import {useSelector} from "react-redux";
+import {useTransition} from "react";
+import store from "../store.tsx";
 import * as axios from "axios";
 import useAxios from "../interceptors/AxiosInstance.tsx";
+import {RootState} from "../store.tsx";
 
 const MyProfilePage = () => {
   const[userName, setUserName] = useState("");
   const[name, setName] = useState("");
   const[surname, setSurname] = useState("");
   const[profilePhoto, setProfilePhoto] = useState(null);
-  const axiosInstance = useAxios();
-
-
-  const handleUserDataFetch = async () => {
-    try{
-      const response =await axiosInstance.get("/users/8c7b39c4-26fd-4b91-bc15-374ccdcbc99d")
-      if (response.status === 200) {
-        setUserName(response.data.username);
-
-      }
-    }
-    catch(err){
-      console.log(err);
-    }
-
-  }
+  const {handleFetchUser} = useUserActions();
+  const userId = useSelector((state:RootState) => state.userId);
+  console.log(userId);
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    handleUserDataFetch()
-  })
+    startTransition(() => {
+      // Perform the async task inside startTransition
+      const data = handleFetchUser(userId);
+      data.then((dataValue:any) => {
+        setName(dataValue.firstName);
+        setSurname(dataValue.lastName);
+        setUserName(dataValue.username);
+      })// assuming `username` is used for userId
+      // Handle the result or redirect after login
+    });
+
+  },[])
 
   function notify(msg: string) {
     alert(msg);
@@ -41,7 +44,7 @@ const MyProfilePage = () => {
         <div className="header__section">
           <img src={profile} alt="Profile" />
           <div className="header__text">
-            <h1>Name Surname</h1>
+            <h1>{name === undefined ? "Name": name}{" "}{surname === undefined? "Surname": surname}</h1>
             <p className="header__username">{userName}</p>
           </div>
         </div>

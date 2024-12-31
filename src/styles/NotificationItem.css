@@ -1,19 +1,24 @@
 .notification-item {
-    background-color: #e6f7e6; /* Light green for all notifications */
+    background: #fff; /* Soft white background */
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    margin-bottom: 20px;
-    font-family: 'Manrope', sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    margin-bottom: 15px;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    border-left: 5px solid transparent;
+    background-image: linear-gradient(to right, #f8f9fa, #fff);
 }
 
 .notification-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background-color: #f1f3f5;
+    border-left: 5px solid #0a7c00; /* Highlight color */
 }
 
 .notification-message {
@@ -21,56 +26,29 @@
     font-weight: 500;
     color: #333;
     margin: 0;
-    flex-grow: 1; /* This ensures the message takes up the remaining space */
-    padding-right: 20px; /* Space between the text and buttons */
+    flex-grow: 1;
+    padding-right: 25px;
 }
 
 .notification-actions {
     display: flex;
     gap: 15px;
-    justify-content: flex-end;
 }
 
 .notification-button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-size: 16px;
-    font-weight: bold;
-    border-radius: 6px;
+    font-weight: 600;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    min-width: 120px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 130px;
 }
 
 .notification-button:hover {
-    transform: translateY(-2px);
-}
-
-.notification-approve {
-    background-color: #28a745;
-    color: #fff;
-}
-
-.notification-approve:hover {
-    background-color: #218838;
-}
-
-.notification-reject {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-.notification-reject:hover {
-    background-color: #c82333;
-}
-
-.notification-mark {
-    background-color: #007bff;
-    color: #fff;
-}
-
-.notification-mark:hover {
-    background-color: #0056b3;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive styling */
@@ -81,10 +59,10 @@
     }
 
     .notification-actions {
-        margin-top: 10px;
+        margin-top: 12px;
     }
 
     .notification-message {
-        padding-right: 0; /* Remove right padding on smaller screens */
+        padding-right: 0;
     }
 }

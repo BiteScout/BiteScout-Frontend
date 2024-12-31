@@ -1,77 +1,72 @@
 /* Kartların Arka Planı Başlık Tonunda */
 .reservation-card {
-  background-color: #e6f7e6; /* Light green background */
-  border-radius: 12px; /* Yuvarlak köşeler */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Gölge efekti */
-  padding: 20px;
+  background-color: #ffffff; /* Beyaz arka plan */
+  border-radius: 15px; /* Yuvarlak köşeler */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge efekti */
+  padding: 25px;
   display: flex;
-  justify-content: space-between; /* İçerik arası boşluk */
-  align-items: center; /* Ortada hizalama */
-  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hover efekti */
-  margin-bottom: 20px; /* Kartlar arasındaki boşluk */
-  font-family: 'Manrope', sans-serif; /* Yazı tipi */
-  width: 100%; /* Kart genişliği ekranla uyumlu */
-  max-width: 600px; /* Kart genişliğini sınırlama */
-  height: auto; /* Kart boyutunun içeriğe göre ayarlanması */
-  flex-shrink: 0; /* Kartların sıkışmaması */
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Daha pürüzsüz hover efekti */
+  margin-bottom: 25px;
+  font-family: 'Manrope', sans-serif;
+  width: 100%;
+  max-width: 650px;
+  height: auto;
+  flex-shrink: 0;
+  border: 1px solid #e0e0e0; /* İnce gri sınır */
 }
 
+/* Hover efekti */
 .reservation-card:hover {
-  transform: scale(1.02); /* Hover efektinde kartın büyümesi */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Hover'da daha belirgin gölge */
+  transform: scale(1.05); /* Hover'da kartın hafifçe büyümesi */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
 }
 
 /* Restoran ismi ve durum */
 .reservation-info {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .reservation-text {
-  font-size: 18px; /* Yazı boyutunu büyüttük */
-  font-weight: bold;
+  font-size: 20px; /* Yazı boyutunu büyüttük */
+  font-weight: 600;
+  color: #2c3e50; /* Koyu gri renk */
 }
 
 .restaurant {
-  font-size: 14px;
-  color: black;
+  font-size: 16px;
+  color: #7f8c8d; /* Gri tonları */
   margin-top: 5px;
-  font-family: 'Manrope', sans-serif; /* 'Manrope' fontunu restoran ismi için kullanıyoruz */
 }
 
 .status {
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 5px;
+  font-weight: 500;
+  color: #66bb6a; /* Durumun yeşil rengi */
 }
 
-.status.pending {
-  color: orange;
-}
-
-.status.approved {
-  color: green;
-}
-
-.status.cancelled {
-  color: red;
-}
-
+/* Cancel butonu */
 .cancel-button {
-  background-color: #e74c3c; /* Cancel butonu için kırmızı */
+  background-color: #e74c3c;
   color: white;
-  padding: 8px 15px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  font-size: 14px;
+  border-radius: 8px;
+  font-size: 16px;
   cursor: pointer;
-  align-self: center;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .cancel-button:hover {
   background-color: #c0392b;
+  transform: translateY(-2px); /* Buton hover'da yukarı kayacak */
 }
 
+/* My reservations */
 .my-reservations {
   display: flex;
   flex-direction: column;
@@ -81,30 +76,29 @@
 .reservations-content {
   width: 100%;
   max-width: 1200px;
-  padding: 20px;
+  padding: 30px;
 }
 
 .reservations-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #66bb6a; /* Başlık için açık yeşil */
-  margin-bottom: 20px;
-  font-family: 'Manrope', sans-serif; /* Başlık kısmı için Manrope fontunu kullanalım */
+  font-size: 30px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-family: 'Manrope', sans-serif;
+  text-align: center;
 }
 
+/* Reservation cards grid */
 .reservations-list {
   display: flex;
-  flex-wrap: wrap; /* Kartlar yanlamasına saracak şekilde */
-  justify-content: space-between; /* Kartlar arasındaki boşluğu ayarlıyoruz */
-  gap: 20px; /* Kartlar arasındaki boşluk */
-  width: 100%;
-  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
 }
 
-/* You made a reservation.. kısmının fontunu değiştirmek için */
+/* You made a reservation.. kısmı */
 .reservation-text {
-  font-family: 'Arial', sans-serif; /* Değiştirilen font */
-    color: #2c3e50;
-
+  font-family: 'Arial', sans-serif;
+  color: #2c3e50;
 }
-

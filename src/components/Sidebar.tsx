@@ -4,19 +4,23 @@ import contact from "../assets/contact.png";
 import fire from "../assets/fire.png";
 import pin from "../assets/pin.png";
 import recent from "../assets/recent.png";
+import offer from "../assets/offer.png";
+import star from "../assets/star.png";
+import {useNavigate} from "react-router-dom";
 
 const Sidebar = () => {
-  function notify(msg: string) {
-    alert(msg);
+  const navigate = useNavigate();
+  function notify(){
+    console.log("Notif");
   }
   return (
     <div className="sidebar">
       <div className="sidebar__menu">
         <Button
           class="sidebar__menu__Button"
-          src={fire}
+          src={star}
           text="Favourites"
-          func={notify}
+          func={() => navigate("/favorites")}
           msg="Favourites"
         />
         <Button
@@ -42,7 +46,7 @@ const Sidebar = () => {
         />
         <Button
           class="sidebar__menu__Button"
-          src={fire}
+          src={offer}
           text="Offers"
           func={notify}
           msg="Offers"
