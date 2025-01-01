@@ -42,13 +42,13 @@ const ReservationApprovalCard: React.FC<ReservationApprovalCardProps> = ({
         <div key={reservation.id} className="reservation-card">
             <p className="reservation-info">
                 <strong>{customerName}</strong> sent a reservation
-                request for ${new Date(
+                request for {new Date(
                 reservation.reservationTime
-            ).getDate()}/${
+            ).getDate()}/{
                 new Date(reservation.reservationTime).getMonth() + 1
-            }/${new Date(reservation.reservationTime).getFullYear()} at ${new Date(
+            }/{new Date(reservation.reservationTime).getFullYear()} at {new Date(
                 reservation.reservationTime
-            ).getHours()}:${new Date(reservation.reservationTime).getMinutes()}
+            ).getHours()}:{new Date(reservation.reservationTime).getMinutes()}
             </p>
             <p
                 className={`reservation-status ${reservation.reservationStatus.toString().toLowerCase()}`}
@@ -78,7 +78,7 @@ const ReservationApprovalCard: React.FC<ReservationApprovalCardProps> = ({
                         </button>
                     </>
                 )}
-                {reservation.reservationStatus === "REJECTED" && (
+                {(reservation.reservationStatus === "REJECTED" || reservation.reservationStatus === "ACCEPTED") && (
                     <button
                         className="cancel-button"
                         onClick={() => {

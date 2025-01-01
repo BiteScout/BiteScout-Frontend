@@ -12,6 +12,7 @@ import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState} from "../store.tsx";
 import {useAuth} from "../context/AuthContext.tsx";
+import NotificationsInHeader from "./NotificationsInHeader.tsx";
 
 const Header = () => {
   const [isNotificationMenuOpen, setIsNotificationMenuOpen] = useState(false);
@@ -83,7 +84,7 @@ const Header = () => {
           isNotificationMenuOpen ? "open" : ""
         }`}
       >
-        <NotificationList />
+        <NotificationsInHeader/>
       </div>
     </header>
   );

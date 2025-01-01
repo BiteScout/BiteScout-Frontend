@@ -29,7 +29,7 @@ const ReservationActionsContext = createContext<ReservationActionsContextProps |
 export const useReservationActions = () => {
     const context = useContext(ReservationActionsContext);
     if (!context) {
-        throw new Error("useReservationActions must be used within UserActionsProvider");
+        throw new Error("useReservationActions must be used within ReservationActionsProvider");
     }
     return context;
 }

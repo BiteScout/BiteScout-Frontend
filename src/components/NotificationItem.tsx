@@ -1,23 +1,34 @@
-import NotificationActions from "./NotificationActions";
-import "../styles/NotificationItem.css";
 
-const NotificationItem = ({
-  type,
-  name,
-  message,
-  actions,
-}: {
-  type: string;
-  name: string;
-  message: string;
-  actions: string[];
-}) => {
+import "../styles/NotificationItem.css";
+import "../styles/NotificationActions.css"
+import {Notification} from "../services/NotificationFunctions.tsx";
+import React from "react";
+import {useNotificationActions} from "../services/NotificationFunctions.tsx";
+
+interface NotificationItemProps {
+    notification: Notification;
+    setNotificationIsRead: React.Dispatch<React.SetStateAction<number>>
+}
+
+const NotificationItem:React.FC<NotificationItemProps>= ({notification, setNotificationIsRead}) => {
+    const {handleMarkNotificationAsSeen} = useNotificationActions();
   return (
-    <div className={`notification-item notification-${type}`}>
+    <div className={`notification-item notification-${notification.notificationType}`}>
       <p className="notification-message">
-        <strong>{name}</strong> {message}
+        {notification.message}
       </p>
-      <NotificationActions actions={actions} />
+        <div className="notification-actions">
+                <button
+                    className={`notification-button notification-${"mark"}`}
+                    onClick={() => {
+                        handleMarkNotificationAsSeen(notification.id);
+                        setNotificationIsRead((prev) => prev + 1);
+                    }}
+                >
+                    Dismiss
+                </button>
+
+        </div>
     </div>
   );
 };
