@@ -10,8 +10,8 @@ interface MapComponentProps {
 
 const MapComponent: React.FC<MapComponentProps> = ({latitude, longitude}) => {
     return (
-        <MapContainer center={[latitude, longitude]} zoom={13} scrollWheelZoom={false}
-                      style={{height: '400px', width: '400px'}}>
+        <MapContainer center={[latitude, longitude]} zoom={8} scrollWheelZoom={true}
+                      style={{height: '100%', width: '100%'}}>
             <TileLayer
                 attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

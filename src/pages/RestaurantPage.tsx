@@ -92,8 +92,9 @@ const RestaurantPage = () => {
             cuisineType={restaurantData.cuisineType}
         />
 
+        <div className="map-component">
         <MapComponent latitude={restaurantData.location.latitude} longitude={restaurantData.location.longitude}/>
-
+        </div>
         <div className="restaurant-menu">
           <h2>Menu</h2>
           <QrCodeComponent link={restaurantData.menu}/>
