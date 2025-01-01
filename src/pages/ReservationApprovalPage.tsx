@@ -10,16 +10,16 @@ const ReservationApprovalPage = () => {
   const {handleFetchReservationsForRestaurant} = useReservationActions();
   const {restaurantId} = useParams<{ restaurantId: string }>();
   const [reloadKey, setReloadKey] = useState<number>(0); // Key to trigger data fetching
+  const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
-    const reservations = handleFetchReservationsForRestaurant(restaurantId === undefined ? "" : restaurantId);
-    reservations.then((data) => {
-      if (data !== undefined) {
-        setReservations(data);
-        console.log(data)
-      }
-    })
-
+    const fetchReservations = async () => {
+      await delay(1000);
+      const reservations = await handleFetchReservationsForRestaurant(restaurantId === undefined ? "" : restaurantId);
+      if (reservations !== undefined)
+        setReservations(reservations);
+    }
+    fetchReservations();
   }, [reloadKey]);
 
 

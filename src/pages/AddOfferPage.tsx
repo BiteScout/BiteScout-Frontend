@@ -1,26 +1,36 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import "../styles/AddOfferPage.css";
+import {offerRequest, useRestaurantActions} from "../services/RestaurantFunctions.tsx";
 
 const AddOfferPage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
+  const [startDate, setStartDate] = useState<string | undefined>(undefined);
+  const [endDate, setEndDate] = useState<string | undefined>(undefined);
+  const {handleAddOfferForRestaurant} = useRestaurantActions();
+  const {restaurantId} = useParams<{ restaurantId: string }>();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newOffer = {
-      id: Date.now(), // Unique ID for the new offer
-      title,
-      description,
-    };
-    console.log("New Offer Added:", newOffer);
-    // Here, you would send newOffer to the backend or update the state in the parent component
-    navigate("/offers");
+    const offerRequest:offerRequest = {
+      title:title,
+      description:description,
+      startDate:startDate,
+      endDate:endDate
+    }
+    if (restaurantId !== undefined) {
+      const response = handleAddOfferForRestaurant(restaurantId, offerRequest);
+      console.error("Succesfully Added");
+    }
+    else {
+      navigate("/offers/" + restaurantId);
+    }
   };
 
   const handleCancel = () => {
-    navigate("/offers");
+    navigate("/offers/"+restaurantId);
   };
 
   return (
@@ -40,27 +50,35 @@ const AddOfferPage = () => {
         <div className="form-group">
           <label htmlFor="description">Description</label>
           <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
           />
         </div>
-        <div className="form-actions">
-          <button type="submit" className="submit-button">
-            Add Offer
-          </button>
-          <button
-            type="button"
-            className="cancel-button"
-            onClick={handleCancel}
-          >
-            Cancel
-          </button>
-        </div>
+          <div className="form-group">
+            <label htmlFor="startDate">Start Date</label>
+            <input type={"date"} value={startDate} onChange={(e) => setStartDate(e.target.value)}  />
+          </div>
+          <div className="form-group">
+            <label htmlFor="endDate">Start Date</label>
+            <input type={"date"} value={endDate} onChange={(e) => setEndDate(e.target.value)}  />
+          </div>
+          <div className="form-actions">
+            <button type="submit" className="submit-button">
+              Add Offer
+            </button>
+            <button
+                type="button"
+                className="cancel-button"
+                onClick={handleCancel}
+            >
+              Cancel
+            </button>
+          </div>
       </form>
     </div>
-  );
+);
 };
 
 export default AddOfferPage;

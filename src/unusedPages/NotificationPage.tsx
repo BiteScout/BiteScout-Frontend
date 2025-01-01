@@ -1,4 +1,4 @@
-import NotificationList from "../components/NotificationList";
+import NotificationList from "../components/NotificationList.tsx";
 import "../styles/NotificationPage.css";
 import {Notification} from "../services/NotificationFunctions.tsx";
 import {useEffect, useState} from "react";

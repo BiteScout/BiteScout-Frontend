@@ -2,24 +2,24 @@ import React, {useEffect, useState} from "react";
 import "../styles/ReservationCard.css";
 import {Reservation} from "../services/ReservationFunctions.tsx";
 import {restaurant, useRestaurantActions} from "../services/RestaurantFunctions.tsx";
+import {useReservationActions} from "../services/ReservationFunctions.tsx";
 
 interface ReservationCardProps {
     reservation: Reservation;
-    showCancelButton?: boolean;
+    setReloadKey: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ReservationCard: React.FC<ReservationCardProps> = ({
                                                              reservation,
-                                                             showCancelButton = true,
+                                setReloadKey,
                                                          }) => {
     const {handleFetchRestaurant} = useRestaurantActions();
+    const {handleCancelReservation} = useReservationActions();
 
     // Local state to store the restaurant name
     const [restaurantName, setRestaurantName] = useState<string>("");
 
-  const handleCancel = () => {
-      alert(`Reservation at ${restaurantName} has been cancelled.`);
-  };
+
 
     useEffect(() => {
         const fetchRestaurantName = async () => {
@@ -63,11 +63,11 @@ const ReservationCard: React.FC<ReservationCardProps> = ({
           {reservation.reservationStatus}
         </span>
           </div>
-          {showCancelButton && (
-              <button className="cancel-button" onClick={handleCancel}>
+
+              <button className="cancel-button" onClick={() => {handleCancelReservation(reservation.id); setReloadKey((prev) => prev + 1)}}>
                   Cancel Reservation
               </button>
-          )}
+
       </div>
   );
 };
