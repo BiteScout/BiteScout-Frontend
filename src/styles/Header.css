@@ -9,7 +9,7 @@
   display: flex;
   align-items: center; /* Dikey hizalamayı düzeltir */
   justify-content: space-between; /* Elemanları yatayda dağıtır */
-  position: sticky; /* Akışa dahil olup, üstte sabitlenir */
+  position: fixed; /* Akışa dahil olup, üstte sabitlenir */
   top: 0;
   z-index: 1000000000; /* İçeriğin altında kalmasını önler */
   padding: 0 20px; /* İçeriğe sağ-sol boşluk ekler */
