@@ -16,7 +16,10 @@ const NotificationList:React.FC<NotificationListProps> = ({notifications, setNot
         notifications
           .filter((notification) => notification === undefined ? notification :!notification.isRead)
           .map((notification) => (
-        <NotificationItem notification={notification} setNotificationIsRead={setNotificationIsRead} />
+              <div key={notification.id}>
+                <NotificationItem key={notification.id} notification={notification}
+                                  setNotificationIsRead={setNotificationIsRead}/>
+              </div>
       ))}
     </div>
   );

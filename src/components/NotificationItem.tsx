@@ -1,9 +1,7 @@
-
 import "../styles/NotificationItem.css";
 import "../styles/NotificationActions.css"
-import {Notification} from "../services/NotificationFunctions.tsx";
+import {Notification, useNotificationActions} from "../services/NotificationFunctions.tsx";
 import React from "react";
-import {useNotificationActions} from "../services/NotificationFunctions.tsx";
 
 interface NotificationItemProps {
     notification: Notification;
@@ -13,7 +11,7 @@ interface NotificationItemProps {
 const NotificationItem:React.FC<NotificationItemProps>= ({notification, setNotificationIsRead}) => {
     const {handleMarkNotificationAsSeen} = useNotificationActions();
   return (
-    <div className={`notification-item notification-${notification.notificationType}`}>
+      <div key={notification.id} className={`notification-item notification-${notification.notificationType}`}>
       <p className="notification-message">
         {notification.message}
       </p>

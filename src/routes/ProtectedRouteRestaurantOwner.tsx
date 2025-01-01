@@ -1,14 +1,31 @@
 import React from 'react';
 import {Navigate} from 'react-router-dom';
 import {useAuth} from '../context/AuthContext.tsx';
+import {jwtDecode, JwtPayload} from "jwt-decode";
 
 const ProtectedRouteRestaurantOwner = ({children}: { children: React.ReactNode }) => {
-    const {isAuthenticated, role} = useAuth();
+    const {isAuthenticated, role, logout} = useAuth();
 
-    if (isAuthenticated && (role === "ROLE_RESTAURANT_OWNER" || role === "ROLE_ADMIN")) {
+    let token = localStorage.getItem("token");
+    if (token == null)
+        token = "";
+    const isTokenExpired = (token: string): boolean => {
+        try {
+            const decoded = jwtDecode<JwtPayload>(token);
+            const currentTime = Math.floor(Date.now() / 1000);
+            return decoded.exp ? decoded.exp < currentTime : true;
+        } catch (error) {
+            console.error("Error decoding token:", error);
+            return true;
+        }
+    };
+
+
+    if (isAuthenticated && (role === "ROLE_RESTAURANT_OWNER" || role === "ROLE_ADMIN") && !isTokenExpired(token)) {
         return <>{children}</>;
     }
-    return <Navigate to="/" replace/>;
+    logout();
+    return <Navigate to="/login" replace/>;
 };
 
 export default ProtectedRouteRestaurantOwner;

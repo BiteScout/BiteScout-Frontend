@@ -18,18 +18,18 @@ import ProtectedRoute from "./routes/ProtectedRoute.tsx";
 import ProtectedRouteRestaurantOwner from "./routes/ProtectedRouteRestaurantOwner.tsx";
 /*import MyReservations from "./pages/MyReservations.tsx";*/
 import {ReservationActionsProvider} from "./services/ReservationFunctions.tsx";
-
-const RestaurantPage = lazy(() => import("./pages/RestaurantPage"));
-/*import RestaurantPage from "./pages/RestaurantPage.tsx";*/
-const RestaurantReviewsPage = lazy(() => import("./pages/RestaurantReviewPage"));
-
-const MyProfilePage = lazy(() => import("./pages/MyProfilePage.tsx"))
 /*const NotificationPage = lazy(() => import("./pages/NotificationPage"));*/
 import NotificationPage from "./pages/NotificationPage.tsx";
 import OffersPage from "./pages/OffersPage.tsx";
 import MyRestaurantsPage from "./pages/MyRestaurantsPage.tsx";
 import EditRestaurantPage from "./pages/EditRestaurantPage.tsx";
 import AddOfferPage from "./pages/AddOfferPage.tsx";
+
+const RestaurantPage = lazy(() => import("./pages/RestaurantPage"));
+/*import RestaurantPage from "./pages/RestaurantPage.tsx";*/
+const RestaurantReviewsPage = lazy(() => import("./pages/RestaurantReviewPage"));
+
+const MyProfilePage = lazy(() => import("./pages/MyProfilePage.tsx"))
 const MyReservations = lazy(() => import("./pages/MyReservations"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const ReservationApprovalPage = lazy(() => import("./pages/ReservationApprovalPage"));
@@ -58,12 +58,12 @@ function App() {
                         <AuthActionsProvider>
                             <SignInPage />
                         </AuthActionsProvider>} />
-                <Route
+                {/*<Route
                     path="/changePassword"
                     element={<PasswordChangePage />} />
                 <Route
                     path="/approvePassword"
-                    element = {<PasswordChangeApprovalPage />} />
+                    element = {<PasswordChangeApprovalPage />} />*/}
                 <Route
                     path = "/start"
                     element = {<StartPage />} />
