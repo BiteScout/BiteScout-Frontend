@@ -1,0 +1,91 @@
+.my-restaurants-page {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    font-family: "Manrope", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+  }
+  
+  .page-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1d9265;
+    margin-bottom: 30px;
+  }
+  
+  .restaurant-list {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .restaurant-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+  }
+  
+  .restaurant-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .restaurant-info {
+    cursor: pointer;
+  }
+  
+  .restaurant-info h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+  }
+  
+  .restaurant-info p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0 0;
+  }
+  
+  .restaurant-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .edit-button,
+  .delete-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-button {
+    background-color: #1d9265;
+    color: white;
+  }
+  
+  .edit-button:hover {
+    background-color: #146a48;
+  }
+  
+  .delete-button {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .delete-button:hover {
+    background-color: #a71d2a;
+  }
+  
