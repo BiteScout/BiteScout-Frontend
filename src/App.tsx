@@ -83,7 +83,7 @@ function App() {
             element={<ReservationApprovalPage />}
           />
 
-          <Route path="/favorites" element={<CustomerOffersPage />} />
+          <Route path="/favorites" element={<EditRestaurantPage />} />
           <Route
             path="/restaurantPage/:restaurantId"
             element={<RestaurantPage />}

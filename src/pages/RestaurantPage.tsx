@@ -12,45 +12,6 @@ import ReviewList from "../components/ReviewList";
 const RestaurantPage = () => {
   const restaurantImages = [image1, image2, image3];
 
-  const menuItems = [
-    {
-      id: 1,
-      name: "Sushi Platter",
-      price: "$25",
-      description: "A variety of sushi rolls.",
-    },
-    {
-      id: 2,
-      name: "Tempura",
-      price: "$15",
-      description: "Lightly battered and fried shrimp and vegetables.",
-    },
-    {
-      id: 3,
-      name: "Miso Soup",
-      price: "$5",
-      description: "Traditional Japanese soup with tofu and seaweed.",
-    },
-    {
-      id: 4,
-      name: "California Roll",
-      price: "$12",
-      description: "Crab, avocado, and cucumber rolled in rice.",
-    },
-    {
-      id: 5,
-      name: "Spicy Tuna Roll",
-      price: "$14",
-      description: "Fresh tuna with a kick of spice.",
-    },
-    {
-      id: 6,
-      name: "Edamame",
-      price: "$8",
-      description: "Steamed and salted green soybeans.",
-    },
-  ];
-
   const reviews = [
     {
       id: 1,
@@ -93,16 +54,23 @@ const RestaurantPage = () => {
           address="123 Sushi St, Tokyo, Japan"
           phone="+81 123 456 7890"
         />
-        <div className="restaurant-menu">
-          <h2>Menu</h2>
-          <ul>
-            {menuItems.map((item) => (
-              <li key={item.id}>
-                <strong>{item.name}</strong> - {item.price}
-                <p>{item.description}</p>
-              </li>
-            ))}
-          </ul>
+        <div className="actions">
+          <button
+            className="offers-button"
+            onClick={() => alert("Redirect to Offers Page")}
+          >
+            View Offers
+          </button>
+          <div className="reservation">
+            <h3>Make a Reservation</h3>
+            <input type="date" className="reservation-date" />
+            <button
+              className="reservation-button"
+              onClick={() => alert("Reservation made!")}
+            >
+              Reserve
+            </button>
+          </div>
         </div>
         <ReviewList
           reviews={sortedReviews}

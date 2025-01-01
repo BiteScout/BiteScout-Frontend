@@ -39,18 +39,6 @@ const EditRestaurantPage = () => {
   const handleInputChange = (field: string, value: string) => {
     setRestaurantData((prev) => ({ ...prev, [field]: value }));
   };
-  const handleMenuItemChange = (
-    index: number,
-    field: keyof MenuItem,
-    value: string
-  ) => {
-    const updatedMenuItems = [...restaurantData.menuItems];
-    // Tür kontrolü yaparak güncelleme
-    if (field in updatedMenuItems[index]) {
-      (updatedMenuItems[index] as any)[field] = value;
-    }
-    setRestaurantData((prev) => ({ ...prev, menuItems: updatedMenuItems }));
-  };
 
   const handleSaveChanges = () => {
     console.log("Updated Restaurant Data:", restaurantData);
@@ -98,46 +86,6 @@ const EditRestaurantPage = () => {
             value={restaurantData.phone}
             onChange={(e) => handleInputChange("phone", e.target.value)}
           />
-        </div>
-        <div className="menu-items">
-          <h2>Menu Items</h2>
-          {restaurantData.menuItems.map((item, index) => (
-            <div key={item.id} className="menu-item">
-              <div className="input-group">
-                <label htmlFor={`menu-name-${index}`}>Name</label>
-                <input
-                  type="text"
-                  id={`menu-name-${index}`}
-                  value={item.name}
-                  onChange={(e) =>
-                    handleMenuItemChange(index, "name", e.target.value)
-                  }
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor={`menu-price-${index}`}>Price</label>
-                <input
-                  type="text"
-                  id={`menu-price-${index}`}
-                  value={item.price}
-                  onChange={(e) =>
-                    handleMenuItemChange(index, "price", e.target.value)
-                  }
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor={`menu-description-${index}`}>Description</label>
-                <input
-                  type="text"
-                  id={`menu-description-${index}`}
-                  value={item.description}
-                  onChange={(e) =>
-                    handleMenuItemChange(index, "description", e.target.value)
-                  }
-                />
-              </div>
-            </div>
-          ))}
         </div>
         <div className="action-buttons">
           <button className="save-button" onClick={handleSaveChanges}>
