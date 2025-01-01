@@ -12,13 +12,12 @@
   color: #333;
 }
 
-/* Main Content */
 .main-content {
-  width: 90%;
-  max-width: 1200px;
+  width: 80%;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 40px;
 }
 
 /* Restaurant Menu */
