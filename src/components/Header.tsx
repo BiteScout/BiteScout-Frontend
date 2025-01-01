@@ -7,7 +7,6 @@ import profile from "../assets/Untitled-1.png";
 import {ImgButton} from "./ButtonWithImage";
 import globe from "../assets/globe.png";
 import "../styles/Button.css";
-import NotificationList from "./NotificationList";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState} from "../store.tsx";
@@ -54,7 +53,7 @@ const Header = () => {
           src={profile}
           text={userName === undefined || userName === "" ? "Username" : userName}
           func={() => {
-              isAuthenticated ? navigate("/userProfile") : navigate("/login")
+            isAuthenticated ? navigate("/myProfile") : navigate("/login")
           }}
           msg="profile"
         />
