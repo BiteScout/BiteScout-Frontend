@@ -1,31 +1,21 @@
 // MyReservationsPage.tsx
 import "../styles/MyReservations.css";
 import ReservationCard from "../components/ReservationCard";
+import {Reservation, useReservationActions} from "../services/ReservationFunctions.tsx";
+import {useEffect, useState} from "react";
 
 const MyReservationsPage = () => {
-  const reservations = [
-    {
-      id: 1,
-      restaurant: "Pizza Place",
-      date: "2024-12-15",
-      time: "20:00",
-      status: "Confirmed",
-    },
-    {
-      id: 2,
-      restaurant: "Pasta Palace",
-      date: "2024-12-12",
-      time: "19:00",
-      status: "Pending",
-    },
-    {
-      id: 3,
-      restaurant: "Burger Bistro",
-      date: "2024-12-18",
-      time: "18:30",
-      status: "Cancelled",
-    },
-  ];
+    const {handleFetchReservationsForUser} = useReservationActions();
+    const [reservations, setReservations] = useState<Reservation[]>([]);
+
+    useEffect(() => {
+        const reservations = handleFetchReservationsForUser();
+        reservations.then((data) => {
+            if (data !== undefined) {
+                setReservations(data);
+            }
+        })
+    }, []);
 
   return (
     <div className="my-reservations-page">
@@ -37,7 +27,7 @@ const MyReservationsPage = () => {
               <ReservationCard
                 key={reservation.id}
                 reservation={reservation}
-                showCancelButton={reservation.status !== "Cancelled"}
+                showCancelButton={reservation.reservationStatus !== "Cancelled"}
               />
             ))
           ) : (

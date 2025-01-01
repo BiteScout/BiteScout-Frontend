@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     // Get Redux state values
     const isAuthenticatedFromRedux = useSelector((state: RootState) => state.isAuthenticated);
-    const roleFromRedux = ("ROLE_" + useSelector((state: RootState) => state.role));
+    const roleFromRedux = (useSelector((state: RootState) => state.role));
 
     // Local state for AuthContext
     const [isAuthenticated, setIsAuthenticated] = useState(isAuthenticatedFromRedux || false);
