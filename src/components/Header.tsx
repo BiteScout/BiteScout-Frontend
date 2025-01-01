@@ -49,7 +49,7 @@ const Header = () => {
   }, [isNotificationMenuOpen]);
 
   return (
-    <header className="header">
+    <header className="header" style={{zIndex: 1000000000}}>
       <img className="header__logo" src={bitescoutLogo11} alt="Logo" />
       <nav className="header__nav">
 

@@ -13,10 +13,12 @@ import React, {startTransition, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import MapComponent from "../components/MapComponent.tsx";
 import QrCodeComponent from "../components/QRCodeComponent.tsx";
+import OfferList from "../components/OfferList.tsx";
 
 const RestaurantPage = () => {
   const restaurantImages = [image1, image2, image3];
   const baseRestaurant: restaurant = {
+    id:"",
     ownerId: "",
     name: "",
     description: "",
@@ -91,7 +93,7 @@ const RestaurantPage = () => {
             address={restaurantData.description}
             cuisineType={restaurantData.cuisineType}
         />
-
+        <OfferList restaurantId={restaurantId === undefined? "": restaurantId} />
         <div className="map-component">
         <MapComponent latitude={restaurantData.location.latitude} longitude={restaurantData.location.longitude}/>
         </div>

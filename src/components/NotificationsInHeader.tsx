@@ -20,7 +20,7 @@ const NotificationsInHeader = () => {
             }
         })
 
-    })
+    },[notificationIsRead])
     return (
         <NotificationList notifications={notifications} setNotificationIsRead={setNotificationIsRead} />
     );

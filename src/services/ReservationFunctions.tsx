@@ -14,7 +14,7 @@ export interface Reservation {
 
 interface ReservationActionsContextProps {
     handleFetchReservationsForUser: () => Promise<Reservation[] | undefined>;
-    handleCancelReservation: (reservationId: string) => Promise<void>;
+    handleCancelReservation: (reservationId: number) => Promise<void>;
     handleFetchReservationsForRestaurant: (restaurantId: string) => Promise<Reservation[] | undefined>;
     handleApproveDenyReservation: (reservationId: number, reservationStatus: string) => Promise<Reservation | undefined>;
     handleDeleteReservation: (reservationId: number) => Promise<void>;
@@ -48,9 +48,9 @@ export const ReservationActionsProvider: React.FC<ReservationActionsProviderProp
         }
     }
 
-    const handleCancelReservation = async (reservationId: string): Promise<void> => {
+    const handleCancelReservation = async (reservationId: number): Promise<void> => {
         try {
-            const response = await useAxios().get(`/reservations/user/${reservationId}`);
+            const response = await useAxios().delete(`/reservations/user/${reservationId}`);
             if (response.status === 204) {
                 return response.data
             }

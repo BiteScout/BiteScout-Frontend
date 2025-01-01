@@ -19,7 +19,7 @@ import ProtectedRouteRestaurantOwner from "./routes/ProtectedRouteRestaurantOwne
 /*import MyReservations from "./pages/MyReservations.tsx";*/
 import {ReservationActionsProvider} from "./services/ReservationFunctions.tsx";
 /*const NotificationPage = lazy(() => import("./pages/NotificationPage"));*/
-import NotificationPage from "./pages/NotificationPage.tsx";
+import NotificationPage from "./unusedPages/NotificationPage.tsx";
 import OffersPage from "./pages/OffersPage.tsx";
 import MyRestaurantsPage from "./pages/MyRestaurantsPage.tsx";
 import EditRestaurantPage from "./pages/EditRestaurantPage.tsx";
@@ -34,10 +34,10 @@ const MyReservations = lazy(() => import("./pages/MyReservations"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const ReservationApprovalPage = lazy(() => import("./pages/ReservationApprovalPage"));
 /*import ReservationApprovalPage from "./pages/ReservationApprovalPage.tsx";*/
-const UserReviewsPage = lazy(() => import("./pages/UserReviewsPage"));
+const UserReviewsPage = lazy(() => import("./unusedPages/UserReviewsPage.tsx"));
 const StartPage = lazy(() => import("./pages/StartPage"))
-const PasswordChangeApprovalPage = lazy(()=>import("./pages/PasswordChangeApprovalPage"))
-const PasswordChangePage = lazy(()=>import("./pages/PasswordChangePage"))
+const PasswordChangeApprovalPage = lazy(()=>import("./unusedPages/PasswordChangeApprovalPage.tsx"))
+const PasswordChangePage = lazy(()=>import("./unusedPages/PasswordChangePage.tsx"))
 const SettingsPage = lazy(() => import("./pages/SettingsPage"));
 
 
@@ -92,17 +92,10 @@ function App() {
                             </UserActionsProvider>
                         </ProtectedRoute>
                     }/>
-                <Route
-                    path="/offers"
-                    element={
-                        <ProtectedRoute>
-                            <OffersPage/>
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
+
+                {/*<Route
                     path="/notifications"
-                    element={<NotificationPage />} />
+                    element={<NotificationPage />} />*/}
                 <Route
                     path="/reservations"
                     element={
@@ -139,7 +132,7 @@ function App() {
                             </RestaurantActionsProvider>
                         </UserActionsProvider>}/>
                 <Route
-                    path="/reservationApprovalPage/:reservationId"
+                    path="/editRestaurant/:reservationId"
                     element={
                         <RestaurantActionsProvider>
                             <EditRestaurantPage/>
@@ -156,11 +149,23 @@ function App() {
                     }
                 />
                 <Route
-                path="/addOfferPage"
+                    path="/offers/:restaurantId"
+                    element={
+                        <ProtectedRouteRestaurantOwner>
+                            <RestaurantActionsProvider>
+                                <OffersPage/>
+                            </RestaurantActionsProvider>
+                        </ProtectedRouteRestaurantOwner>
+                    }
+                />
+                <Route
+                path="/addOffer/:restaurantId"
                 element={
-                    <RestaurantActionsProvider>
-                        <AddOfferPage/>
-                    </RestaurantActionsProvider>
+                    <ProtectedRouteRestaurantOwner>
+                        <RestaurantActionsProvider>
+                            <AddOfferPage/>
+                        </RestaurantActionsProvider>
+                    </ProtectedRouteRestaurantOwner>
                 }/>
                 <Route
                     path="/restaurantReviews/:restaurantId"

@@ -7,15 +7,18 @@ import {useEffect, useState} from "react";
 const MyReservationsPage = () => {
     const {handleFetchReservationsForUser} = useReservationActions();
     const [reservations, setReservations] = useState<Reservation[]>([]);
+    const [reloadKey, setReloadKey] = useState<number>(0);
+    const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
     useEffect(() => {
-        const reservations = handleFetchReservationsForUser();
-        reservations.then((data) => {
-            if (data !== undefined) {
-                setReservations(data);
-            }
-        })
-    }, []);
+        const fetchReservations = async () => {
+            await delay(1000);
+            const reservations = await handleFetchReservationsForUser();
+            if (reservations !== undefined)
+                setReservations(reservations);
+        }
+        fetchReservations();
+    }, [reloadKey]);
 
   return (
     <div className="my-reservations-page">
@@ -25,9 +28,8 @@ const MyReservationsPage = () => {
           {reservations.length > 0 ? (
             reservations.map((reservation) => (
               <ReservationCard
-                key={reservation.id}
                 reservation={reservation}
-                showCancelButton={reservation.reservationStatus !== "Cancelled"}
+                setReloadKey ={setReloadKey}
               />
             ))
           ) : (
