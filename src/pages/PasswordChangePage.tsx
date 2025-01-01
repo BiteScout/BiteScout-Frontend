@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/PasswordChangePage.css";
-import bitescoutLogo11 from "../assets/bitescout-green.png";
+import bitescoutLogo11 from "../assets/bitescout-logo1-1.png";
 
 const PasswordChangePage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -10,8 +10,8 @@ const PasswordChangePage = () => {
 
   return (
     <div className="password-change-page">
+      <img className="header__logo" src={bitescoutLogo11} alt="Logo" />
       <div className="form-container">
-        <img className="header__logo" src={bitescoutLogo11} alt="Logo" />
         <h1 className="title">Set a New Password</h1>
         <form onSubmit={handleSubmit} className="password-change-form">
           <div className="input-group">

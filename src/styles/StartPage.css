@@ -1,62 +1,90 @@
 .start-page {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(to bottom right, #1d9265, #3ca674); /* Yeşil tonlarında geçiş */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Manrope", sans-serif;
-    color: white;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #1d9265, #3ca674); /* Yeşil tonlarında geçiş */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* Kart yukarı alınır */
+  font-family: "Manrope", sans-serif;
+  padding-top: 80px; /* Header ile kart arasında daha az boşluk */
+  overflow:hidden;
+  color: white;
   }
   
   .content {
-    text-align: center;
-    animation: fadeIn 0.8s ease-in-out; /* Yumuşak animasyon */
+    width: 650px; /* Daha geniş yapalım */
+    height: 22%;
+    padding: 0px 30px 30px 30px;
+    background-color: #ffffff; /* Beyaz arka plan */
+    border-radius: 16px; /* Daha yuvarlak köşeler */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out; /* Yumuşak görünüm */
+    animation: loginSlide 0.5s ease-in-out forwards;
+    animation-delay: 1s;
+    margin-right: 200px;
   }
   
   .logo {
-    width: 200px;
+    width: 1200px;
+    height: auto;
     margin-bottom: 20px;
+    margin-right: 180px;
+    align-self: center; /* Logoyu tam ortalar */
+    animation: logoFadeIn 1s ease-in-out; /* Logo için yumuşak animasyon */
   }
   
   .catchphrase {
-    font-size: 36px;
+    font-size: 40px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: -10px;
+    color: #1d9265;
   }
   
   .subtitle {
     font-size: 18px;
-    margin-bottom: 30px;
-    font-weight: 300;
+    color: #666;
+    margin-bottom: 50px;
   }
   
   .buttons {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
+    align-items: center;
   }
   
   .btn {
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
+    padding: 20px 60px;
+    min-width: 150px;
+    width: 100%;
+    font-size: 24px;
+    background-color: #1d9265;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
     border: none;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
+    border-radius: 10px; /* Daha yuvarlak köşeler */
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
   
   .login-btn,
   .signup-btn {
-    background-color: #146a48; /* Her iki buton aynı ton */
+    background-color: #1d9265; /* Her iki buton aynı ton */
+    text-decoration: none;
   }
   
   .login-btn:hover,
   .signup-btn:hover {
-    background-color: #0e5f33; /* Hover için aynı koyu ton */
+    background-color: #f6c825;
+    color: #1d9265;
+    text-decoration: none;
   }
   
   @keyframes fadeIn {
@@ -70,3 +98,22 @@
     }
   }
   
+  @keyframes logoFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes loginSlide {
+    from {
+      opacity: 0;
+      transform: translateX(150%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
