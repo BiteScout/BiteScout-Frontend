@@ -1,0 +1,102 @@
+.add-offer-page {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    font-family: "Manrope", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+  }
+  
+  .page-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1d9265;
+    margin-bottom: 30px;
+  }
+  
+  .offer-form {
+    width: 80%;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .form-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #1d9265;
+    background-color: #e6f9f0;
+  }
+  
+  textarea {
+    resize: none;
+    min-height: 100px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    background-color: #1d9265;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #146a48;
+  }
+  
+  .cancel-button {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .cancel-button:hover {
+    background-color: #a71d2a;
+  }
+  
