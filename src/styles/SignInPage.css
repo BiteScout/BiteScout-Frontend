@@ -1,28 +1,29 @@
+/* Default Styles (for 2560x1440p screens) */
 .sign-in-page {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to bottom right, #1d9265, #3ca674); /* Yeşil tonlarında geçiş */
+  background: linear-gradient(to bottom right, #1d9265, #3ca674);
   display: flex;
   justify-content: flex-end;
-  align-items: center; /* Kart yukarı alınır */
+  align-items: center;
   font-family: "Manrope", sans-serif;
-  padding-top: 80px; /* Header ile kart arasında daha az boşluk */
-  overflow:hidden;
+  padding-top: 80px;
+  overflow: hidden;
 }
 
 .sign-in-form-container {
-  width: 600px; /* Daha geniş yapalım */
-  height: 43%;
+  width: 600px;
+  height: auto;
   padding: 30px;
-  background-color: #ffffff; /* Beyaz arka plan */
-  border-radius: 16px; /* Daha yuvarlak köşeler */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  animation: fadeIn 0.5s ease-in-out; /* Yumuşak görünüm */
+  animation: fadeIn 0.5s ease-in-out;
   animation: loginSlide 0.5s ease-in-out forwards;
   animation-delay: 1s;
   margin-right: 200px;
@@ -33,10 +34,9 @@
   height: auto;
   margin-bottom: 20px;
   margin-right: 210px;
-  align-self: center; /* Logoyu tam ortalar */
-  animation: logoFadeIn 1s ease-in-out; /* Logo için yumuşak animasyon */
+  align-self: center;
+  animation: logoFadeIn 1s ease-in-out;
 }
-
 
 .sign-in-form {
   width: 100%;
@@ -45,7 +45,7 @@
   gap: 20px;
 }
 
-.sign-in-form h1{
+.sign-in-form h1 {
   font-size: 40px;
   font-weight: bold;
   color: #1d9265;
@@ -72,7 +72,7 @@
 .input-group input {
   padding: 30px;
   border: 1px solid #ddd;
-  border-radius: 10px; /* Daha yuvarlak köşeler */
+  border-radius: 10px;
   font-size: 24px;
 }
 
@@ -82,13 +82,13 @@
 }
 
 .sign-in-button {
-  padding: 15px 100px 15px 100px;
+  padding: 15px 100px;
   width: 100%;
   font-size: 24px;
   background-color: #1d9265;
   color: #fff;
   border: none;
-  border-radius: 10px; /* Daha yuvarlak köşeler */
+  border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -96,7 +96,7 @@
 
 .sign-in-button:hover {
   background-color: #f6c825;
-  color: #1d9265
+  color: #1d9265;
 }
 
 .sign-in-button:focus {
@@ -137,5 +137,156 @@
   to {
     opacity: 1;
     transform: translateX(0%);
+  }
+}
+
+/* Media Queries for responsiveness */
+
+/* For screens with a max-width of 1920px (Full HD) */
+@media screen and (max-width: 1920px) {
+  .sign-in-form-container {
+    width: 500px;
+    margin-right: 150px;
+  }
+
+  .header__logo {
+    width: 1000px;
+    margin-right: 150px;
+  }
+
+  .sign-in-form h1 {
+    font-size: 36px;
+  }
+
+  .input-group input {
+    font-size: 22px;
+    padding: 25px;
+  }
+
+  .sign-in-button {
+    font-size: 22px;
+    padding: 15px 80px;
+  }
+}
+
+/* For screens with a max-width of 1366px (Large laptop/Tablet) */
+@media screen and (max-width: 1366px) {
+  .sign-in-form-container {
+    width: 450px;
+    margin-right: 100px;
+  }
+
+  .header__logo {
+    width: 900px;
+    margin-right: 100px;
+  }
+
+  .sign-in-form h1 {
+    font-size: 32px;
+  }
+
+  .input-group input {
+    font-size: 20px;
+    padding: 20px;
+  }
+
+  .sign-in-button {
+    font-size: 20px;
+    padding: 15px 60px;
+  }
+}
+
+/* For screens with a max-width of 1024px (Tablets/Small laptops) */
+@media screen and (max-width: 1024px) {
+  .sign-in-page {
+    padding-top: 60px;
+  }
+
+  .sign-in-form-container {
+    width: 90%;
+    margin-right: 0;
+  }
+
+  .header__logo {
+    width: 80%;
+    margin-right: 0;
+  }
+
+  .sign-in-form h1 {
+    font-size: 28px;
+  }
+
+  .input-group input {
+    font-size: 18px;
+    padding: 18px;
+  }
+
+  .sign-in-button {
+    font-size: 18px;
+    padding: 12px 50px;
+  }
+}
+
+/* For screens with a max-width of 768px (Mobile Devices) */
+@media screen and (max-width: 768px) {
+  .sign-in-page {
+    padding-top: 40px;
+  }
+
+  .sign-in-form-container {
+    width: 90%;
+    margin-right: 0;
+    padding: 20px;
+  }
+
+  .header__logo {
+    width: 70%;
+    margin-right: 0;
+  }
+
+  .sign-in-form h1 {
+    font-size: 24px;
+  }
+
+  .input-group input {
+    font-size: 16px;
+    padding: 16px;
+  }
+
+  .sign-in-button {
+    font-size: 16px;
+    padding: 12px 40px;
+  }
+}
+
+/* For screens with a max-width of 480px (Small Mobile Devices) */
+@media screen and (max-width: 480px) {
+  .sign-in-page {
+    padding-top: 30px;
+  }
+
+  .sign-in-form-container {
+    width: 90%;
+    margin-right: 0;
+    padding: 15px;
+  }
+
+  .header__logo {
+    width: 60%;
+    margin-right: 0;
+  }
+
+  .sign-in-form h1 {
+    font-size: 20px;
+  }
+
+  .input-group input {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .sign-in-button {
+    font-size: 14px;
+    padding: 10px 30px;
   }
 }

@@ -5,28 +5,28 @@
     to bottom right,
     #1d9265,
     #3ca674
-  ); /* Daha uyumlu bir yeşil ton geçişi */
+  ); 
   display: flex;
   justify-content: flex-end;
-  align-items: center; /* Kart yukarı alınır */
+  align-items: center;
   font-family: "Manrope", sans-serif;
-  padding-top: 80px; /* Header ile kart arasında daha az boşluk */
-  overflow:hidden;
+  padding-top: 80px;
+  overflow: hidden;
 }
 
 .login-form-container {
-  width: 600px; /* Daha geniş yapalım */
-  height: 32%;
+  width: 600px;
+  height: auto;
   padding: 30px;
-  background-color: #ffffff; /* Beyaz arka plan */
-  border-radius: 16px; /* Daha yuvarlak köşeler */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   opacity: 0;
-  animation: fadeIn 0.5s ease-in-out; /* Yumuşak görünüm */
+  animation: fadeIn 0.5s ease-in-out;
   animation: loginSlide 0.5s ease-in-out forwards;
   animation-delay: 1s;
   margin-right: 200px;
@@ -37,7 +37,7 @@
   height: auto !important;
   margin-bottom: 20px;
   margin-right: 210px;
-  align-self: center; /* Logoyu tam ortalar */
+  align-self: center;
   animation: logoFadeIn 1s ease-in-out;
 }
 
@@ -73,7 +73,7 @@
 .input-group input {
   padding: 30px;
   border: 1px solid #ddd;
-  border-radius: 10px; /* Daha yuvarlak köşeler */
+  border-radius: 10px;
   font-size: 24px;
 }
 
@@ -106,7 +106,7 @@
   background-color: #1d9265;
   color: #fff;
   border: none;
-  border-radius: 10px; /* Daha yuvarlak köşeler */
+  border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -166,5 +166,88 @@
   to {
     opacity: 1;
     transform: translateX(0%);
+  }
+}
+
+/* Media Queries for Responsiveness */
+
+/* For smaller screens like 1920x1080p */
+@media screen and (max-width: 1920px) {
+  .login-form-container {
+    width: 500px;
+    margin-right: 100px;
+  }
+
+  .login-page .header__logo {
+    width: 1000px !important;
+    margin-right: 150px;
+  }
+}
+
+/* For tablets and mobile screens */
+@media screen and (max-width: 1200px) {
+  .login-form-container {
+    width: 90%;
+    margin-right: 0;
+    padding: 20px;
+  }
+
+  .login-page .header__logo {
+    width: 800px !important;
+    margin-right: 0;
+  }
+
+  .login-button {
+    padding: 15px 50px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+
+  .input-group input {
+    font-size: 18px;
+    padding: 20px;
+  }
+}
+
+/* For smaller mobile screens */
+@media screen and (max-width: 768px) {
+  .login-page {
+    padding-top: 40px;
+  }
+
+  .login-form-container {
+    width: 90%;
+    margin-right: 0;
+    padding: 15px;
+  }
+
+  .login-page .header__logo {
+    width: 600px !important;
+    margin-right: 0;
+  }
+
+  .login-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 20px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .input-group input {
+    font-size: 16px;
+    padding: 15px;
+  }
+
+  .forgot-password a {
+    font-size: 12px;
+  }
+
+  .signup-link {
+    font-size: 16px;
   }
 }

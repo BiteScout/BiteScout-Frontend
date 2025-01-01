@@ -1,14 +1,14 @@
 .sidebar {
   position: fixed;
-  width: 400px;
-  min-height: 1000px; /* Header yüksekliği çıkarılarak kalan alan */
+  width: 300px; /* Default width for larger screens */
+  min-height: 1000px;
   max-height: 200px;
   margin-top: 200px;
-  padding-bottom: 200px;
-  padding-top: 200px;
-  background-color: #ffffff;
-  padding: 20px 0px 20px 0px;
+  padding-bottom: 100px;
+  padding-top: 100px;
+  padding: 20px 15px;
   box-sizing: border-box;
+  background-color: #ffffff;
   border-radius: 0 30px 30px 0;
   align-content: center;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.05);
@@ -21,29 +21,28 @@
   top: 0%;
   bottom: 16%;
   padding: 0;
-
 }
 
 .sidebar__menu__Button {
   position: relative;
-  margin: 30px 0;
+  margin: 20px 0;
   cursor: pointer;
   transition: background-color 0.3s;
-  display: flex; /* Flexbox düzeni */
-  align-items: center; /* Dikeyde ortalama */
-  justify-content: flex-start; /* Yatayda sola hizalama */
-  width: 100%; /* Tüm genişliği kaplayacak */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
   background-color: transparent;
   border: 0px solid white;
   color: white;
   border-radius: 0px 35px 35px 0px;
   border-color: #1d9265;
-  padding: 40px 20px 40px 35px; /* İçeriğe biraz boşluk ekler */
+  padding: 30px 15px;
 }
 
 .sidebar__menu__Button:hover {
   background-color: #f6c825;
-  color: #1d9265; /* Hover sırasında yazı ve logo rengi */
+  color: #1d9265;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -51,15 +50,15 @@
   color: #1d9265;
   font-family: "Manrope", sans-serif;
   font-weight: 800;
-  font-size: 32px;
-  margin: 0; /* Varsayılan boşlukları kaldırır */
-  flex-grow: 1; /* Yazı genişliğini alacak şekilde esnek yap */
+  font-size: 28px;
+  margin: 0;
+  flex-grow: 1;
   text-align: left;
 }
 
 .sidebar__menu__Button img {
-  height: 40px;
-  margin-right: 35px; /* Yazıyla logo arasına boşluk ekler */
+  height: 35px;
+  margin-right: 20px;
   align-self: center;
   transition: filter 0.3s;
 }
@@ -69,5 +68,75 @@
 }
 
 .sidebar__menu__Button {
-  flex-direction: row-reverse; /* Yazıyı sola, logoyu sağa yasla */
+  flex-direction: row-reverse;
+}
+
+/* Responsive Design */
+
+/* For screens up to 1920px */
+@media screen and (max-width: 1920px) {
+  .sidebar {
+    width: 250px; /* Reduce width for 1920px screens */
+    margin-top: 150px; /* Adjust margin */
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .sidebar__menu__Button {
+    padding: 20px 15px;
+    margin: 15px 0;
+  }
+
+  .sidebar__menu__Button p {
+    font-size: 24px; /* Decrease font size */
+  }
+
+  .sidebar__menu__Button img {
+    height: 30px; /* Decrease icon size */
+    margin-right: 15px;
+  }
+}
+
+/* For screens up to 1200px */
+@media screen and (max-width: 1200px) {
+  .sidebar {
+    width: 230px; /* Further reduce width for smaller screens */
+    padding: 10px;
+  }
+
+  .sidebar__menu__Button {
+    padding: 15px 10px;
+    margin: 10px 0;
+  }
+
+  .sidebar__menu__Button p {
+    font-size: 20px; /* Further reduce font size */
+  }
+
+  .sidebar__menu__Button img {
+    height: 25px; /* Further reduce icon size */
+    margin-right: 10px;
+  }
+}
+
+/* For screens up to 768px */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 200px; /* Further reduce width on very small screens */
+    padding: 10px;
+  }
+
+  .sidebar__menu__Button {
+    padding: 15px 10px;
+    margin: 10px 0;
+  }
+
+  .sidebar__menu__Button p {
+    font-size: 18px; /* Further reduce font size */
+  }
+
+  .sidebar__menu__Button img {
+    height: 20px; /* Further reduce icon size */
+    margin-right: 8px;
+  }
 }

@@ -7,7 +7,6 @@
   align-items: center; 
   opacity: 0;
   animation: fadeIn 1s forwards; 
-  margin-left: 200px
 }
 
 @keyframes fadeIn {
@@ -24,7 +23,6 @@
   border: 3px solid rgb(160, 160, 160);
   height: 100px;
   border-radius: 50%;
-  width: 100px;
   margin-right: 20px; 
   transition: transform 0.3s ease-in-out;
 }
@@ -75,7 +73,6 @@
   flex-direction: column;
   opacity: 0;
   animation: fadeIn 1s forwards; 
-  margin-left: 220px;
 }
 
 .buttons__section__button {

@@ -11,7 +11,7 @@
   justify-content: space-between; /* Elemanları yatayda dağıtır */
   position: sticky; /* Akışa dahil olup, üstte sabitlenir */
   top: 0;
-  z-index: 10; /* İçeriğin altında kalmasını önler */
+  z-index: 1000000000; /* İçeriğin altında kalmasını önler */
   padding: 0 20px; /* İçeriğe sağ-sol boşluk ekler */
   box-sizing: border-box;
   border-radius: 0 0 40px 40px;

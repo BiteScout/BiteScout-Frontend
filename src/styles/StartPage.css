@@ -7,113 +7,258 @@
   align-items: center; /* Kart yukarı alınır */
   font-family: "Manrope", sans-serif;
   padding-top: 80px; /* Header ile kart arasında daha az boşluk */
-  overflow:hidden;
+  overflow: hidden;
   color: white;
-  }
-  
-  .content {
-    width: 650px; /* Daha geniş yapalım */
-    height: 22%;
-    padding: 0px 30px 30px 30px;
-    background-color: #ffffff; /* Beyaz arka plan */
-    border-radius: 16px; /* Daha yuvarlak köşeler */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+}
+
+.content {
+  width: 650px; /* Daha geniş yapalım */
+  height: 22%;
+  padding: 0px 30px 30px 30px;
+  background-color: #ffffff; /* Beyaz arka plan */
+  border-radius: 16px; /* Daha yuvarlak köşeler */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out; /* Yumuşak görünüm */
+  animation: loginSlide 0.5s ease-in-out forwards;
+  animation-delay: 1s;
+  margin-right: 200px;
+}
+
+.logo {
+  width: 1200px;
+  height: auto;
+  margin-bottom: 20px;
+  margin-right: 180px;
+  align-self: center; /* Logoyu tam ortalar */
+  animation: logoFadeIn 1s ease-in-out; /* Logo için yumuşak animasyon */
+}
+
+.catchphrase {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: -10px;
+  color: #1d9265;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 50px;
+}
+
+.buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  padding: 20px 60px;
+  min-width: 150px;
+  width: 100%;
+  font-size: 24px;
+  background-color: #1d9265;
+  text-align: center;
+  white-space: nowrap;
+  color: #fff;
+  border: none;
+  border-radius: 10px; /* Daha yuvarlak köşeler */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn,
+.signup-btn {
+  background-color: #1d9265; /* Her iki buton aynı ton */
+  text-decoration: none;
+}
+
+.login-btn:hover,
+.signup-btn:hover {
+  background-color: #f6c825;
+  color: #1d9265;
+  text-decoration: none;
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    animation: fadeIn 0.5s ease-in-out; /* Yumuşak görünüm */
-    animation: loginSlide 0.5s ease-in-out forwards;
-    animation-delay: 1s;
-    margin-right: 200px;
+    transform: translateY(-20px);
   }
-  
-  .logo {
-    width: 1200px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes loginSlide {
+  from {
+    opacity: 0;
+    transform: translateX(150%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 1920px) {
+  .content {
+    width: 500px; /* Adjusted width */
     height: auto;
-    margin-bottom: 20px;
-    margin-right: 180px;
-    align-self: center; /* Logoyu tam ortalar */
-    animation: logoFadeIn 1s ease-in-out; /* Logo için yumuşak animasyon */
-  }
-  
-  .catchphrase {
-    font-size: 40px;
-    font-weight: bold;
-    margin-bottom: -10px;
-    color: #1d9265;
-  }
-  
-  .subtitle {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 50px;
-  }
-  
-  .buttons {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .btn {
-    padding: 20px 60px;
-    min-width: 150px;
-    width: 100%;
-    font-size: 24px;
-    background-color: #1d9265;
-    text-align: center;
-    white-space: nowrap;
-    color: #fff;
-    border: none;
-    border-radius: 10px; /* Daha yuvarlak köşeler */
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .login-btn,
-  .signup-btn {
-    background-color: #1d9265; /* Her iki buton aynı ton */
-    text-decoration: none;
-  }
-  
-  .login-btn:hover,
-  .signup-btn:hover {
-    background-color: #f6c825;
-    color: #1d9265;
-    text-decoration: none;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes logoFadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    margin-right: 100px;
   }
 
-  @keyframes loginSlide {
-    from {
-      opacity: 0;
-      transform: translateX(150%);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0%);
-    }
+  .logo {
+    width: 1000px;
+    margin-right: 100px;
   }
+
+  .catchphrase {
+    font-size: 32px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .btn {
+    padding: 15px 50px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .start-page {
+    padding-top: 60px; /* Less top padding */
+  }
+
+  .content {
+    width: 400px; /* Adjusted width for smaller screens */
+    margin-right: 50px;
+  }
+
+  .logo {
+    width: 800px;
+    margin-right: 50px;
+  }
+
+  .catchphrase {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    padding: 12px 40px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .start-page {
+    padding-top: 50px; /* Adjust padding for smaller screens */
+  }
+
+  .content {
+    width: 350px; /* More compact content box */
+  }
+
+  .logo {
+    width: 600px;
+  }
+
+  .catchphrase {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    padding: 10px 30px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .start-page {
+    padding-top: 40px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 20px;
+    margin-right: 0;
+  }
+
+  .logo {
+    width: 500px;
+  }
+
+  .catchphrase {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 10px;
+    margin-bottom: 5px;
+  }
+
+  .btn {
+    padding: 10px 25px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .start-page {
+    padding-top: 30px;
+  }
+
+  .content {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .logo {
+    width: 400px;
+  }
+
+  .catchphrase {
+    font-size: 18px;
+  }
+
+  .subtitle {
+    font-size: 8px;
+    margin-bottom: 5px;
+  }
+
+  .btn {
+    padding: 8px 20px;
+    font-size: 12px;
+  }
+}
