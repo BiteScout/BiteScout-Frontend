@@ -1,43 +1,22 @@
 import NotificationItem from "./NotificationItem";
 import "../styles/NotificationList.css";
+import React from "react";
+import {Notification} from "../services/NotificationFunctions.tsx";
 
-const NotificationList = () => {
-  const notifications = [
-    {
-      id: 1,
-      type: "reservation",
-      name: "John Doe",
-      message: "has made a reservation request for December 15th at 7:00 PM",
-      actions: ["Approve", "Reject"],
-    },
-    {
-      id: 2,
-      type: "review",
-      name: "Jane Smith",
-      message: 'left a new review: "Amazing service and food!"',
-      actions: ["Mark as Read"],
-    },
-    {
-      id: 3,
-      type: "approval",
-      name: "Restaurant Team",
-      message:
-        "has approved your reservation request for December 15th at 7:00 PM",
-      actions: ["View Reservation"],
-    },
-    {
-      id: 4,
-      type: "new_restaurant",
-      name: "Sushi House",
-      message: "has been successfully added to the app",
-      actions: ["View Restaurant"],
-    },
-  ];
+interface NotificationListProps {
+  notifications: Notification[];
+  setNotificationIsRead: React.Dispatch<React.SetStateAction<number>>
+}
+
+const NotificationList:React.FC<NotificationListProps> = ({notifications, setNotificationIsRead}) => {
 
   return (
     <div className="notification-list">
-      {notifications.map((notification) => (
-        <NotificationItem key={notification.id} {...notification} />
+      {notifications &&
+        notifications
+          .filter((notification) => notification === undefined ? notification :!notification.isRead)
+          .map((notification) => (
+        <NotificationItem notification={notification} setNotificationIsRead={setNotificationIsRead} />
       ))}
     </div>
   );

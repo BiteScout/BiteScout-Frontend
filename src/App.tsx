@@ -24,7 +24,8 @@ const RestaurantPage = lazy(() => import("./pages/RestaurantPage"));
 const RestaurantReviewsPage = lazy(() => import("./pages/RestaurantReviewPage"));
 
 const MyProfilePage = lazy(() => import("./pages/MyProfilePage.tsx"))
-const NotificationPage = lazy(() => import("./pages/NotificationPage"));
+/*const NotificationPage = lazy(() => import("./pages/NotificationPage"));*/
+import NotificationPage from "./pages/NotificationPage.tsx";
 const MyReservations = lazy(() => import("./pages/MyReservations"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const ReservationApprovalPage = lazy(() => import("./pages/ReservationApprovalPage"));

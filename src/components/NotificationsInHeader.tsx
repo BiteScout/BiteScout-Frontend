@@ -6,7 +6,7 @@ import {useNotificationActions} from "../services/NotificationFunctions.tsx";
 
 
 
-const NotificationPage = () => {
+const NotificationsInHeader = () => {
 
     const [notifications, setNotifications] = useState<Notification[]>([]);
     const {handleFetchNotifications} = useNotificationActions();
@@ -16,19 +16,14 @@ const NotificationPage = () => {
         const notifications = handleFetchNotifications();
         notifications.then((data) => {
             if (data !== undefined){
-                /*setNotifications(data);*/
+                setNotifications(data);
             }
         })
 
     })
-  return (
-    <div className="notification-page">
-      <main className="notification-content">
-        <h1 className="notification-title">Notifications</h1>{" "}
+    return (
         <NotificationList notifications={notifications} setNotificationIsRead={setNotificationIsRead} />
-      </main>
-    </div>
-  );
+    );
 };
 
-export default NotificationPage;
+export default NotificationsInHeader;

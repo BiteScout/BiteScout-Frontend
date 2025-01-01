@@ -61,7 +61,7 @@ const RestaurantActionsContext = createContext<RestaurantActionsContextProps | n
 export const useRestaurantActions = () => {
     const context = useContext(RestaurantActionsContext);
     if (!context) {
-        throw new Error("useRestaurantActions must be used within UserActionsProvider");
+        throw new Error("useRestaurantActions must be used within RestaurantActionsProvider");
     }
     return context;
 }
