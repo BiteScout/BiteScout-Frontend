@@ -9,9 +9,10 @@ import ImageGallery from "../components/ImageGallery";
 import RestaurantDetails from "../components/RestaurantDetails";
 import ReviewList from "../components/ReviewList";
 import {restaurant, review, useRestaurantActions} from "../services/RestaurantFunctions.tsx";
-import {startTransition, useEffect, useState} from "react";
+import React, {startTransition, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import MapComponent from "../components/MapComponent.tsx";
+import QrCodeComponent from "../components/QRCodeComponent.tsx";
 
 const RestaurantPage = () => {
   const restaurantImages = [image1, image2, image3];
@@ -39,6 +40,7 @@ const RestaurantPage = () => {
   const [sent, setSent] = useState<any>(undefined);
   const [edited, setEdited] = useState(false);
   const navigate = useNavigate();
+
 
 
   useEffect(() => {
@@ -94,7 +96,7 @@ const RestaurantPage = () => {
 
         <div className="restaurant-menu">
           <h2>Menu</h2>
-          <p>{restaurantData.menu}</p>
+          <QrCodeComponent link={restaurantData.menu}/>
         </div>
         <ReviewList
             reviews={reviewArray}

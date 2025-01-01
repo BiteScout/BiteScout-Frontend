@@ -1,7 +1,7 @@
 import useAxios from "../interceptors/AxiosInstance.tsx";
 import React, {createContext, ReactNode, useContext} from "react";
 
-interface user {
+export interface user {
     id: string,
     username: string,
     email: string,

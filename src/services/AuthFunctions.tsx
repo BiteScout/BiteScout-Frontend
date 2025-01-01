@@ -56,6 +56,7 @@ export const AuthActionsProvider: React.FC<AuthActionsProviderProps> = ({ childr
                             name: decoded.sub?.toString() || "Unknown",
                             role: decoded.roles.map((role) => role.authority)[0],
                             userId: responseId.data.id,
+                            isAuthenticated: true,
                         })
                     );
                     console.log(store.getState());
@@ -96,6 +97,7 @@ export const AuthActionsProvider: React.FC<AuthActionsProviderProps> = ({ childr
                             name: decoded.sub?.toString() || "Unknown",
                             role: decoded.roles.map((role) => role.authority)[0],
                             userId: responseId.data.id,
+                            isAuthenticated: true,
                         })
                     );
                     console.log(store.getState());

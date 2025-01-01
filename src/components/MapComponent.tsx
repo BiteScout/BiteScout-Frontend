@@ -1,6 +1,7 @@
 import React from 'react';
-import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
-import "leaflet/dist/leaflet.css";
+import {MapContainer, TileLayer} from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import MapMarker from "./MapMarker.tsx";
 
 interface MapComponentProps {
     latitude: number;
@@ -9,17 +10,13 @@ interface MapComponentProps {
 
 const MapComponent: React.FC<MapComponentProps> = ({latitude, longitude}) => {
     return (
-        <MapContainer center={[latitude, longitude]} zoom={2} scrollWheelZoom={false}
-                      style={{height: "440px", width: "100%"}}>
+        <MapContainer center={[latitude, longitude]} zoom={13} scrollWheelZoom={false}
+                      style={{height: '400px', width: '400px'}}>
             <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[latitude, longitude]}>
-                <Popup>
-                    A pretty CSS3 popup. <br/> Easily customizable.
-                </Popup>
-            </Marker>
+            <MapMarker latitude={latitude} longitude={longitude}/>
         </MapContainer>
     );
 };

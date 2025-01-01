@@ -3,10 +3,7 @@ import {lazy} from "react"
 import {Layout} from "./Layout.tsx";
 import {LayoutLogin} from "./LayoutLogin.tsx"
 import "./App.css";
-/*const RestaurantPage = lazy(() => import("./pages/RestaurantPage"));*/
-import RestaurantPage from "./pages/RestaurantPage.tsx";
-/*const RestaurantReviewsPage = lazy(() => import("./pages/RestaurantReviewPage"));*/
-import RestaurantReviewsPage from "./pages/RestaurantReviewPage.tsx";
+/*import RestaurantReviewsPage from "./pages/RestaurantReviewPage.tsx";*/
 /*const LoginPage = lazy(() => import("./pages/LoginPage"))*/
 import LoginPage from "./pages/LoginPage"
 /*const SignInPage = lazy(() => import("./pages/SignInPage"))*/
@@ -16,19 +13,24 @@ import {UserActionsProvider} from "./services/UserFunctions.tsx";
 import {RestaurantActionsProvider} from "./services/RestaurantFunctions.tsx";
 /*const HomePage = lazy(()=>import("./pages/HomePage"))*/
 import HomePage from "./pages/HomePage.tsx";
-/*const MyProfilePage = lazy(() => import("./pages/MyProfilePage.tsx"))*/
-import MyProfilePage from "./pages/MyProfilePage.tsx";
+/*import MyProfilePage from "./pages/MyProfilePage.tsx";*/
 import ProtectedRoute from "./routes/ProtectedRoute.tsx";
 import ProtectedRouteRestaurantOwner from "./routes/ProtectedRouteRestaurantOwner.tsx";
+/*import MyReservations from "./pages/MyReservations.tsx";*/
+import {ReservationActionsProvider} from "./services/ReservationFunctions.tsx";
 
+const RestaurantPage = lazy(() => import("./pages/RestaurantPage"));
+/*import RestaurantPage from "./pages/RestaurantPage.tsx";*/
+const RestaurantReviewsPage = lazy(() => import("./pages/RestaurantReviewPage"));
 
+const MyProfilePage = lazy(() => import("./pages/MyProfilePage.tsx"))
 const NotificationPage = lazy(() => import("./pages/NotificationPage"));
 const MyReservations = lazy(() => import("./pages/MyReservations"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const ReservationApprovalPage = lazy(() => import("./pages/ReservationApprovalPage"));
+/*import ReservationApprovalPage from "./pages/ReservationApprovalPage.tsx";*/
 const UserReviewsPage = lazy(() => import("./pages/UserReviewsPage"));
 const StartPage = lazy(() => import("./pages/StartPage"))
-
 const PasswordChangeApprovalPage = lazy(()=>import("./pages/PasswordChangeApprovalPage"))
 const PasswordChangePage = lazy(()=>import("./pages/PasswordChangePage"))
 
@@ -82,13 +84,21 @@ function App() {
                     path="/reservations"
                     element={
                         <ProtectedRoute>
-                            <MyReservations/>
+                            <RestaurantActionsProvider>
+                                <ReservationActionsProvider>
+                                    <MyReservations/>
+                                </ReservationActionsProvider>
+                            </RestaurantActionsProvider>
                         </ProtectedRoute>}/>
                 <Route
-                    path="/reservationApproval"
+                    path="/reservationApproval/:restaurantId"
                     element={
                         <ProtectedRouteRestaurantOwner>
-                            <ReservationApprovalPage/>
+                            <ReservationActionsProvider>
+                                <UserActionsProvider>
+                                    <ReservationApprovalPage/>
+                                </UserActionsProvider>
+                            </ReservationActionsProvider>
                         </ProtectedRouteRestaurantOwner>}/>
 
                 <Route

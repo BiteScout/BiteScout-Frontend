@@ -18,8 +18,11 @@ const RestaurantDetails: React.FC<RestaurantDetailsProps> = ({
     <div className="restaurant-details">
       <p>
         <strong>Description:</strong> {address}
-        <strong>Cuisine Type:</strong> {cuisineType}
+
       </p>
+        <p>
+            <strong>Cuisine Type:</strong> {cuisineType}
+        </p>
       {/*      <p>
         <strong>Menu:</strong>{" "}
         <a href={menuLink} target="_blank" rel="noopener noreferrer">
