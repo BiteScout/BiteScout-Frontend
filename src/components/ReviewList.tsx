@@ -177,15 +177,15 @@ const ReviewList: React.FC<ReviewListProps> = ({
                 <p> {"creationDate: "} {review.createdAt} </p>
                 {review.updatedAt !== review.createdAt ? <p>{"updateDate: "}{review.updatedAt}</p> : null}
                 <p>Likes: {review.likeCount}</p>
-                <button onClick={() => {
+                <button className="like-button" onClick={() => {
                     handleSendingInteraction(review.id, "LIKE")
                 }}> Like
                 </button>
-                <button onClick={() => {
+                <button className="dislike-button" onClick={() => {
                     handleSendingInteraction(review.id, "DISLIKE")
                 }}> Dislike
                 </button>
-                <button onClick={() => {
+                <button className="reply-button" onClick={() => {
                     setReplyCommentOn((prevArray) => prevArray.map(() => false))
                     setReplyCommentOn((prevArray) => {
                         const newArray = [...prevArray];
@@ -195,7 +195,7 @@ const ReviewList: React.FC<ReviewListProps> = ({
                     setEditOrReply(false)
                 }}>Reply
                 </button>
-                {review.customerName === userName ? <button onClick={() => {
+                {review.customerName === userName ? <button className="edit-button" onClick={() => {
                     setEditReviewOn((prevArray) => prevArray.map(() => false))
                     setEditReviewOn((prevArray) => {
                         const newArray = [...prevArray];

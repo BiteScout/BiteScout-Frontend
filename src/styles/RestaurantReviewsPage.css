@@ -99,38 +99,116 @@
   color: #666;
 }
 
+/* Send and Cancel Buttons */
 .review-actions {
   display: flex;
-  gap: 15px;
-  margin-top: 15px;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
 }
 
-.review-actions button {
-  background-color: transparent;
-  border: none;
+.send-button {
+  background-color: #1d9265;
+  color: white;
+  padding: 10px 20px;
   font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
   cursor: pointer;
-  color: #1d9265;
-  transition: color 0.3s ease, text-decoration 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 2px;
 }
 
-.review-actions button:hover {
-  color: #2d6a4f; /* Darker green on hover */
-  text-decoration: underline;
+.cancel-button {
+  background-color: #e74c3c;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 2px;
 }
 
-.like-button {
-  color: #28a745; /* Green for like button */
+.send-button:hover {
+  background-color: #146a48;
+  color : white;
+  transform: translateY(-2px);
 }
 
-.dislike-button {
-  color: #dc3545; /* Red for dislike button */
+.cancel-button:hover {
+  background-color: #b02a37;
+  color: white;
+  transform: translateY(-2px);
 }
 
-.reply-button {
-  color: #007bff; /* Blue for reply button */
+  /* Add Review Button */
+  .add-review-button {
+    background-color: #1d9265;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top : 20px;
+    margin-bottom: 10px;
+  }
+  
+  .add-review-button:hover {
+    background-color: #146a48;
+    transform: translateY(-2px);
+  }
+  
+  /* Review Input Fields */
+  .review-input {
+    width: 500px;
+    padding: 10px;
+    margin: 10px 10px 10px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .review-input:focus {
+    border-color: #1d9265;
+    outline: none;
+    box-shadow: 0 0 5px rgba(29, 146, 101, 0.5);
+  }
+
+  /* Add Review Section */
+.add-review-form {
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  margin: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.add-review-form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.review-input {
+  width: 90%; /* Adjust to make it fit well within the centered form */
+}
+
+.review-actions {
+  justify-content: center; /* Center actions */
+  gap: 20px;
+}
+  
 /* Responsiveness */
 @media (max-width: 768px) {
   .sub-header {

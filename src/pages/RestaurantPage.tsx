@@ -101,18 +101,43 @@ const RestaurantPage = () => {
             setEdited={setEdited}
             restaurantId={restaurantId !== undefined ? restaurantId : ""}
         />
-        <button onClick={() => setReviewButton(true)}>Add Review</button>
-        {reviewButton && (
-            <div>
-              <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
-              <input type={"number"} value={rating} max={5} onChange={(e) => setRating(Number(e.target.value))}/>
-              <button onClick={() => {
-                setSent(handleSendReview(restaurantId === undefined ? "" : restaurantId, rating, comment));
-                setReviewButton(false)
-              }}>Send
-              </button>
-              <button onClick={() => setReviewButton(false)}>Cancel</button>
-            </div>)}
+<button className="add-review-button" onClick={() => setReviewButton(true)}>Add Review</button>
+{reviewButton && (
+  <div className="add-review-form-page">
+    <input
+      type="text"
+      value={comment}
+      onChange={(e) => setComment(e.target.value)}
+      className="review-input"
+      placeholder="Write your comment here"
+    />
+    <input
+      type="number"
+      value={rating}
+      max={5}
+      onChange={(e) => setRating(Number(e.target.value))}
+      className="review-input"
+      placeholder="Rating (1-5)"
+    />
+    <div className="review-actions">
+      <button
+        className="send-button"
+        onClick={() => {
+          setSent(handleSendReview(restaurantId === undefined ? "" : restaurantId, rating, comment));
+          setReviewButton(false);
+        }}
+      >
+        Send
+      </button>
+      <button
+        className="cancel-button"
+        onClick={() => setReviewButton(false)}
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+)}
       </div>
     </div>
   );
