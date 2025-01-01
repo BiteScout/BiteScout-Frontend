@@ -33,7 +33,8 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
         handleFetchReviewInteractions,
         handleEditReview,
         handleSendingReply,
-        handleSendingInteraction
+        handleSendingInteraction,
+        handleDeleteReview
     } = useRestaurantActions()
     const [realReviews, setRealReviews] = useState<realReview[]>([])
     const [editReviewOn, setEditReviewOn] = useState<boolean[]>([]);
@@ -196,6 +197,10 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
                         });
                         setEditOrReply(true)
                     }}>Edit</button> : null}
+                    {review.customerName === userName ? <button className="delete-button" onClick={() => {
+                        handleDeleteReview(review.id)
+                        setEdited(true)
+                    }}>Delete</button> : null}
 
 
                     {replyCommentOn[index] ?

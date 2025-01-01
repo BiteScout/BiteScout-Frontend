@@ -50,6 +50,7 @@ interface RestaurantActionsContextProps {
     handleEditReview: (reviewId: string, rating: number, comment: string) => Promise<review | undefined>;
     handleSendingReply: (reviewId: string, replyText: string) => Promise<reviewReply | undefined>;
     handleSendingInteraction: (reviewId: string, interactionType: string) => Promise<reviewReply | undefined>;
+    handleDeleteReview: (reviewId: string) => Promise<void>;
 }
 
 interface RestaurantActionsProviderProps {
@@ -121,6 +122,18 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
         }
     }
 
+    const handleDeleteReview = async (reviewId: string) => {
+        try{
+            const response = await useAxios().delete(`/reviews/${reviewId}`);
+            if (response.status === 200) {
+                return response.data;
+            }
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
+
 
     const handleFetchReviewInteractions = async (reviewId: string) => {
         try {
@@ -173,7 +186,8 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleSendReview,
             handleSendingReply,
             handleSendingInteraction,
-            handleEditReview
+            handleEditReview,
+            handleDeleteReview
         }}>
             {children}
         </RestaurantActionsContext.Provider>

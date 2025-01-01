@@ -26,6 +26,10 @@ const RestaurantReviewsPage = lazy(() => import("./pages/RestaurantReviewPage"))
 const MyProfilePage = lazy(() => import("./pages/MyProfilePage.tsx"))
 /*const NotificationPage = lazy(() => import("./pages/NotificationPage"));*/
 import NotificationPage from "./pages/NotificationPage.tsx";
+import OffersPage from "./pages/OffersPage.tsx";
+import MyRestaurantsPage from "./pages/MyRestaurantsPage.tsx";
+import EditRestaurantPage from "./pages/EditRestaurantPage.tsx";
+import AddOfferPage from "./pages/AddOfferPage.tsx";
 const MyReservations = lazy(() => import("./pages/MyReservations"));
 const FavoritesPage = lazy(() => import("./pages/FavoritesPage"));
 const ReservationApprovalPage = lazy(() => import("./pages/ReservationApprovalPage"));
@@ -34,6 +38,7 @@ const UserReviewsPage = lazy(() => import("./pages/UserReviewsPage"));
 const StartPage = lazy(() => import("./pages/StartPage"))
 const PasswordChangeApprovalPage = lazy(()=>import("./pages/PasswordChangeApprovalPage"))
 const PasswordChangePage = lazy(()=>import("./pages/PasswordChangePage"))
+const SettingsPage = lazy(() => import("./pages/SettingsPage"));
 
 
 function App() {
@@ -69,15 +74,32 @@ function App() {
                     element={<HomePage />} />
 
                 <Route
-                    path = "/userProfile"
+                    path = "/myProfile"
                     element = {
-                        <UserActionsProvider>
-                            <ProtectedRoute>
-                                <MyProfilePage/>
-                            </ProtectedRoute>
-                        </UserActionsProvider>} />
+                        <ProtectedRoute>
+                            <UserActionsProvider>
+                                    <MyProfilePage/>
+                            </UserActionsProvider>
+                        </ProtectedRoute>} />
                 <Route path = "/userReviews/:userId"
                        element = {<UserReviewsPage />} />
+                <Route
+                    path="/myProfile/settings"
+                    element={
+                        <ProtectedRoute>
+                            <UserActionsProvider>
+                                <SettingsPage/>
+                            </UserActionsProvider>
+                        </ProtectedRoute>
+                    }/>
+                <Route
+                    path="/offers"
+                    element={
+                        <ProtectedRoute>
+                            <OffersPage/>
+                        </ProtectedRoute>
+                    }
+                />
                 <Route
                     path="/notifications"
                     element={<NotificationPage />} />
@@ -113,19 +135,43 @@ function App() {
                     element={
                         <UserActionsProvider>
                             <RestaurantActionsProvider>
-
                                 <RestaurantPage/>
-
                             </RestaurantActionsProvider>
                         </UserActionsProvider>}/>
                 <Route
+                    path="/reservationApprovalPage/:reservationId"
+                    element={
+                        <RestaurantActionsProvider>
+                            <EditRestaurantPage/>
+                        </RestaurantActionsProvider>
+                    }/>
+                <Route
+                    path={"/myRestaurants"}
+                    element={
+                    <ProtectedRouteRestaurantOwner>
+                        <RestaurantActionsProvider>
+                            <MyRestaurantsPage/>
+                        </RestaurantActionsProvider>
+                    </ProtectedRouteRestaurantOwner>
+                    }
+                />
+                <Route
+                path="/addOfferPage"
+                element={
+                    <RestaurantActionsProvider>
+                        <AddOfferPage/>
+                    </RestaurantActionsProvider>
+                }/>
+                <Route
                     path="/restaurantReviews/:restaurantId"
                     element={
+                    <ProtectedRoute>
                         <UserActionsProvider>
                             <RestaurantActionsProvider>
                                 <RestaurantReviewsPage/>
                             </RestaurantActionsProvider>
-                        </UserActionsProvider>}/>
+                        </UserActionsProvider>
+                    </ProtectedRoute>}/>
             </Route>
         </Routes>
     </HashRouter>
