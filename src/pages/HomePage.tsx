@@ -34,27 +34,12 @@ const recentlyVisited = [
 ];
 
 const HomePage = () => {
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Search initiated.");
-  };
+
 
   return (
     <div className="home-page">
       {/* Main Content */}
       <main className="main-content">
-        <div className="search-section">
-          <form onSubmit={handleSearch} className="search-form">
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Search for restaurants..."
-            />
-            <button type="submit" className="search-button">
-              Search
-            </button>
-          </form>
-        </div>
 
         <div className="content-section">
           <section className="trending-restaurants">
@@ -67,7 +52,7 @@ const HomePage = () => {
                     alt={restaurant.name}
                     className="restaurant-image"
                   />
-                  <p>{restaurant.name}</p>
+                  <div className="restaurant-name">{restaurant.name}</div>
                 </div>
               ))}
             </div>
@@ -83,7 +68,7 @@ const HomePage = () => {
                     alt={restaurant.name}
                     className="restaurant-image"
                   />
-                  <p>{restaurant.name}</p>
+                  <div className="restaurant-name">{restaurant.name}</div>
                 </div>
               ))}
             </div>

@@ -1,5 +1,5 @@
 import "../styles/LoginPage.css";
-import bitescoutLogo11 from "../assets/bitescout-green.png";
+import bitescoutLogo11 from "../assets/bitescout-logo1-1.png";
 import { useState } from "react";
 import { useAuthActions } from "../services/AuthFunctions.tsx";
 
@@ -15,8 +15,8 @@ const LoginPage = () => {
 
     return (
         <div className="login-page">
+            <img className="header__logo" src={bitescoutLogo11} alt="Logo" />
             <div className="login-form-container">
-                <img className="header__logo" src={bitescoutLogo11} alt="Logo" />
                 <form onSubmit={handleSubmit} className="login-form">
                     <div className="input-group">
                         <label htmlFor="username">Username</label>

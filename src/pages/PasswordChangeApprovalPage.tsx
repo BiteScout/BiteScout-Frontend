@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/PasswordChangeApprovalPage.css";
-import bitescoutLogo11 from "../assets/bitescout-green.png";
+import bitescoutLogo11 from "../assets/bitescout-logo1-1.png";
 
 const PasswordChangeApprovalPage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -10,8 +10,8 @@ const PasswordChangeApprovalPage = () => {
 
   return (
     <div className="password-change-page">
+       <img className="header__logo" src={bitescoutLogo11} alt="Logo" />
       <div className="form-container">
-        <img className="header__logo" src={bitescoutLogo11} alt="Logo" />
         <h1 className="title">Reset Your Password</h1>
         <p className="subtitle">
           Enter your email address to receive a password reset link.

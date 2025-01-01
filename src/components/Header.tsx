@@ -24,6 +24,10 @@ const Header = () => {
   const toggleNotificationMenu = () => {
     setIsNotificationMenuOpen((prevState) => !prevState);
   };
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Search initiated.");
+  };
 
   // Close the menu when clicking outside
   useEffect(() => {
@@ -49,6 +53,21 @@ const Header = () => {
     <header className="header">
       <img className="header__logo" src={bitescoutLogo11} alt="Logo" />
       <nav className="header__nav">
+
+      <div className="search-section">
+          <form onSubmit={handleSearch} className="search-form">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search for restaurants..."
+            />
+            <button type="submit" className="search-button">
+              Search
+            </button>
+          </form>
+        </div>
+
+
         <Button
           class="button__"
           src={profile}

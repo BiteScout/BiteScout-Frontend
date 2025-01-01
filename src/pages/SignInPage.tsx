@@ -1,5 +1,5 @@
 import "../styles/SignInPage.css";
-import bitescoutLogo11 from "../assets/bitescout-green.png";
+import bitescoutLogo11 from "../assets/bitescout-logo1-1.png";
 import {useState} from "react";
 import {useParams} from "react-router-dom";
 import {useAuthActions} from "../services/AuthFunctions.tsx";
@@ -24,8 +24,8 @@ const SignInPage = () => {
 
   return (
     <div className="sign-in-page">
+      <img className="header__logo" src={bitescoutLogo11} alt="Logo"/>
       <div className="sign-in-form-container">
-        <img className="header__logo" src={bitescoutLogo11} alt="Logo"/>
         <form onSubmit={handleSubmit} className="sign-in-form">
           <div className="input-group">
             {userType === "RestaurantOwner" ?
@@ -83,13 +83,13 @@ const SignInPage = () => {
         </div>
         {userType === "RestaurantOwner" ?
             <div className="login-link">
-              Do you want to sign in as a customer?
-              <a href="/#/signin/Customer">Sign In</a>
+              Do you want to sign in as a customer? 
+              <a href="/#/signin/Customer"> Sign In</a>
             </div>
             :
             <div className="login-link">
-              Do you want to sign in as a restaurant owner?
-              <a href="/#/signin/RestaurantOwner">Sign In</a>
+              Do you want to sign in as a restaurant owner? 
+              <a href="/#/signin/RestaurantOwner"> Sign In</a>
             </div>
         }
       </div>

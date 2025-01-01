@@ -1,101 +1,102 @@
 .sign-in-page {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to bottom right, #1d9265, #3ca674); /* Green gradient */
+  background: linear-gradient(to bottom right, #1d9265, #3ca674); /* Yeşil tonlarında geçiş */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: center; /* Kart yukarı alınır */
   font-family: "Manrope", sans-serif;
-  color: white;
-  overflow: hidden;
+  padding-top: 80px; /* Header ile kart arasında daha az boşluk */
+  overflow:hidden;
 }
 
 .sign-in-form-container {
-  width: 380px;
-  padding: 40px;
-  background-color: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+  width: 600px; /* Daha geniş yapalım */
+  height: 43%;
+  padding: 30px;
+  background-color: #ffffff; /* Beyaz arka plan */
+  border-radius: 16px; /* Daha yuvarlak köşeler */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fadeIn 0.7s ease-in-out;
-  backdrop-filter: blur(10px);
+  justify-content: center;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out; /* Yumuşak görünüm */
+  animation: loginSlide 0.5s ease-in-out forwards;
+  animation-delay: 1s;
+  margin-right: 200px;
 }
 
 .header__logo {
-  width: 140px;
+  width: 1200px;
   height: auto;
-  margin-bottom: 30px;
-  align-self: center; /* Center the logo */
+  margin-bottom: 20px;
+  margin-right: 210px;
+  align-self: center; /* Logoyu tam ortalar */
+  animation: logoFadeIn 1s ease-in-out; /* Logo için yumuşak animasyon */
 }
 
-.title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 25px;
-  color: #333;
-}
 
 .sign-in-form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 20px;
 }
 
 .sign-in-form h1{
-  font-size: 16px;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 8px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #1d9265;
+  margin-bottom: 15px;
   margin-left: 3px;
   text-align: center;
 }
 
 .input-group {
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  padding-bottom: 20px;
 }
 
 .input-group label {
-  font-size: 16px;
-  font-weight: 600;
-  color: #555;
-  margin-bottom: 8px;
-  margin-left: 3px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #cccccc;
 }
 
 .input-group input {
-  width: 94%;
-  padding: 12px;
+  padding: 30px;
   border: 1px solid #ddd;
-  border-radius: 12px;
-  font-size: 16px;
-  background-color: #f9f9f9;
-  transition: all 0.3s ease;
+  border-radius: 10px; /* Daha yuvarlak köşeler */
+  font-size: 24px;
 }
 
 .input-group input:focus {
   outline: none;
   border-color: #1d9265;
-  background-color: #e6f9f0;
 }
 
 .sign-in-button {
-  padding: 14px;
-  font-size: 18px;
+  padding: 15px 100px 15px 100px;
+  width: 100%;
+  font-size: 24px;
   background-color: #1d9265;
-  color: white;
+  color: #fff;
   border: none;
-  border-radius: 12px;
-  font-weight: 700;
+  border-radius: 10px; /* Daha yuvarlak köşeler */
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .sign-in-button:hover {
-  background-color: #146a48;
-  transform: scale(1.05);
+  background-color: #f6c825;
+  color: #1d9265
 }
 
 .sign-in-button:focus {
@@ -105,7 +106,7 @@
 
 .login-link {
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 18px;
   color: #333;
 }
 
@@ -119,13 +120,22 @@
   text-decoration: underline;
 }
 
-@keyframes fadeIn {
+@keyframes logoFadeIn {
   from {
-      opacity: 0;
-      transform: translateY(-20px);
+    opacity: 0;
   }
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes loginSlide {
+  from {
+    opacity: 0;
+    transform: translateX(150%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
   }
 }

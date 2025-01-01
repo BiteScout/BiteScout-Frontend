@@ -1,64 +1,73 @@
 .sidebar {
   position: fixed;
-  width: 200px;
-  min-height: 500px; 
+  width: 400px;
+  min-height: 1000px; /* Header yüksekliği çıkarılarak kalan alan */
   max-height: 200px;
   margin-top: 200px;
-  background-color: #f8f9fa;
-  padding: 20px;
+  padding-bottom: 200px;
+  padding-top: 200px;
+  background-color: #ffffff;
+  padding: 20px 0px 20px 0px;
   box-sizing: border-box;
-  border-radius: 0 30px 30px 0px; 
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.sidebar:hover {
-  transform: translateX(5px); 
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+  border-radius: 0 30px 30px 0;
+  align-content: center;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.05);
 }
 
 .sidebar__menu {
   list-style: none;
+  position: relative;
+  font-family: "Manrope";
+  top: 0%;
+  bottom: 16%;
   padding: 0;
-  font-family: "Manrope", sans-serif;
-  display: flex;
-  flex-direction: column;
-  gap: 28px; 
+
 }
 
 .sidebar__menu__Button {
+  position: relative;
+  margin: 30px 0;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
+  transition: background-color 0.3s;
+  display: flex; /* Flexbox düzeni */
+  align-items: center; /* Dikeyde ortalama */
+  justify-content: flex-start; /* Yatayda sola hizalama */
+  width: 100%; /* Tüm genişliği kaplayacak */
   background-color: transparent;
-  border: 2px solid transparent;
-  border-radius: 12px;
-  color: #1d9265;
-  font-weight: 600;
-  font-size: 16px;
+  border: 0px solid white;
+  color: white;
+  border-radius: 0px 35px 35px 0px;
+  border-color: #1d9265;
+  padding: 40px 20px 40px 35px; /* İçeriğe biraz boşluk ekler */
 }
 
 .sidebar__menu__Button:hover {
-  background-color: #1d9265; 
-  color: white; 
-  border-color: #1d9265;
+  background-color: #f6c825;
+  color: #1d9265; /* Hover sırasında yazı ve logo rengi */
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar__menu__Button p {
-  font-size: 16px;
-  margin: 0;
-  color: inherit; 
+  color: #1d9265;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  margin: 0; /* Varsayılan boşlukları kaldırır */
+  flex-grow: 1; /* Yazı genişliğini alacak şekilde esnek yap */
+  text-align: left;
 }
 
 .sidebar__menu__Button img {
-  height: 24px; 
-  transition: transform 0.3s ease;
+  height: 40px;
+  margin-right: 35px; /* Yazıyla logo arasına boşluk ekler */
+  align-self: center;
+  transition: filter 0.3s;
 }
 
 .sidebar__menu__Button:hover img {
-  transform: translateX(5px); 
+  filter: brightness(0) saturate(100%) invert(31%) sepia(74%) saturate(1532%) hue-rotate(111deg) brightness(90%) contrast(88%);
 }
 
+.sidebar__menu__Button {
+  flex-direction: row-reverse; /* Yazıyı sola, logoyu sağa yasla */
+}
