@@ -32,24 +32,30 @@ const MyRestaurantsPage = () => {
         <div className="restaurant-list">
           {restaurants.map((restaurant, index: number) => (
               <div key={index} className="restaurant-card">
-                <div
-                    className="restaurant-info"
-                    onClick={() => navigate(`/restaurantPage/${restaurant.id}}`)}
-                >
-                  <h2>{restaurant.name}</h2>
-                </div>
-                <button
-                    className="edit-button"
-                    onClick={() => navigate(`/editRestaurant/${restaurant.id}`)}
-                >
-                  Edit Restaurant
-                </button>
+                  <div
+                      className="restaurant-info"
+                      onClick={() => navigate(`/restaurantPage/${restaurant.id}`)}
+                  >
+                      <h2>{restaurant.name}</h2>
+                  </div>
+                  <button
+                      className="edit-button"
+                      onClick={() => navigate(`/editRestaurant/${restaurant.id}`)}
+                  >
+                      Edit Restaurant
+                  </button>
+                  <button
+                      className="edit-button"
+                      onClick={() => navigate(`/addOffer/${restaurant.id}`)}
+                  >
+                      Add Offer
+                  </button>
               </div>
           ))}
         </div>
-        <button className={"edit-button"} style={{marginTop: "20px"}} onClick={() => navigate("/addRestaurant")}> Add
-          Restaurant
-        </button>
+          <button className={"edit-button"} style={{marginTop: "20px"}} onClick={() => navigate("/addRestaurant")}> Add
+              Restaurant
+          </button>
       </div>
   );
 };

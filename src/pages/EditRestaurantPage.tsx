@@ -23,7 +23,7 @@ const mockRestaurantData:addRestaurant = {
 const EditRestaurantPage = () => {
   const navigate = useNavigate();
   const [restaurantData, setRestaurantData] = useState<addRestaurant>(mockRestaurantData);
-  const {handleUpdateRestaurant, handleFetchRestaurant} = useRestaurantActions();
+  const {handleUpdateRestaurant, handleFetchRestaurant, handleDeleteRestaurant} = useRestaurantActions();
   const {restaurantId} = useParams<{restaurantId:string}>();
   const userId = useSelector((state: RootState) => state.userId);
   const [position, setPosition] = useState<{ lat: number; lng: number }>({lat: 41.015137, lng: 28.979530});
@@ -41,6 +41,13 @@ const EditRestaurantPage = () => {
     })
     navigate(`/myRestaurants`);
   };
+
+  const handleDelete = async () => {
+    const response = handleDeleteRestaurant(restaurantId === undefined ? "": restaurantId);
+    response.then((data) => {
+      navigate(`/myRestaurants`);
+    })
+  }
 
   useEffect(() => {
     const fetchRestaurant = async () => {
@@ -127,9 +134,14 @@ const EditRestaurantPage = () => {
             </select>
           </div>
           <div className="action-buttons">
+            <div style={{ flex:"1" }}>
             <button className="save-button" onClick={handleSaveChanges}>
               Confirm
             </button>
+            <button className="delete-button" onClick={handleDelete}>
+              Delete
+            </button>
+            </div>
             <button className="cancel-button" onClick={handleCancel}>
               Cancel
             </button>
