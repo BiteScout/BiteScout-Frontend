@@ -1,50 +1,99 @@
-# React + TypeScript + Vite
+![bitescout-logo1-1](https://github.com/user-attachments/assets/9c29a4fd-c43f-49ad-b844-e9422a45e342)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BiteScout is a comprehensive web application designed to streamline restaurant reservations, reviews, and management. It connects customers, restaurant owners, and admins, fostering a dynamic and interactive environment for dining enthusiasts and business owners alike.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [License](#license)
+- [Contributing](#contributing)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Overview
+BiteScout aims to enhance the restaurant experience for both customers and restaurant owners. Customers can search for restaurants, make reservations, and leave reviews, while owners can manage bookings, menus, and special offers. Admins oversee the platform to ensure seamless operation and moderation.
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Features
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Customers
+- 🛡️ **Register and log in** using secure authentication.
+- 🔍 **Search restaurants** by name, cuisine, location, or ranking.
+- 🗓️ **Make and manage reservations.**
+- 💬 **Write and interact with reviews** (like, dislike, or reply).
+- ⭐ **View and favorite restaurants.**
+- 🔔 **Get notifications** about reservations and offers.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Restaurant Owners
+- 🏢 **Create and manage restaurant profiles.**
+- 📋 **Manage reservations,** including approvals and cancellations.
+- 🎉 **Create, edit, or delete special offers.**
+- 🔔 **Get notifications** for bookings and reviews.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Admins
+- 🛠️ **Moderate reviews and user activities.**
+- 📊 **Manage user and restaurant data.**
+- 📈 **Analyze user trends** for system improvements.
+
+---
+
+## Technologies Used
+
+### **Frontend**
+- 🌐 HTML
+- 🎨 CSS
+- 💻 JavaScript
+- ⚛️ React
+
+### **Backend**
+- ☕ Java
+- 🌱 Spring Boot
+- ⚙️ Kafka
+
+### **Database**
+- 🐘 PostgreSQL
+- 🍃 MongoDB
+
+### **API**
+- 🔗 RESTful API with JSON communication
+
+### **Authentication**
+- 🔑 JWT
+
+### **Messaging**
+- ✉️ Kafka for notifications
+
+---
+
+## License
+This project is licensed under the **Apache License 2.0**. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contributing
+We welcome contributions to BiteScout! To contribute:
+1. 🪝 **Fork the repository.**
+2. 🌿 **Create a feature branch.**
+   ```bash
+   git checkout -b feature-name
+   ```
+3. 💾 **Commit your changes.**
+   ```bash
+   git commit -m "Description of your changes"
+   ```
+4. 🚀 **Push to your branch.**
+   ```bash
+   git push origin feature-name
+   ```
+5. 🔄 **Create a Pull Request.**
+
+For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+We hope BiteScout enhances your dining and restaurant management experience!
+
