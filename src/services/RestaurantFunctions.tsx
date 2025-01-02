@@ -20,6 +20,19 @@ export interface restaurant {
     updatedAt: string
 }
 
+export interface addRestaurant{
+    ownerId:string;
+    name: string
+    description: string
+    menu: string
+    cuisineType: string
+    location: {
+        type: string
+        coordinates: number[]
+    }
+    priceRange: string
+}
+
 export interface offer{
     id:string;
     title:string;
@@ -76,6 +89,8 @@ interface RestaurantActionsContextProps {
     handleAddOfferForRestaurant: (restaurantId: string, offerRequest:offerRequest) => Promise<offer | undefined>;
     handleUpdateOfferForRestaurant: (restaurantId: string, offerId:string, offerRequest:offerRequest|null) => Promise<offer | undefined>;
     handleDeleteOfferForRestaurant: (restaurantId: string, offerId:string) => Promise<void>;
+    handleAddRestaurant: (addRestaurant:addRestaurant) => Promise<restaurant | undefined>;
+    handleUpdateRestaurant: (restaurantId:string, addRestaurant:addRestaurant) => Promise<restaurant | undefined>;
 }
 
 interface RestaurantActionsProviderProps {
@@ -104,6 +119,30 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             console.log(err);
         }
     }
+    const handleAddRestaurant = async (addRestaurant:addRestaurant) => {
+        try{
+            const response = await useAxios().post("/restaurants", addRestaurant);
+            if (response.status === 201) {
+                return response.data;
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+    const handleUpdateRestaurant = async (restaurantId:string,addRestaurant:addRestaurant) => {
+        try {
+            const response = await useAxios().put("/restaurants/"+ restaurantId, addRestaurant);
+            if (response.status === 201) {
+                return response.data;
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
     const handleFetchMyRestaurants = async (ownerId:string) => {
         try{
             const response = await useAxios().get(`/restaurants/owner/${ownerId}`);
@@ -277,7 +316,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleFetchOffersForRestaurant,
             handleAddOfferForRestaurant,
             handleUpdateOfferForRestaurant,
-            handleDeleteOfferForRestaurant
+            handleDeleteOfferForRestaurant,
+            handleAddRestaurant,
+            handleUpdateRestaurant
         }}>
             {children}
         </RestaurantActionsContext.Provider>
