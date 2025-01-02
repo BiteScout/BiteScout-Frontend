@@ -55,7 +55,7 @@ const EditRestaurantPage = () => {
 
     return (
         <div className="edit-restaurant-page">
-            <h1 className="page-title">Edit Restaurant</h1>
+            <h1 className="page-title">Add Restaurant</h1>
             <div className="form-container">
                 <div className="input-group">
                     <label htmlFor="name">Restaurant Name</label>

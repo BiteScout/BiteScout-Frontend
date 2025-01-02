@@ -91,6 +91,7 @@ interface RestaurantActionsContextProps {
     handleDeleteOfferForRestaurant: (restaurantId: string, offerId:string) => Promise<void>;
     handleAddRestaurant: (addRestaurant:addRestaurant) => Promise<restaurant | undefined>;
     handleUpdateRestaurant: (restaurantId:string, addRestaurant:addRestaurant) => Promise<restaurant | undefined>;
+    handleSearchRestaurants: (restaurantNameQuery: string) => Promise<restaurant[] | undefined>;
 }
 
 interface RestaurantActionsProviderProps {
@@ -108,6 +109,23 @@ export const useRestaurantActions = () => {
 }
 
 export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps> = ({children}) => {
+
+
+    const handleSearchRestaurants = async (restaurantNameQuery:string) => {
+        try{
+            const response = await useAxios().get("/restaurants/search", {
+                params: {
+                    restaurantName: restaurantNameQuery
+                }
+            })
+            if (response.status === 200) {
+                return response.data;
+            }
+        }
+        catch(error){
+            console.error(error);
+        }
+    }
 
     const handleFetchRestaurant = async (restaurantId: string) => {
         try {
@@ -318,7 +336,8 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleUpdateOfferForRestaurant,
             handleDeleteOfferForRestaurant,
             handleAddRestaurant,
-            handleUpdateRestaurant
+            handleUpdateRestaurant,
+            handleSearchRestaurants
         }}>
             {children}
         </RestaurantActionsContext.Provider>
