@@ -24,6 +24,7 @@ import OffersPage from "./pages/OffersPage.tsx";
 import MyRestaurantsPage from "./pages/MyRestaurantsPage.tsx";
 import EditRestaurantPage from "./pages/EditRestaurantPage.tsx";
 import AddOfferPage from "./pages/AddOfferPage.tsx";
+import AddRestaurantPage from "./pages/AddRestaurantPage.tsx";
 
 const RestaurantPage = lazy(() => import("./pages/RestaurantPage"));
 /*import RestaurantPage from "./pages/RestaurantPage.tsx";*/
@@ -132,11 +133,21 @@ function App() {
                             </RestaurantActionsProvider>
                         </UserActionsProvider>}/>
                 <Route
-                    path="/editRestaurant/:reservationId"
+                    path="/addRestaurant"
+                     element={
+                        <ProtectedRouteRestaurantOwner>
+                            <RestaurantActionsProvider>
+                                <AddRestaurantPage/>
+                            </RestaurantActionsProvider>
+                        </ProtectedRouteRestaurantOwner>}/>
+                <Route
+                    path="/editRestaurant/:restaurantId"
                     element={
-                        <RestaurantActionsProvider>
-                            <EditRestaurantPage/>
-                        </RestaurantActionsProvider>
+                        <ProtectedRouteRestaurantOwner>
+                            <RestaurantActionsProvider>
+                                <EditRestaurantPage/>
+                            </RestaurantActionsProvider>
+                        </ProtectedRouteRestaurantOwner>
                     }/>
                 <Route
                     path={"/myRestaurants"}

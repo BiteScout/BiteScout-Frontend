@@ -4,6 +4,7 @@ import {useEffect, useState, useTransition} from "react";
 import {useUserActions} from "../services/UserFunctions.tsx";
 import {useSelector} from "react-redux";
 import {RootState} from "../store.tsx";
+import {useNavigate} from "react-router-dom";
 
 const MyProfilePage = () => {
   const[userName, setUserName] = useState("");
@@ -14,7 +15,7 @@ const MyProfilePage = () => {
   const userId = useSelector((state:RootState) => state.userId);
   const [isPending, startTransition] = useTransition();
     const userRole = useSelector((state: RootState) => state.role)
-
+const navigate = useNavigate();
   useEffect(() => {
     startTransition(() => {
       // Perform the async task inside startTransition
@@ -42,7 +43,7 @@ const MyProfilePage = () => {
               <br></br>
               <div className="buttons__section">
                   {userRole === "ROLE_RESTAURANT_OWNER" &&
-                      <button className={"buttons__section__button"} onClick={() => {
+                      <button className={"buttons__section__button"} onClick={() => { navigate("/myRestaurants")
                       }}><p className="button__text">My Restaurants</p></button>
                   }
                   <button className={"buttons__section__button"} onClick={() => {

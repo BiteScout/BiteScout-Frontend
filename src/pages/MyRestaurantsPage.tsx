@@ -12,16 +12,18 @@ const MyRestaurantsPage = () => {
   const navigate = useNavigate();
   const {handleFetchMyRestaurants} = useRestaurantActions();
   const userId = useSelector( (state:RootState) => state.userId)
+  const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
-    const restaurants = handleFetchMyRestaurants(userId)
-    restaurants.then((data) => {
-      if (data !== undefined){
-        setRestaurants(data);
+    const fetchRestaurants = async () => {
+      await delay(300);
+      const restaurants = await handleFetchMyRestaurants(userId)
+      if (restaurants !== undefined) {
+        setRestaurants(restaurants);
       }
-
-    })
-  }, []);
+    }
+    fetchRestaurants();
+    }, []);
 
   return (
     <div className="my-restaurants-page">
