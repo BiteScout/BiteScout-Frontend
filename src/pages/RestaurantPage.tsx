@@ -15,6 +15,10 @@ import MapComponent from "../components/MapComponent.tsx";
 import QrCodeComponent from "../components/QRCodeComponent.tsx";
 import OfferList from "../components/OfferList.tsx";
 
+import {useSelector} from "react-redux";
+import {RootState} from "../store.tsx";
+import {useUserActions} from "../services/UserFunctions.tsx";
+
 const RestaurantPage = () => {
   const restaurantImages = [image1, image2, image3];
   const baseRestaurant: restaurant = {
@@ -42,7 +46,18 @@ const RestaurantPage = () => {
   const [sent, setSent] = useState<any>(undefined);
   const [edited, setEdited] = useState(false);
   const navigate = useNavigate();
+  const userId = useSelector((state: RootState) => state.userId);
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const {handleFetchFavorites, handleAddFavorite, handleRemoveFavorite} = useUserActions();
 
+  useEffect(() => {
+      if (userId) {
+          handleFetchFavorites(userId).then((favs) => {
+              if (favs) setFavorites(favs.map((fav) => fav.restaurantId));
+          });
+      }
+  }, [userId, restaurantId]);
+  
 
 
   useEffect(() => {
@@ -78,6 +93,18 @@ const RestaurantPage = () => {
   }, [reviewButton, sent, edited])
 
 
+  const isFavorite = favorites.includes(restaurantId || "");
+
+  const toggleFavorite = async () => {
+      if (!userId || !restaurantId) return;
+      if (isFavorite) {
+          await handleRemoveFavorite(userId, restaurantId);
+          setFavorites(favorites.filter((fav) => fav !== restaurantId));
+      } else {
+          await handleAddFavorite(userId, restaurantId);
+          setFavorites([...favorites, restaurantId]);
+      }
+  };
 
   return (
     <div className="restaurant-page">
@@ -87,12 +114,32 @@ const RestaurantPage = () => {
           rating={0}
         rank={1}
       />
+
+    <button
+      className={`favorite-button ${isFavorite ? "favorited" : ""}`}
+      onClick={toggleFavorite}
+      aria-pressed={isFavorite}
+    >
+      {isFavorite ? (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+        </svg>
+      ) : (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78l1.06 1.06L12 21.35l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </svg>
+      )}
+    </button>
+
       <div className="main-content">
         <ImageGallery images={restaurantImages} />
         <RestaurantDetails
             address={restaurantData.description}
             cuisineType={restaurantData.cuisineType}
         />
+
+
+
         <OfferList restaurantId={restaurantId === undefined? "": restaurantId} />
         <div className="map-component">
         <MapComponent latitude={restaurantData.location.latitude} longitude={restaurantData.location.longitude}/>

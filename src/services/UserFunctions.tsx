@@ -19,6 +19,8 @@ export interface favorite {
 interface UserActionsContextProps {
     handleFetchUser: (userId: string) => Promise<user | undefined>;
     handleFetchFavorites: (userId: string) => Promise<favorite[] | undefined>;
+    handleAddFavorite: (userId: string, restaurantId: string) => Promise<void>;
+    handleRemoveFavorite: (userId: string, restaurantId: string) => Promise<void>;
 }
 
 interface UserActionsProviderProps {
@@ -59,10 +61,31 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
             console.error(err);
         }
     }
+    const handleAddFavorite = async (userId: string, restaurantId: string): Promise<void> => {
+        try {
+            const response = await useAxios().post(`/users/${userId}/favorites/${restaurantId}`);
+            if (response.status === 201) {
+                console.log("Restaurant added to favorites");
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+    
+    const handleRemoveFavorite = async (userId: string, restaurantId: string): Promise<void> => {
+        try {
+            const response = await useAxios().delete(`/users/${userId}/favorites/${restaurantId}`);
+            if (response.status === 204) {
+                console.log("Restaurant removed from favorites");
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
 
     return (
-        <UserActionsContext.Provider value={{handleFetchUser, handleFetchFavorites}}>
+        <UserActionsContext.Provider value={{handleFetchUser, handleFetchFavorites, handleAddFavorite, handleRemoveFavorite}}>
             {children}
         </UserActionsContext.Provider>
     );

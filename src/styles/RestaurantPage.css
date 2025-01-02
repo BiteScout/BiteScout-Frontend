@@ -224,6 +224,53 @@
     gap: 20px;
   }
   
+  .favorite-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    transition: transform 0.2s ease, color 0.3s ease;
+    color: #ff6347; /* Default color */
+  }
+  
+  .favorite-button:hover {
+    transform: scale(1.2);
+  }
+  
+  .favorite-button.favorited {
+    color: #ff4500; /* Favorited red */
+  }
+  
+  .favorite-button svg {
+    pointer-events: none; /* Avoid clicking issues on the icon */
+    transition: transform 0.3s ease, fill 0.3s ease;
+  }
+  
+  .favorite-button.favorited svg {
+    fill: #ff4500; /* Filled heart when favorited */
+    transform: scale(1.2); /* Slight pop effect */
+  }
+  
+  @keyframes heart-pop {
+    0% {
+      transform: scale(0.9);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .favorite-button.favorited svg {
+    animation: heart-pop 0.3s ease;
+  }
+  
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .main-content {

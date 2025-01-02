@@ -122,7 +122,12 @@ function App() {
                     path="/favorites"
                     element={
                         <ProtectedRoute>
-                            <FavoritesPage/>
+                            <UserActionsProvider>
+                                <RestaurantActionsProvider>
+                                    <FavoritesPage/>
+                                </RestaurantActionsProvider>
+                            </UserActionsProvider>
+
                         </ProtectedRoute>}/>
                 <Route
                     path="/restaurantPage/:restaurantId"

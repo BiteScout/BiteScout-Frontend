@@ -1,107 +1,102 @@
-.favorites-page {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .favorites-page {
     padding: 20px;
-    font-family: 'Manrope', sans-serif;
-}
-
-.favorites-title {
-    font-size: 36px; 
-    font-weight: 800;
-    color: #1d9265;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+  }
+  
+  .title {
     text-align: center;
-}
-
-.favorites-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    justify-content: center;
-    width: 100%;
-    max-width: 1400px; 
-}
-
-.favorite-card {
-    background-color: #ffffff; 
-    border-radius: 16px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 300px;
-}
-
-.favorite-card:hover {
-    transform: translateY(-5px) scale(1.03); 
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-.favorite-image {
-    width: 100%;
-    height: 200px; 
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 15px;
-}
-
-.favorite-details {
-    text-align: center;
-}
-
-.favorite-name {
-    font-size: 22px;
-    font-weight: 700;
-    color: #1d1d1d; 
-    margin: 10px 0 5px;
-}
-
-.favorite-location {
-    font-size: 16px;
-    color: #6b7280; 
-    margin: 5px 0;
-}
-
-.favorite-rating {
-    font-size: 15px;
-    font-weight: 600;
-    color: #1d9265;
-    margin-bottom: 15px;
-}
-
-.favorite-button {
-    background-color: #1d9265;
-    color: white;
-    padding: 12px 20px; 
-    border: none;
+    font-size: 2rem;
+    color: #4caf50;
+    margin-bottom: 40px;
+    font-weight: bold;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .restaurant-card {
+    background-color: #fff;
     border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .restaurant-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  .restaurant-info {
+    padding: 20px;
+  }
+  
+  .restaurant-info h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .restaurant-info p {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 10px;
+  }
+  
+  .unfavorite-btn {
+    background: none;
+    border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.favorite-button:hover {
-    background-color: #146a48;
-    transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-    .favorites-title {
-        font-size: 28px;
-    }
-
-    .favorite-card {
-        width: 100%; 
-    }
-
-    .favorite-image {
-        height: 180px;
-    }
-}
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .unfavorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+  .unfavorite-btn:hover {
+    transform: scale(1.1);
+  }
+  
+  .unfavorite-btn:active {
+    transform: scale(0.9);
+  }
+  
+  .unfavorite-icon::before {
+    content: '🗑️'; /* Unicode for a trash can */
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .unfavorite-btn:hover .unfavorite-icon::before {
+    transform: rotate(-10deg);
+  }
+  
+  .unfavorite-btn:focus {
+    outline: none;
+  }
+  
+  
+  
+  /* Add a smooth hover effect on the restaurant cards */
+  .restaurant-card:hover .restaurant-info h2 {
+    color: #4caf50;
+  }
+  
+  .restaurant-card:hover .restaurant-info p {
+    color: #333;
+  }
+  
