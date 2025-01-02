@@ -39,6 +39,7 @@
   }
   
   .restaurant-info {
+    flex: 1;
     cursor: pointer;
   }
   
@@ -63,6 +64,7 @@
   .edit-button,
   .delete-button {
     padding: 10px 20px;
+    margin-left: 10px;
     font-size: 14px;
     font-weight: bold;
     border: none;

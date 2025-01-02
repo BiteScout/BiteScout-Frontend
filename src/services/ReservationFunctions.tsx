@@ -18,6 +18,7 @@ interface ReservationActionsContextProps {
     handleFetchReservationsForRestaurant: (restaurantId: string) => Promise<Reservation[] | undefined>;
     handleApproveDenyReservation: (reservationId: number, reservationStatus: string) => Promise<Reservation | undefined>;
     handleDeleteReservation: (reservationId: number) => Promise<void>;
+    handleMakeReservation: (restaurantId: string, dateTime:string) => Promise<void>;
 }
 
 interface ReservationActionsProviderProps {
@@ -95,6 +96,21 @@ export const ReservationActionsProvider: React.FC<ReservationActionsProviderProp
         }
     }
 
+    const handleMakeReservation = async (restaurantId: string, dateTime:string): Promise<void> => {
+        try{
+            const response = await useAxios().post(`/reservations`, {
+                restaurantId: restaurantId,
+                reservationTime: dateTime,
+            })
+            if (response.status === 200) {
+                return response.data;
+            }
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
 
     return (
         <ReservationActionsContext.Provider value={{
@@ -103,6 +119,7 @@ export const ReservationActionsProvider: React.FC<ReservationActionsProviderProp
             handleFetchReservationsForRestaurant,
             handleApproveDenyReservation,
             handleDeleteReservation,
+            handleMakeReservation
         }}>
             {children}
         </ReservationActionsContext.Provider>

@@ -95,6 +95,7 @@ interface RestaurantActionsContextProps {
     handleGetAllCuisineTypes: () => Promise<string[] | undefined>;
     handleSearchRestaurantsByCuisine: (cuisineType: string) => Promise<restaurant[] | undefined>;
     handleSearchRestaurantsByPriceRange: (priceRange: string) => Promise<restaurant[] | undefined>;
+    handleDeleteRestaurant: (restaurantId: string) => Promise<void>;
 }
 
 interface RestaurantActionsProviderProps {
@@ -116,16 +117,35 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
 
     const handleSearchRestaurants = async (restaurantNameQuery:string) => {
         try{
-            const response = await useAxios().get("/restaurants/search", {
-                params: {
-                    restaurantName: restaurantNameQuery
+            if (restaurantNameQuery === ""){
+                const response = await useAxios().get("/restaurants");
+                if (response.status === 200) {
+                    return response.data;
                 }
-            })
-            if (response.status === 200) {
-                return response.data;
+            }
+            else {
+                const response = await useAxios().get("/restaurants/search", {
+                    params: {
+                        restaurantName: restaurantNameQuery
+                    }
+                })
+                if (response.status === 200) {
+                    return response.data;
+                }
             }
         }
         catch(error){
+            console.error(error);
+        }
+    }
+    const handleDeleteRestaurant = async (restaurantId: string) => {
+        try{
+            const response = await useAxios().delete(`/restaurants/${restaurantId}`);
+            if (response.status === 204) {
+                return response.data;
+            }
+        }
+        catch (error){
             console.error(error);
         }
     }
@@ -387,7 +407,8 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleSearchRestaurants,
             handleGetAllCuisineTypes,
             handleSearchRestaurantsByCuisine,
-            handleSearchRestaurantsByPriceRange
+            handleSearchRestaurantsByPriceRange,
+            handleDeleteRestaurant
         }}>
             {children}
         </RestaurantActionsContext.Provider>

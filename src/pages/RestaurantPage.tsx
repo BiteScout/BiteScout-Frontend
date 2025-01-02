@@ -18,6 +18,7 @@ import OfferList from "../components/OfferList.tsx";
 import {useSelector} from "react-redux";
 import {RootState} from "../store.tsx";
 import {useUserActions} from "../services/UserFunctions.tsx";
+import {useReservationActions} from "../services/ReservationFunctions.tsx";
 
 const RestaurantPage = () => {
   const restaurantImages = [image1, image2, image3];
@@ -38,6 +39,7 @@ const RestaurantPage = () => {
   }
   const {restaurantId} = useParams<{ restaurantId: string }>();
   const {handleFetchRestaurant, handleFetchRestaurantReviews, handleSendReview} = useRestaurantActions();
+  const {handleMakeReservation} = useReservationActions();
   const [restaurantData, setRestaurantData] = useState<restaurant>(baseRestaurant);
   const [reviewArray, setReviewArray] = useState<review[]>([]);
   const [reviewButton, setReviewButton] = useState<boolean>(false);
@@ -47,7 +49,10 @@ const RestaurantPage = () => {
   const [edited, setEdited] = useState(false);
   const navigate = useNavigate();
   const userId = useSelector((state: RootState) => state.userId);
+  const userRole = useSelector((state: RootState) => state.role);
+  const [dateTime, setDateTime] = useState("");
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [toggleReservation, setToggleReservation] = useState<boolean>(false);
   const {handleFetchFavorites, handleAddFavorite, handleRemoveFavorite} = useUserActions();
 
   useEffect(() => {
@@ -139,10 +144,19 @@ const RestaurantPage = () => {
         />
 
 
-
+        {userRole === "ROLE_CUSTOMER" ? <button className={"edit-button"} onClick={() => {setToggleReservation(!toggleReservation)}}>Make Reservation</button>: null}
+        {userRole === "ROLE_CUSTOMER" && toggleReservation ? (
+            <div className={"input-group"}>
+              <input  type={"datetime-local"} value={dateTime} onChange={(e) => setDateTime(e.target.value)} />
+              <button className="btn btn-primary" style={{width:"30vh", alignSelf:"flex-end"}} onClick={() => {handleMakeReservation(restaurantId === undefined? "": restaurantId, dateTime); setToggleReservation(!toggleReservation)}}>Submit</button>
+            </div>): null}
         <OfferList restaurantId={restaurantId === undefined? "": restaurantId} />
+        {userId === restaurantData.ownerId ?
+            <button className={"edit-button"} style={{width:"auto"}} onClick={() => navigate("/addOffer/" + restaurantId)}>Add Offer</button>
+        : null}
+
         <div className="map-component">
-        <MapComponent latitude={restaurantData.location.latitude} longitude={restaurantData.location.longitude}/>
+          <MapComponent latitude={restaurantData.location.latitude} longitude={restaurantData.location.longitude}/>
         </div>
         <div className="restaurant-menu">
           <h2>Menu</h2>

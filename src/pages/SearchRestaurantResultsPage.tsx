@@ -72,6 +72,7 @@ const SearchRestaurantResultsPage = () => {
                         setPriceRange(e.target.value);
                         setPriceRangeSelected(priceRangeSelected + 1);
                     }}>
+                        <option value="">Select Price Range</option>
                         <option value="$">$</option>
                         <option value="$$">$$</option>
                         <option value="$$$">$$$</option>

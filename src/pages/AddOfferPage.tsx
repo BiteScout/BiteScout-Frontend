@@ -22,7 +22,9 @@ const AddOfferPage = () => {
     }
     if (restaurantId !== undefined) {
       const response = handleAddOfferForRestaurant(restaurantId, offerRequest);
-      console.error("Succesfully Added");
+      response.then((data) => {
+        navigate(-1)
+      })
     }
     else {
       navigate("/offers/" + restaurantId);

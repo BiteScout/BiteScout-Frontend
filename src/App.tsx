@@ -141,7 +141,9 @@ function App() {
                     element={
                         <UserActionsProvider>
                             <RestaurantActionsProvider>
-                                <RestaurantPage/>
+                                <ReservationActionsProvider>
+                                    <RestaurantPage/>
+                                </ReservationActionsProvider>
                             </RestaurantActionsProvider>
                         </UserActionsProvider>}/>
                 <Route
