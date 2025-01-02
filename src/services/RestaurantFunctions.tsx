@@ -92,6 +92,9 @@ interface RestaurantActionsContextProps {
     handleAddRestaurant: (addRestaurant:addRestaurant) => Promise<restaurant | undefined>;
     handleUpdateRestaurant: (restaurantId:string, addRestaurant:addRestaurant) => Promise<restaurant | undefined>;
     handleSearchRestaurants: (restaurantNameQuery: string) => Promise<restaurant[] | undefined>;
+    handleGetAllCuisineTypes: () => Promise<string[] | undefined>;
+    handleSearchRestaurantsByCuisine: (cuisineType: string) => Promise<restaurant[] | undefined>;
+    handleSearchRestaurantsByPriceRange: (priceRange: string) => Promise<restaurant[] | undefined>;
 }
 
 interface RestaurantActionsProviderProps {
@@ -118,6 +121,50 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
                     restaurantName: restaurantNameQuery
                 }
             })
+            if (response.status === 200) {
+                return response.data;
+            }
+        }
+        catch(error){
+            console.error(error);
+        }
+    }
+
+    const handleSearchRestaurantsByCuisine = async (cuisineType:string) => {
+        try{
+            const response = await useAxios().get("restaurants/cuisine", {
+                params: {
+                    cuisineType:cuisineType
+                }
+            })
+            if (response.status === 200) {
+                return response.data;
+            }
+        }
+        catch(error){
+            console.error(error);
+        }
+    }
+    const handleSearchRestaurantsByPriceRange = async (priceRange:string) => {
+        try{
+            const response = await useAxios().get("restaurants/price", {
+                params: {
+                    priceRange:priceRange
+                }
+            })
+            if (response.status === 200) {
+                return response.data;
+            }
+        }
+        catch(error){
+            console.error(error);
+        }
+    }
+
+
+    const handleGetAllCuisineTypes = async () => {
+        try{
+            const response = await useAxios().get("/restaurants/getAllCuisines");
             if (response.status === 200) {
                 return response.data;
             }
@@ -337,7 +384,10 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleDeleteOfferForRestaurant,
             handleAddRestaurant,
             handleUpdateRestaurant,
-            handleSearchRestaurants
+            handleSearchRestaurants,
+            handleGetAllCuisineTypes,
+            handleSearchRestaurantsByCuisine,
+            handleSearchRestaurantsByPriceRange
         }}>
             {children}
         </RestaurantActionsContext.Provider>
