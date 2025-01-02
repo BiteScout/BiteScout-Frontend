@@ -17,15 +17,16 @@ const Header = () => {
   const [isNotificationMenuOpen, setIsNotificationMenuOpen] = useState(false);
   const notificationMenuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
-    const {isAuthenticated, logout} = useAuth();
+  const {isAuthenticated, logout} = useAuth();
   const notify = (msg: string) => alert(msg);
   const userName = useSelector((state: RootState) => state.name);
+  const [searchQuery, setSearchQuery] = useState("");
   const toggleNotificationMenu = () => {
     setIsNotificationMenuOpen((prevState) => !prevState);
   };
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Search initiated.");
+    navigate("/searchRestaurant/" + searchQuery);
   };
 
   // Close the menu when clicking outside
@@ -58,6 +59,8 @@ const Header = () => {
             <input
               type="text"
               className="search-input"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search for restaurants..."
             />
             <button type="submit" className="search-button">
