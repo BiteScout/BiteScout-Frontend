@@ -56,6 +56,7 @@ interface UserActionsContextProps {
     handleRemoveFavorite: (userId: string, restaurantId: string) => Promise<void>;
     handleUpdateUser: (userData: userUpdate) => Promise<void>;
     handleFetchUserInfo: (userId: string) => Promise<userInfo | undefined>;
+    handleRemoveUser: (userId: string) => Promise<void>;
 }
 
 interface UserActionsProviderProps {
@@ -145,6 +146,17 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
         }
       };
 
+      const handleRemoveUser = async (userId: string): Promise<void> => {
+        try {
+          const response = await useAxios().delete(`/users/${userId}`);
+          if (response.status === 204) {
+            console.log('User deleted successfully');
+          }
+        } catch (err) {
+          console.error('Error deleting user:', err);
+        }
+        };
+
 
     return (
         <UserActionsContext.Provider value={{
@@ -153,7 +165,8 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
             handleAddFavorite, 
             handleRemoveFavorite, 
             handleUpdateUser,
-            handleFetchUserInfo
+            handleFetchUserInfo,
+            handleRemoveUser
             }}>
             {children}
         </UserActionsContext.Provider>
