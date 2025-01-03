@@ -108,7 +108,7 @@ interface RestaurantActionsContextProps {
     handleCalculateRating: () => Promise<void | undefined>;
     handleFetchNearbyRestaurants: (latitude: number, longitude: number, radiusInKm: number) => Promise<restaurant[] | undefined>;
 
-
+}
 interface RestaurantActionsProviderProps {
     children: ReactNode;
 }
@@ -472,7 +472,7 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleDeleteRestaurant,
             handleDeleteReply,
             handleFetchRanking,
-            handleCalculateRating
+            handleCalculateRating,
             handleFetchNearbyRestaurants
         }}>
             {children}
