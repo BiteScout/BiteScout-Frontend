@@ -7,6 +7,7 @@ import useAxios2 from "../interceptors/AxiosInstance2.tsx";
 import {useAuth} from "../context/AuthContext";
 import {addElement} from "../elementSlice";
 import store, {AppDispatch} from "../store";
+import Swal from 'sweetalert2';
 
 interface AuthActionsContextProps {
     handleRegister: (registerData: any) => Promise<void>;
@@ -44,6 +45,13 @@ export const AuthActionsProvider: React.FC<AuthActionsProviderProps> = ({ childr
             });
 
             if (response.status === 200) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful',
+                    text: 'You have successfully registered.',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                });
                 localStorage.setItem("token", response.data.token);
                 try {
                     const decoded = jwtDecode<{ sub: string; roles: { authority: string }[] }>(
@@ -74,6 +82,13 @@ export const AuthActionsProvider: React.FC<AuthActionsProviderProps> = ({ childr
             }
         } catch (error) {
             console.error("Registration error:", error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Registration Failed',
+                text: 'Username or email already exists. Please try again.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+            });
         }
     };
 
@@ -115,6 +130,13 @@ export const AuthActionsProvider: React.FC<AuthActionsProviderProps> = ({ childr
             }
         } catch (error) {
             console.error("Login error:", error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: 'Invalid username or password. Please try again.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK',
+            });
         }
     };
 
