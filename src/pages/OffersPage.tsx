@@ -31,6 +31,12 @@ const OffersPage = () => {
 
   const handleSaveOffer = () => {
     if (editedOffer) {
+      // Ensure end date is not before start date
+      if (editedOffer.startDate && editedOffer.endDate && new Date(editedOffer.endDate) < new Date(editedOffer.startDate)) {
+        Swal.fire("Invalid Date", "End date cannot be before start date.", "warning");
+        return; // Prevent saving if the end date is before the start date
+      }
+
       // SweetAlert2 confirmation for saving the offer
       Swal.fire({
         title: "Confirm to Save",
@@ -148,8 +154,8 @@ const OffersPage = () => {
                 <p><b>From: </b> {offer.startDate} </p>
                 <p><b>Until: </b> {offer.endDate}</p>
                 <div className="offer-actions">
-                  <button className="edit-button" onClick={() => handleEditOffer(offer.id)}>
-                    Edit
+                  <button className="edit-button-offers" onClick={() => handleEditOffer(offer.id)}>
+                    <span className="edit-icon-offers"></span>
                   </button>
                   <button
                     className="delete-button2"

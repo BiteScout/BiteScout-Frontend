@@ -135,4 +135,47 @@
   .delete-button2:focus {
     outline: none;
   }
+
+
+
+  .edit-button2 {
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: none; /* No background */
+    transition: color 0.3s ease, transform 0.3s ease;
+    color: #1d9265; /* Green color */
+  }
+  
+  .edit-button2:hover {
+    color: #146a48; /* Darker green on hover */
+    transform: scale(1.05); /* Slight zoom-in effect on hover */
+  }
+  
+  .edit-button2:active {
+    transform: scale(0.95); /* Slight scale-down effect on click */
+  }
+  
+  .edit-button2:focus {
+    outline: none; /* Remove focus outline */
+  }
+  
+  .edit-icon::before {
+    content: ''; /* Clear content */
+    display: inline-block;
+    width: 24px; /* Set the size of the icon */
+    height: 24px;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M16 3l5 5-12 12H3v-5L16 3z"%3E%3C/path%3E%3C/svg%3E');
+    background-size: cover;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+
+  .edit-button2:hover .edit-icon::before {
+    transform: rotate(15deg); /* Rotate on hover */
+  }
+  
   

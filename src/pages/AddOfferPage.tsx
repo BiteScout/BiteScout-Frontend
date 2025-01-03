@@ -7,14 +7,21 @@ import Swal from "sweetalert2"; // Import SweetAlert2
 const AddOfferPage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const navigate = useNavigate();
   const [startDate, setStartDate] = useState<string | undefined>(undefined);
   const [endDate, setEndDate] = useState<string | undefined>(undefined);
+  const navigate = useNavigate();
   const { handleAddOfferForRestaurant } = useRestaurantActions();
   const { restaurantId } = useParams<{ restaurantId: string }>();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Validate end date before submitting
+    if (endDate && startDate && new Date(endDate) < new Date(startDate)) {
+      Swal.fire("Invalid Date", "End date cannot be before start date.", "warning");
+      return; // Prevent submission
+    }
+
     const offerRequest: offerRequest = {
       title: title,
       description: description,
@@ -76,11 +83,21 @@ const AddOfferPage = () => {
         </div>
         <div className="form-group">
           <label htmlFor="startDate">Start Date</label>
-          <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            required
+          />
         </div>
         <div className="form-group">
           <label htmlFor="endDate">End Date</label>
-          <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            disabled={!startDate} // Disable if start date is not selected
+          />
         </div>
         <div className="form-actions">
           <button type="submit" className="submit-button">

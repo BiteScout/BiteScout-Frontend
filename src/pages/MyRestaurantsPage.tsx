@@ -72,15 +72,15 @@ const MyRestaurantsPage = () => {
             </div>
             <button
               className="edit-button"
-              onClick={() => navigate(`/editRestaurant/${restaurant.id}`)}
-            >
-              Edit Restaurant
-            </button>
-            <button
-              className="edit-button"
               onClick={() => navigate(`/offers/${restaurant.id}`)}
             >
               Offers
+            </button>
+            <button
+              className="edit-button2"
+              onClick={() => navigate(`/editRestaurant/${restaurant.id}`)}
+            >
+              <span className="edit-icon"></span>
             </button>
             <button 
               className="delete-button2"
