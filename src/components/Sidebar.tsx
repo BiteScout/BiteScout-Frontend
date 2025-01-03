@@ -44,7 +44,7 @@ const Sidebar = () => {
           class="sidebar__menu__Button"
           src={pin}
           text="Near Me"
-          func={notify}
+          func={() => navigate("/nearMe")}
           msg="Near Me"
         />
         {userRole === "ROLE_RESTAURANT_OWNER" ?
