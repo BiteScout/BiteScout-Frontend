@@ -28,12 +28,12 @@ const RestaurantReviewsPage = () => {
     /*  const [reviews, setReviews] = useState<review[]>([])*/
     const [reviewsWithLikes, setReviewsWithLikes] = useState<reviewsWithLikes[]>([]);
     const {restaurantId} = useParams<{ restaurantId: string }>();
-    const {handleFetchRestaurantReviews, handleSendReview, handleFetchReviewInteractions} = useRestaurantActions();
+    const {handleFetchRestaurantReviews, handleSendReview, handleFetchReviewInteractions, handleCalculateRating} = useRestaurantActions();
     const [reviewButton, setReviewButton] = useState<boolean>(false);
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState<number>(0);
     const [sent, setSent] = useState<any>(undefined);
-    const [edited, setEdited] = useState(false);
+    const [edited, setEdited] = useState<number>(0);
     const [reviewFetched, setReviewFetched] = useState(false);
     const navigate = useNavigate();
 
@@ -155,7 +155,6 @@ const RestaurantReviewsPage = () => {
         setComment("")
         setRating(0)
         setSent(undefined)
-        setEdited(false)
         dispatch({type: "SET_REVIEWS", payload: []})
         setReviewsWithLikes([])
         const fetchReviews = async () => {
@@ -240,6 +239,7 @@ const RestaurantReviewsPage = () => {
                   <form onSubmit={() => {
                       setSent(handleSendReview(restaurantId === undefined ? "" : restaurantId, rating, comment));
                       setReviewButton(false);
+                      const calculateRating = handleCalculateRating();
                   }}>
                       <input
                           type="text"

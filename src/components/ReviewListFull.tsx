@@ -21,7 +21,7 @@ interface realReview {
 
 interface ReviewListProps {
     reviews: review[] | undefined; // Review tipinde bir dizi
-    setEdited: React.Dispatch<React.SetStateAction<boolean>>;
+    setEdited: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ReviewListFull: React.FC<ReviewListProps> = ({
@@ -86,7 +86,7 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
 
         const fetchRealReviews = async () => {
             if (reviews !== undefined) {
-                await delay(100);
+                await delay(200);
                 const updatedReviews = await Promise.all(
                     reviews.map(async (review: review) => {
                         const realReview: realReview = {
@@ -170,19 +170,19 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
                         Rating: {review.rating}
                     </p>
                     <p>
-                        <strong>{review.customerName}</strong>: {review.comment}
+                        <strong>{review.customerName === "" ? "Unknown User": review.customerName}</strong>: {review.comment}
                     </p>
                     <p> {"creationDate: "} {review.createdAt} </p>
                     {review.updatedAt !== review.createdAt ? <p>{"updateDate: "}{review.updatedAt}</p> : null}
                     <p>Upvotes: {review.likeCount}</p>
                     <button onClick={() => {
                         handleSendingInteraction(review.id, "LIKE")
-                        setEdited(true)
+                        setEdited((prev) => prev + 1)
                     }}> Like
                     </button>
                     <button onClick={() => {
                         handleSendingInteraction(review.id, "DISLIKE")
-                        setEdited(true)
+                        setEdited((prev) => prev + 1)
                     }}> Dislike
                     </button>
                     <button onClick={() => {
@@ -206,7 +206,7 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
                     }}>Edit</button> : null}
                     {review.customerName === userName ? <button className="delete-button" onClick={() => {
                         handleDeleteReview(review.id)
-                        setEdited(true)
+                        setEdited((prev) => prev + 1)
                     }}>Delete</button> : null}
 
 
@@ -233,7 +233,7 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
                     {editReviewOn[index] ? <div>
                         <form onSubmit={() => {
                             handleEditReview(review.id, editRating, editComment);
-                            setEdited(true)
+                            setEdited((prev) => prev + 1)
                         }}>
                             <input type={"text"} minLength={8} required value={editComment}
                                    onChange={(e) => setEditComment(e.target.value)}/>
@@ -247,9 +247,9 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
                     {review.replies.map((reply: reviewReply, replyIndex: number) => (
                         <div key={replyIndex} className="review" style={{marginLeft: "50px"}}>
                             <p>
-                                <strong>{reply.interactingUserName}</strong>: {reply.replyText}
+                                <strong>{reply.interactingUserName === ""? "Unknown User": reply.interactingUserName}</strong>: {reply.replyText}
                             </p>
-                            {userId === reply.interactingUserId ? (<button onClick={() => {handleDeleteReply(reply.id); setReplyResponse(0)}}>Delete</button>) : null}
+                            {userId === reply.interactingUserId ? (<button onClick={() => {handleDeleteReply(reply.id); setEdited((prev) => prev + 1)}}>Delete</button>) : null}
                         </div>
                     ))}
                 </div>

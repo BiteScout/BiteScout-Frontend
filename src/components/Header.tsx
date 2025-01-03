@@ -20,7 +20,7 @@ const Header = () => {
   const {isAuthenticated, logout} = useAuth();
   const notify = (msg: string) => alert(msg);
   const userName = useSelector((state: RootState) => state.name);
-  const [searchQuery, setSearchQuery] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
   const toggleNotificationMenu = () => {
     setIsNotificationMenuOpen((prevState) => !prevState);
   };

@@ -5,7 +5,7 @@ interface RestaurantHeaderProps {
   name: string; // Restoran adı
   logo: string; // Logo URL'si
   rating: number; // Restoran puanı
-  rank: number; // Restoran sıralaması
+  rank: string; // Restoran sıralaması
 }
 
 const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({
@@ -20,7 +20,7 @@ const RestaurantHeader: React.FC<RestaurantHeaderProps> = ({
       <div className="restaurant-info">
         <h1 className="restaurant-name">{name}</h1>
         <p className="restaurant-rating">Rating: ⭐ {rating.toFixed(1)}/5</p>
-        <p className="restaurant-rank">Rank: #{rank}</p>
+        <p className="restaurant-rank">Rank: {rank}</p>
       </div>
     </div>
   );

@@ -76,7 +76,10 @@ function App() {
             <Route element = {<Layout />}>
                 <Route
                     path="/"
-                    element={<HomePage />} />
+                    element={
+                        <RestaurantActionsProvider>
+                            <HomePage />
+                        </RestaurantActionsProvider>} />
 
                 <Route
                     path = "/myProfile"

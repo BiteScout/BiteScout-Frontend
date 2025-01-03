@@ -75,6 +75,12 @@ export interface interactionReply {
     replies: reviewReply[]
 }
 
+export interface ranking{
+    averageRating: number,
+    tierRanking:string,
+    popularityScore: number,
+}
+
 
 interface RestaurantActionsContextProps {
     handleFetchRestaurant: (restaurantId: string) => Promise<restaurant | undefined>;
@@ -98,8 +104,10 @@ interface RestaurantActionsContextProps {
     handleSearchRestaurantsByPriceRange: (priceRange: string) => Promise<restaurant[] | undefined>;
     handleDeleteRestaurant: (restaurantId: string) => Promise<void>;
     handleDeleteReply: (reviewId: string) => Promise<void>;
+    handleFetchRanking: (restaurantId: string) => Promise<ranking | undefined>;
+    handleCalculateRating: () => Promise<void | undefined>;
     handleFetchNearbyRestaurants: (latitude: number, longitude: number, radiusInKm: number) => Promise<restaurant[] | undefined>;
-}
+
 
 interface RestaurantActionsProviderProps {
     children: ReactNode;
@@ -401,6 +409,26 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
         }
     }
 
+    const handleFetchRanking = async (restaurantId: string) => {
+        try {
+            const response = await useAxios().get(`/ranking/restaurant/${restaurantId}`);
+            if (response.status === 200) {
+                return response.data;
+            }
+        }
+        catch (err){
+            console.log(err);
+        }
+    }
+
+    const handleCalculateRating = async () => {
+        try{
+            const response = await useAxios().post(`/ranking/submit`)
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
     const handleFetchNearbyRestaurants = async (latitude: number, longitude: number, radius: number) => {
         try {
             const response = await useAxios().get("/restaurants/near-me", {
@@ -443,6 +471,8 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleSearchRestaurantsByPriceRange,
             handleDeleteRestaurant,
             handleDeleteReply,
+            handleFetchRanking,
+            handleCalculateRating
             handleFetchNearbyRestaurants
         }}>
             {children}
