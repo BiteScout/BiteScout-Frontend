@@ -42,6 +42,7 @@ const PasswordChangeApprovalPage = lazy(()=>import("./unusedPages/PasswordChange
 const PasswordChangePage = lazy(()=>import("./unusedPages/PasswordChangePage.tsx"))
 const SettingsPage = lazy(() => import("./pages/SettingsPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const NearMePage = lazy(() => import("./pages/NearMePage"));
 
 
 function App() {
@@ -207,6 +208,14 @@ function App() {
                     path="/contact"
                     element={
                     <ContactPage/>}/>
+                <Route
+                    path="/nearMe"
+                    element={
+                        <RestaurantActionsProvider>
+                            <NearMePage/>
+                        </RestaurantActionsProvider>
+                    }
+                />
             </Route>
 
         </Routes>
