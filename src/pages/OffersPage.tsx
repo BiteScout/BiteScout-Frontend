@@ -88,7 +88,7 @@ const OffersPage = () => {
 
   useEffect(() => {
     const fetchOffers = async () => {
-      await delay(50);
+      await delay(100);
       const response = await handleFetchOffersForRestaurant(restaurantId === undefined ? "" : restaurantId);
       if (response !== undefined) {
         setOffers(response);

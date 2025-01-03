@@ -75,6 +75,12 @@ export interface interactionReply {
     replies: reviewReply[]
 }
 
+export interface ranking{
+    averageRating: number,
+    tierRanking:string,
+    popularityScore: number,
+}
+
 
 interface RestaurantActionsContextProps {
     handleFetchRestaurant: (restaurantId: string) => Promise<restaurant | undefined>;
@@ -98,6 +104,8 @@ interface RestaurantActionsContextProps {
     handleSearchRestaurantsByPriceRange: (priceRange: string) => Promise<restaurant[] | undefined>;
     handleDeleteRestaurant: (restaurantId: string) => Promise<void>;
     handleDeleteReply: (reviewId: string) => Promise<void>;
+    handleFetchRanking: (restaurantId: string) => Promise<ranking | undefined>;
+    handleCalculateRating: () => Promise<void | undefined>;
 }
 
 interface RestaurantActionsProviderProps {
@@ -400,6 +408,27 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
         }
     }
 
+    const handleFetchRanking = async (restaurantId: string) => {
+        try {
+            const response = await useAxios().get(`/ranking/restaurant/${restaurantId}`);
+            if (response.status === 200) {
+                return response.data;
+            }
+        }
+        catch (err){
+            console.log(err);
+        }
+    }
+
+    const handleCalculateRating = async () => {
+        try{
+            const response = await useAxios().post(`/ranking/submit`)
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
 
     return (
         <RestaurantActionsContext.Provider value={{
@@ -423,7 +452,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleSearchRestaurantsByCuisine,
             handleSearchRestaurantsByPriceRange,
             handleDeleteRestaurant,
-            handleDeleteReply
+            handleDeleteReply,
+            handleFetchRanking,
+            handleCalculateRating
         }}>
             {children}
         </RestaurantActionsContext.Provider>

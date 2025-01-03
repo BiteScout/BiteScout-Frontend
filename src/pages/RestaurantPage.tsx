@@ -40,7 +40,7 @@ const RestaurantPage = () => {
   };
 
   const { restaurantId } = useParams<{ restaurantId: string }>();
-  const { handleFetchRestaurant, handleFetchRestaurantReviews, handleSendReview } = useRestaurantActions();
+  const { handleFetchRestaurant, handleFetchRestaurantReviews, handleSendReview, handleFetchRanking,handleCalculateRating } = useRestaurantActions();
   const { handleMakeReservation } = useReservationActions();
   const [restaurantData, setRestaurantData] = useState<restaurant>(baseRestaurant);
   const [reviewArray, setReviewArray] = useState<review[]>([]);
@@ -48,7 +48,7 @@ const RestaurantPage = () => {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState<number>(0);
   const [sent, setSent] = useState<any>(undefined);
-  const [edited, setEdited] = useState(false);
+  const [edited, setEdited] = useState<number>(0);
   const navigate = useNavigate();
   const userId = useSelector((state: RootState) => state.userId);
   const userRole = useSelector((state: RootState) => state.role);
@@ -56,6 +56,9 @@ const RestaurantPage = () => {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [toggleReservation, setToggleReservation] = useState<boolean>(false);
   const { handleFetchFavorites, handleAddFavorite, handleRemoveFavorite } = useUserActions();
+  const [rank, setRank] = useState<number>(0);
+  const [tierRanking, setTierRanking] = useState<string>("");
+  const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
     if (userId) {
@@ -69,9 +72,10 @@ const RestaurantPage = () => {
     setComment("");
     setRating(0);
     setSent(undefined);
-    setEdited(false);
     if (restaurantId !== undefined) {
       startTransition(() => {
+
+
         const restaurantData = handleFetchRestaurant(restaurantId);
         restaurantData.then((data: restaurant | undefined) => {
           if (data === undefined) {
@@ -81,15 +85,27 @@ const RestaurantPage = () => {
           }
         });
 
-        const reviewData = handleFetchRestaurantReviews(restaurantId);
-        reviewData.then((data: review[] | undefined) => {
-          if (data === undefined) {
-            setReviewArray([]);
-            navigate("/");
-          } else {
-            setReviewArray(data);
+        const fetchReviewData = async () => {
+          await delay(100)
+          const reviewData = await handleFetchRestaurantReviews(restaurantId);
+            if (reviewData === undefined) {
+              setReviewArray([]);
+            } else {
+              setReviewArray(reviewData);
+            }
+        }
+        fetchReviewData()
+
+
+
+        const rankData = handleFetchRanking(restaurantId);
+        rankData.then((data) => {
+          if (data !== undefined){
+
+            setRating(data.averageRating)
+            setTierRanking(data.tierRanking)
           }
-        });
+        })
       });
     } else {
       navigate("/");
@@ -132,7 +148,7 @@ const RestaurantPage = () => {
 
   return (
     <div className="restaurant-page">
-      <RestaurantHeader name={restaurantData.name} logo={sushihouse} rating={0} rank={1} />
+      <RestaurantHeader name={restaurantData.name} logo={sushihouse} rating={rating} rank={tierRanking} />
 
       <button
         className={`favorite-button ${isFavorite ? "favorited" : ""}`}
@@ -154,20 +170,11 @@ const RestaurantPage = () => {
         <ImageGallery images={restaurantImages} />
         <RestaurantDetails address={restaurantData.description} cuisineType={restaurantData.cuisineType} />
 
-        {userRole === "ROLE_RESTAURANT_OWNER" ? (
-          <button className={"edit-button"} onClick={() => navigate(`/reservationApproval/${restaurantId}`)}>
-            Reservation Requests
-          </button>
-        ) : null}
 
-        {userRole === "ROLE_CUSTOMER" ? (
           <button className={"edit-button"} onClick={() => { setToggleReservation(!toggleReservation); }}>
             Make Reservation
           </button>
-        ) : null}
 
-
-        <button className={"edit-button"} onClick={() => {setToggleReservation(!toggleReservation)}}>Make Reservation</button>
         {toggleReservation ? (
             <div className={"input-group"}>
               <input  type={"datetime-local"} value={dateTime} onChange={(e) => setDateTime(e.target.value)} />
@@ -193,7 +200,7 @@ const RestaurantPage = () => {
 {reviewButton && (
   <div className="add-review-form-page">
     <form onSubmit={() => {setSent(handleSendReview(restaurantId === undefined ? "" : restaurantId, rating, comment));
-      setReviewButton(false);}}>
+      setReviewButton(false); const calculateRating = handleCalculateRating();}}>
     <input
       type="text"
       value={comment}

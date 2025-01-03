@@ -33,13 +33,13 @@ const Sidebar = () => {
           func={() => navigate("/reservations")}
           msg="Recents"
         />
-        <Button
+        {/*<Button
           class="sidebar__menu__Button"
           src={fire}
           text="Trending"
           func={notify}
           msg="Trending"
-        />
+        />*/}
         <Button
           class="sidebar__menu__Button"
           src={pin}
