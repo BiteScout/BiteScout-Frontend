@@ -106,7 +106,8 @@ interface RestaurantActionsContextProps {
     handleDeleteReply: (reviewId: string) => Promise<void>;
     handleFetchRanking: (restaurantId: string) => Promise<ranking | undefined>;
     handleCalculateRating: () => Promise<void | undefined>;
-}
+    handleFetchNearbyRestaurants: (latitude: number, longitude: number, radiusInKm: number) => Promise<restaurant[] | undefined>;
+
 
 interface RestaurantActionsProviderProps {
     children: ReactNode;
@@ -428,6 +429,23 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             console.log(err);
         }
     }
+    const handleFetchNearbyRestaurants = async (latitude: number, longitude: number, radius: number) => {
+        try {
+            const response = await useAxios().get("/restaurants/near-me", {
+                params: {
+                    latitude: latitude,
+                    longitude: longitude,
+                    radius: radius
+                }
+            });
+            if (response.status === 200) {
+                return response.data;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    
 
 
     return (
@@ -455,6 +473,7 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleDeleteReply,
             handleFetchRanking,
             handleCalculateRating
+            handleFetchNearbyRestaurants
         }}>
             {children}
         </RestaurantActionsContext.Provider>
