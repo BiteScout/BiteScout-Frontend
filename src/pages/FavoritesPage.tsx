@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { useUserActions } from '../services/UserFunctions'; // The API call to remove favorite
-import { useRestaurantActions, restaurant } from '../services/RestaurantFunctions.tsx'; // The type from your context
+import { useRestaurantActions, restaurant } from '../services/RestaurantFunctions.tsx';
 import { RootState } from '../store'; // The Redux store
 import { useSelector } from 'react-redux';
+import { confirmAlert } from 'react-confirm-alert';
+import "../styles/react-confirm-alert.css"; 
 import '../styles/FavoritesPage.css';
 
 const FavoritesPage = () => {
@@ -36,10 +38,25 @@ const FavoritesPage = () => {
     }
   }, [userId, handleFetchFavorites, handleFetchRestaurant]);
 
-  // Remove a favorite restaurant
+  // Remove a favorite restaurant with confirmation
   const handleUnfavorite = (restaurantId: string) => {
-    handleRemoveFavorite(userId, restaurantId).then(() => {
-      setFavorites(favorites.filter((restaurant) => restaurant.id !== restaurantId));
+    confirmAlert({
+      title: "Confirm to Unfavorite",
+      message: "Are you sure you want to remove this restaurant from your favorites?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            handleRemoveFavorite(userId, restaurantId).then(() => {
+              setFavorites(favorites.filter((restaurant) => restaurant.id !== restaurantId));
+            });
+          },
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
     });
   };
 
