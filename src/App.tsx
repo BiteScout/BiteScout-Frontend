@@ -41,6 +41,7 @@ const StartPage = lazy(() => import("./pages/StartPage"))
 const PasswordChangeApprovalPage = lazy(()=>import("./unusedPages/PasswordChangeApprovalPage.tsx"))
 const PasswordChangePage = lazy(()=>import("./unusedPages/PasswordChangePage.tsx"))
 const SettingsPage = lazy(() => import("./pages/SettingsPage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
 
 
 function App() {
@@ -202,7 +203,12 @@ function App() {
                             </RestaurantActionsProvider>
                         </UserActionsProvider>
                     </ProtectedRoute>}/>
+                <Route
+                    path="/contact"
+                    element={
+                    <ContactPage/>}/>
             </Route>
+
         </Routes>
     </HashRouter>
   );
