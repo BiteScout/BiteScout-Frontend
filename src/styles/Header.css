@@ -17,10 +17,21 @@
   border-radius: 0 0 40px 40px;
 }
 
+.search-button:hover {
+  background-color: #D8B022FF;
+}
+
   .header .header__logo {
     width: 200px;
     padding-left: 20px;
     margin-top: 25px;
+    transform: scale(1); /* Subtle zoom effect when focused or hovered */
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+  }
+
+  .header .header__logo:hover {
+      transform: scale(1.15);
+    filter: brightness(0.8) contrast(1.2) saturate(1);
   }
 
   .header__nav {
@@ -235,19 +246,21 @@
     color: #ffffff;
     outline: none;
     box-shadow: none;
-
+  }
+  .search-input:focus {
+    border-color: #a5fab6;
   }
 
   .search-button {
     padding: 15px;
-    background-color: #f6c825;
+    background-color: #face36;
     color: #1d9265;
     border: none;
     border-radius: 12px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.4s ease;
   }
 
 

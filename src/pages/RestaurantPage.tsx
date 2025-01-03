@@ -166,20 +166,14 @@ const RestaurantPage = () => {
           </button>
         ) : null}
 
-        {userRole === "ROLE_CUSTOMER" && toggleReservation ? (
-          <div className={"input-group"}>
-            <input
-              type={"datetime-local"}
-              value={dateTime}
-              onChange={(e) => setDateTime(e.target.value)}
-            />
-            <button className="submit-button" style={{ width: "30vh", alignSelf: "flex-end" }} onClick={handleSubmitReservation}>
-              Submit
-            </button>
-          </div>
-        ) : null}
 
-        <OfferList restaurantId={restaurantId === undefined ? "" : restaurantId} />
+        <button className={"edit-button"} onClick={() => {setToggleReservation(!toggleReservation)}}>Make Reservation</button>
+        {toggleReservation ? (
+            <div className={"input-group"}>
+              <input  type={"datetime-local"} value={dateTime} onChange={(e) => setDateTime(e.target.value)} />
+              <button className="btn btn-primary" style={{width:"30vh", alignSelf:"flex-end"}} onClick={() => {handleMakeReservation(restaurantId === undefined? "": restaurantId, dateTime); setToggleReservation(!toggleReservation)}}>Submit</button>
+            </div>): null}
+        <OfferList restaurantId={restaurantId === undefined? "": restaurantId} />
 
         <div className="map-component">
           <MapComponent latitude={restaurantData.location.latitude} longitude={restaurantData.location.longitude} />
@@ -190,41 +184,52 @@ const RestaurantPage = () => {
           <QrCodeComponent link={restaurantData.menu} />
         </div>
 
-        <ReviewList reviews={reviewArray} setEdited={setEdited} restaurantId={restaurantId !== undefined ? restaurantId : ""} />
-        <button className="add-review-button" onClick={() => setReviewButton(true)}>Add Review</button>
-        {reviewButton && (
-          <div className="add-review-form-page">
-            <input
-              type="text"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              className="review-input"
-              placeholder="Write your comment here"
-            />
-            <input
-              type="number"
-              value={rating}
-              max={5}
-              onChange={(e) => setRating(Number(e.target.value))}
-              className="review-input"
-              placeholder="Rating (1-5)"
-            />
-            <div className="review-actions">
-              <button
-                className="send-button"
-                onClick={() => {
-                  setSent(handleSendReview(restaurantId === undefined ? "" : restaurantId, rating, comment));
-                  setReviewButton(false);
-                }}
-              >
-                Send
-              </button>
-              <button className="cancel-button" onClick={() => setReviewButton(false)}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
+        <ReviewList
+            reviews={reviewArray}
+            setEdited={setEdited}
+            restaurantId={restaurantId !== undefined ? restaurantId : ""}
+        />
+<button className="add-review-button" onClick={() => setReviewButton(true)}>Add Review</button>
+{reviewButton && (
+  <div className="add-review-form-page">
+    <form onSubmit={() => {setSent(handleSendReview(restaurantId === undefined ? "" : restaurantId, rating, comment));
+      setReviewButton(false);}}>
+    <input
+      type="text"
+      value={comment}
+      minLength={8}
+      required
+      onChange={(e) => setComment(e.target.value)}
+      className="review-input"
+      placeholder="Write your comment here"
+    />
+    <input
+      type="number"
+      value={rating}
+      min={0}
+      max={5}
+      onChange={(e) => setRating(Number(e.target.value))}
+      className="review-input"
+      placeholder="Rating (1-5)"
+    />
+    <div className="review-actions">
+      <button
+        className="send-button"
+        type={"submit"}
+      >
+        Send
+      </button>
+      <button
+        className="cancel-button"
+        onClick={() => setReviewButton(false)}
+      >
+        Cancel
+      </button>
+    </div>
+    </form>
+  </div>
+)}
+
       </div>
     </div>
   );

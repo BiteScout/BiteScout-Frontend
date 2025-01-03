@@ -14,7 +14,7 @@ const ReservationApprovalPage = () => {
 
   useEffect(() => {
     const fetchReservations = async () => {
-      await delay(300);
+      await delay(50);
       const reservations = await handleFetchReservationsForRestaurant(restaurantId === undefined ? "" : restaurantId);
       if (reservations !== undefined)
         setReservations(reservations);
