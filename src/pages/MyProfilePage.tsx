@@ -13,26 +13,49 @@ const MyProfilePage = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [city, setCity] = useState(""); // State for city
-  const [profilePhoto, setProfilePhoto] = useState(null);
-  const { handleFetchUserInfo, handleRemoveUser } = useUserActions();
+  const [profilePhoto, setProfilePhoto] = useState<string | null>(null);  // Allow both string and null
+  const { handleFetchUserInfo, handleRemoveUser, handleGetUserPicture } = useUserActions();
   const userId = useSelector((state: RootState) => state.userId);
   const [isPending, startTransition] = useTransition();
   const userRole = useSelector((state: RootState) => state.role);
   const navigate = useNavigate();
   const { logout } = useAuth();  // Access logout function
+  
 
   useEffect(() => {
     startTransition(() => {
-      // Perform the async task inside startTransition
-      const data = handleFetchUserInfo(userId);
-      data.then((dataValue: any) => {
-        setName(dataValue.userDetails.firstName);
-        setSurname(dataValue.userDetails.lastName);
-        setUserName(dataValue.username);
-        setCity(dataValue.userDetails.city); // Set the city from userInfo
-      });
+        const fetchUserInfo = async () => {
+            try {
+                // Fetch user info
+                const userInfo = await handleFetchUserInfo(userId);
+                if (userInfo) {
+                    setName(userInfo.userDetails.firstName);
+                    setSurname(userInfo.userDetails.lastName);
+                    setUserName(userInfo.username);
+                    setCity(userInfo.userDetails.city);  // Set city from user info
+                }
+            } catch (err) {
+                console.error("Error fetching user info:", err);
+            }
+        };
+
+        const fetchProfilePicture = async () => {
+            try {
+                // Fetch user profile picture
+                const pictureUrl = await handleGetUserPicture(userId);
+                if (pictureUrl) {
+                    setProfilePhoto(pictureUrl);  // Update profile picture state
+                }
+            } catch (err) {
+                console.error("Error fetching profile picture:", err);
+            }
+        };
+
+        fetchUserInfo();
+        fetchProfilePicture();
     });
-  }, [userId, handleFetchUserInfo]); // Add userId as dependency to refetch on change
+}, [userId, handleFetchUserInfo, handleGetUserPicture]);  // Add all dependencies
+
 
   const handleDeleteAccount = async () => {
     try {
@@ -43,6 +66,7 @@ const MyProfilePage = () => {
       console.error("Error deleting user:", err);
     }
   };
+  
 
   const showDeleteConfirmation = () => {
     // SweetAlert2 confirmation for account deletion
@@ -67,7 +91,7 @@ const MyProfilePage = () => {
     <>
       <div className="profile__page">
         <div className="header__section">
-          <img src={profile} alt="Profile" />
+          <img src={profilePhoto || profile} alt="Profile" />
           <div className="header__text">
             <h1>{name === undefined ? "Name" : name}{" "}{surname === undefined ? "Surname" : surname}</h1>
             <p className="header__username">{userName}</p>
@@ -99,6 +123,14 @@ const MyProfilePage = () => {
             onClick={showDeleteConfirmation}  // Trigger SweetAlert2 confirmation for deletion
           >
             <p className="button__text">Delete Account</p>
+          </button>
+          <button
+            className={"buttons__section__button"}
+            onClick={() => {
+              navigate("/myProfile/updateProfilePicture");
+            }}
+          >
+            <p className="button__text">Update Profile Picture</p>
           </button>
         </div>
       </div>

@@ -57,6 +57,8 @@ interface UserActionsContextProps {
     handleUpdateUser: (userData: userUpdate) => Promise<void>;
     handleFetchUserInfo: (userId: string) => Promise<userInfo | undefined>;
     handleRemoveUser: (userId: string) => Promise<void>;
+    handleUpdateUserPicture: (userId: string, image: File) => Promise<string | undefined>;
+    handleGetUserPicture: (userId: string) => Promise<string | undefined>;
 }
 
 interface UserActionsProviderProps {
@@ -157,6 +159,37 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
         }
         };
 
+        const handleUpdateUserPicture = async (userId: string, image: File): Promise<string | undefined> => {
+          try {
+              const formData = new FormData();
+              formData.append('image', image);
+              
+              const response = await useAxios().put(`/users/update-picture/${userId}`, formData, {
+                  headers: {
+                      'Content-Type': 'multipart/form-data',
+                  },
+              });
+              
+              if (response.status === 200) {
+                  console.log('Profile picture updated successfully');
+                  return response.data; // The URL of the updated profile picture
+              }
+          } catch (err) {
+              console.error('Error updating profile picture:', err);
+          }
+      };
+
+      const handleGetUserPicture = async (userId: string): Promise<string | undefined> => {
+        try {
+            const response = await useAxios().get(`/users/getPicture/${userId}`);
+            if (response.status === 200) {
+                return response.data;
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+      
 
     return (
         <UserActionsContext.Provider value={{
@@ -166,7 +199,9 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
             handleRemoveFavorite, 
             handleUpdateUser,
             handleFetchUserInfo,
-            handleRemoveUser
+            handleRemoveUser,
+            handleUpdateUserPicture,
+            handleGetUserPicture
             }}>
             {children}
         </UserActionsContext.Provider>
