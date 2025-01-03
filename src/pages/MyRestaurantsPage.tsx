@@ -15,7 +15,7 @@ const MyRestaurantsPage = () => {
 
   useEffect(() => {
     const fetchRestaurants = async () => {
-      await delay(300);
+      await delay(10);
       const restaurants = await handleFetchMyRestaurants(userId);
       if (restaurants !== undefined) {
         setRestaurants(restaurants);
@@ -75,6 +75,12 @@ const MyRestaurantsPage = () => {
               onClick={() => navigate(`/offers/${restaurant.id}`)}
             >
               Offers
+            </button>
+            <button
+              className="edit-button"
+              onClick={() => navigate(`/reservationApproval/${restaurant.id}`)}
+            >
+              Reservation Requests
             </button>
             <button
               className="edit-button2"
