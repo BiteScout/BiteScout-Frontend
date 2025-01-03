@@ -7,7 +7,7 @@ interface Element {
     role: string;
     userId: string;
     isAuthenticated: boolean;
-    // Add other properties if needed
+    profilePicture?: string; // Add profilePicture property
 }
 
 // Correctly type the initial state as an array of Element
@@ -16,7 +16,8 @@ const initialState: Element = {
     name:"",
     role:"",
     userId:"",
-    isAuthenticated: false
+    isAuthenticated: false,
+    profilePicture: ""
 };
 
 const elementsSlice = createSlice({
@@ -39,10 +40,13 @@ const elementsSlice = createSlice({
         },
         updateUsername: (state, action: PayloadAction<string>) => {
             state.name = action.payload;
+        },
+        updateProfilePicture: (state, action: PayloadAction<string>) => {
+            state.profilePicture = action.payload;  // Update profile picture
         }
     },
 });
 
 // Export actions and reducer
-export const {addElement, removeElement, updateUsername} = elementsSlice.actions;
+export const {addElement, removeElement, updateUsername, updateProfilePicture} = elementsSlice.actions;
 export default elementsSlice.reducer;
