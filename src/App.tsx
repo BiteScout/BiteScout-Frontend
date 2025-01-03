@@ -164,7 +164,7 @@ function App() {
                         </ProtectedRouteRestaurantOwner>
                     }/>
                 <Route
-                    path={"/myRestaurants"}
+                    path={"/myRestaurants" }
                     element={
                     <ProtectedRouteRestaurantOwner>
                         <RestaurantActionsProvider>

@@ -2,6 +2,7 @@ import {ChangeEvent, useEffect, useState} from "react";
 import {restaurant} from "../services/RestaurantFunctions.tsx";
 import {useRestaurantActions} from "../services/RestaurantFunctions.tsx";
 import {useNavigate, useParams} from "react-router-dom";
+import "../styles/SearchRestaurantResultPage.css";
 
 
 const SearchRestaurantResultsPage = () => {

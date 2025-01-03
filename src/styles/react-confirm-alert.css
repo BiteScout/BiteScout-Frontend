@@ -1,0 +1,94 @@
+/* Confirmation Alert - Main Overlay */
+.react-confirm-alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark translucent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Confirmation Alert - Main Modal */
+.react-confirm-alert {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transform: scale(0.9);
+  animation: modalPopIn 0.3s ease-out forwards;
+}
+
+.react-confirm-alert button {
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.react-confirm-alert button:hover {
+  transform: translateY(-2px);
+}
+
+.react-confirm-alert .confirm-button {
+  background-color: #1d9265; /* Green Button */
+  color: white;
+}
+
+.react-confirm-alert .cancel-button {
+  background-color: #e74c3c; /* Red Button */
+  color: white;
+}
+
+/* Animation for button hover */
+.react-confirm-alert .confirm-button:hover {
+  background-color: #146a48;
+}
+
+.react-confirm-alert .cancel-button:hover {
+  background-color: #b02a37;
+}
+
+/* Animation for modal popup */
+@keyframes modalPopIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Fade-in for the overlay */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+  .react-confirm-alert {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .react-confirm-alert button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}

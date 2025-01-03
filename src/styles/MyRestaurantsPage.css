@@ -31,6 +31,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     transition: transform 0.2s ease;
   }
   
@@ -61,10 +62,9 @@
     gap: 10px;
   }
   
-  .edit-button,
-  .delete-button {
+  .edit-button {
     padding: 10px 20px;
-    margin-left: 10px;
+    margin: 5px;
     font-size: 14px;
     font-weight: bold;
     border: none;
@@ -81,13 +81,58 @@
   .edit-button:hover {
     background-color: #146a48;
   }
-  
-  .delete-button {
-    background-color: #dc3545;
-    color: white;
+
+  .delete-button2 {
+    margin-top: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
   }
   
-  .delete-button:hover {
-    background-color: #a71d2a;
+  .delete-button2 {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  
+  .delete-button2:hover {
+    transform: scale(1.1);
+  }
+  
+  .delete-button2:active {
+    transform: scale(0.9);
+  }
+  
+  .delete-icon::before {
+    content: ''; /* Clear content */
+    display: inline-block;
+    width: 24px; /* Set the size of the icon */
+    height: 24px;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M6 18L18 6M6 6l12 12"%3E%3C/path%3E%3C/svg%3E');
+    background-size: cover;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  
+  .delete-icon:hover::before {
+    filter: invert(27%) sepia(81%) saturate(5864%) hue-rotate(355deg) brightness(95%) contrast(97%);
+  }
+  
+  
+  .delete-button2:hover .delete-icon::before {
+    transform: rotate(-10deg);
+  }
+  
+  .delete-button2:focus {
+    outline: none;
   }
   

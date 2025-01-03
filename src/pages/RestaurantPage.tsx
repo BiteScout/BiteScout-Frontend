@@ -151,9 +151,6 @@ const RestaurantPage = () => {
               <button className="btn btn-primary" style={{width:"30vh", alignSelf:"flex-end"}} onClick={() => {handleMakeReservation(restaurantId === undefined? "": restaurantId, dateTime); setToggleReservation(!toggleReservation)}}>Submit</button>
             </div>): null}
         <OfferList restaurantId={restaurantId === undefined? "": restaurantId} />
-        {userId === restaurantData.ownerId ?
-            <button className={"edit-button"} style={{width:"auto"}} onClick={() => navigate("/addOffer/" + restaurantId)}>Add Offer</button>
-        : null}
 
         <div className="map-component">
           <MapComponent latitude={restaurantData.location.latitude} longitude={restaurantData.location.longitude}/>

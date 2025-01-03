@@ -43,7 +43,7 @@ const navigate = useNavigate();
               <br></br>
               <div className="buttons__section">
                   {userRole === "ROLE_RESTAURANT_OWNER" &&
-                      <button className={"buttons__section__button"} onClick={() => { navigate("/myRestaurants")
+                      <button className={"buttons__section__button"} onClick={() => { navigate("/myRestaurants", { state: { refresh: true } })
                       }}><p className="button__text">My Restaurants</p></button>
                   }
                   <button className={"buttons__section__button"} onClick={() => {
