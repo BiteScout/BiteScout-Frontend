@@ -4,9 +4,10 @@ import { RootState } from "../store.tsx";
 import { useUserActions, userUpdate } from "../services/UserFunctions.tsx";
 import { useState, useEffect } from "react";
 import { addElement, updateUsername } from "../elementSlice.tsx";
+import Swal from 'sweetalert2'; // Import SweetAlert2
+import "../styles/react-confirm-alert.css"; // Import default styles
 
 const SettingsPage = () => {
-
   const dispatch = useDispatch();
   const { handleUpdateUser, handleFetchUserInfo } = useUserActions();
   const userId = useSelector((state: RootState) => state.userId);
@@ -43,7 +44,6 @@ const SettingsPage = () => {
     };
     fetchUserDetails();
   }, [userId, handleFetchUserInfo]);
-  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -51,21 +51,37 @@ const SettingsPage = () => {
 
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      await handleUpdateUser(userData);
-      dispatch(updateUsername(userData.username));
-      alert("Your information has been updated successfully!");
-    } catch (err) {
-      alert("Failed to update user information.");
-    }
+
+    // Show a stylish confirmation dialog using SweetAlert2
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Do you really want to update your information?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, update!',
+      cancelButtonText: 'No, cancel',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleUpdateUser(userData)
+          .then(() => {
+            dispatch(updateUsername(userData.username));
+            Swal.fire('Updated!', 'Your information has been updated.', 'success');
+          })
+          .catch(() => {
+            Swal.fire('Failed!', 'Failed to update user information.', 'error');
+          });
+      }
+    });
   };
 
   return (
     <div className="settings-page">
-      <div className="form-container">
-        <h1 className="title">Account Settings</h1>
+      <div className="form-container-settings">
+        <h1 className="title-settings">Account Settings</h1>
         <form onSubmit={handleUpdate} className="settings-form">
-          <div className="input-group">
+          <div className="input-group-settings">
             <label htmlFor="username">Username</label>
             <input
               type="text"
@@ -76,7 +92,7 @@ const SettingsPage = () => {
               required
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-settings">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -86,7 +102,7 @@ const SettingsPage = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-settings">
             <label htmlFor="firstName">First Name</label>
             <input
               type="text"
@@ -96,7 +112,7 @@ const SettingsPage = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-settings">
             <label htmlFor="lastName">Last Name</label>
             <input
               type="text"
@@ -106,7 +122,7 @@ const SettingsPage = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-settings">
             <label htmlFor="phoneNumber">Phone Number</label>
             <input
               type="text"
@@ -116,7 +132,7 @@ const SettingsPage = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-settings">
             <label htmlFor="country">Country</label>
             <input
               type="text"
@@ -126,7 +142,7 @@ const SettingsPage = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-settings">
             <label htmlFor="city">City</label>
             <input
               type="text"
@@ -136,7 +152,7 @@ const SettingsPage = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-settings">
             <label htmlFor="postalCode">Postal Code</label>
             <input
               type="text"
@@ -146,7 +162,7 @@ const SettingsPage = () => {
               onChange={handleChange}
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-settings">
             <label htmlFor="address">Address</label>
             <input
               type="text"
@@ -156,7 +172,7 @@ const SettingsPage = () => {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="update-button">
+          <button type="submit" className="update-button-settings">
             Update Information
           </button>
         </form>

@@ -3,8 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../styles/OffersPage.css";
 import { offer } from "../services/RestaurantFunctions.tsx";
 import { useRestaurantActions } from "../services/RestaurantFunctions.tsx";
-import { confirmAlert } from "react-confirm-alert"; // Import react-confirm-alert
-import "../styles/react-confirm-alert.css"; // Import default styles
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 const OffersPage = () => {
   const [offers, setOffers] = useState<offer[]>([]);
@@ -32,24 +31,28 @@ const OffersPage = () => {
 
   const handleSaveOffer = () => {
     if (editedOffer) {
-      confirmAlert({
+      // SweetAlert2 confirmation for saving the offer
+      Swal.fire({
         title: "Confirm to Save",
-        message: "Are you sure you want to save the changes to this offer?",
-        buttons: [
-          {
-            label: "Yes",
-            onClick: () => {
-              handleUpdateOfferForRestaurant(restaurantId === undefined ? "" : restaurantId, isEditing === null ? "" : isEditing, editedOffer);
-              setIsEditing(null);
-              setEditedOffer(null);
-              setReloadKey((prev) => prev + 1);
-            },
-          },
-          {
-            label: "No",
-            onClick: () => {},
-          },
-        ],
+        text: "Are you sure you want to save the changes to this offer?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, save it!",
+        cancelButtonText: "No, cancel",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          handleUpdateOfferForRestaurant(
+            restaurantId === undefined ? "" : restaurantId,
+            isEditing === null ? "" : isEditing,
+            editedOffer
+          );
+          setIsEditing(null);
+          setEditedOffer(null);
+          setReloadKey((prev) => prev + 1);
+          Swal.fire("Saved!", "Your offer has been updated.", "success");
+        }
       });
     }
   };
@@ -59,19 +62,21 @@ const OffersPage = () => {
   };
 
   const showDeleteConfirmation = (id: string) => {
-    confirmAlert({
+    // SweetAlert2 confirmation for deleting the offer
+    Swal.fire({
       title: "Confirm to Delete",
-      message: "Are you sure you want to delete this offer?",
-      buttons: [
-        {
-          label: "Yes",
-          onClick: () => handleDeleteOffer(id),
-        },
-        {
-          label: "No",
-          onClick: () => {},
-        },
-      ],
+      text: "Are you sure you want to delete this offer?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleDeleteOffer(id);
+        Swal.fire("Deleted!", "The offer has been deleted.", "success");
+      }
     });
   };
 

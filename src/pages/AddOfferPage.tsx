@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/AddOfferPage.css";
 import { offerRequest, useRestaurantActions } from "../services/RestaurantFunctions.tsx";
-import { confirmAlert } from "react-confirm-alert";
-import "../styles/react-confirm-alert.css"; 
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 const AddOfferPage = () => {
   const [title, setTitle] = useState("");
@@ -22,30 +21,29 @@ const AddOfferPage = () => {
       startDate: startDate,
       endDate: endDate,
     };
-    
-    // Prompt user for confirmation before adding offer
-    confirmAlert({
-      title: "Confirm to Add Offer",
-      message: "Are you sure you want to add this offer?",
-      buttons: [
-        {
-          label: "Yes",
-          onClick: () => {
-            if (restaurantId !== undefined) {
-              const response = handleAddOfferForRestaurant(restaurantId, offerRequest);
-              response.then((data) => {
-                navigate(-1); // Go back to the offers page after successful addition
-              });
-            } else {
-              navigate("/offers/" + restaurantId);
-            }
-          },
-        },
-        {
-          label: "No",
-          onClick: () => {},
-        },
-      ],
+
+    // SweetAlert2 confirmation dialog
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to add this offer?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, add it!",
+      cancelButtonText: "No, cancel",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (restaurantId !== undefined) {
+          const response = handleAddOfferForRestaurant(restaurantId, offerRequest);
+          response.then(() => {
+            Swal.fire("Added!", "Your offer has been added.", "success");
+            navigate(-1); // Go back to the offers page after successful addition
+          });
+        } else {
+          navigate("/offers/" + restaurantId);
+        }
+      }
     });
   };
 

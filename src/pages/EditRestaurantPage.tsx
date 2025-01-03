@@ -6,8 +6,7 @@ import { useRestaurantActions } from "../services/RestaurantFunctions.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../store.tsx";
 import LocationPicker from "../components/LocationPicker.tsx";
-import { confirmAlert } from 'react-confirm-alert'; // Import react-confirm-alert
-import "../styles/react-confirm-alert.css"; // Import styles for react-confirm-alert
+import Swal from 'sweetalert2'; // Import SweetAlert2
 
 const mockRestaurantData: addRestaurant = {
   ownerId: "",
@@ -74,19 +73,19 @@ const EditRestaurantPage = () => {
   };
 
   const handleConfirmation = () => {
-    confirmAlert({
-      title: 'Confirm to Save',
-      message: 'Are you sure you want to save changes?',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: handleSaveChanges,
-        },
-        {
-          label: 'No',
-          onClick: () => {},
-        }
-      ]
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to save the changes to this restaurant?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, save changes!',
+      cancelButtonText: 'No, cancel',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleSaveChanges();
+      }
     });
   };
 
@@ -112,7 +111,7 @@ const EditRestaurantPage = () => {
       }
     };
     fetchRestaurant();
-  }, []);
+  }, [restaurantId, userId]);
 
   return (
     <div className="edit-restaurant-page">

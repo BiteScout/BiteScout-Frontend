@@ -9,7 +9,7 @@
     align-items: center;
   }
   
-  .form-container {
+  .form-container-settings {
     width: 500px;
     padding: 40px;
     background-color: #ffffff;
@@ -18,7 +18,7 @@
     text-align: center;
   }
   
-  .title {
+  .title-settings {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 25px;
@@ -28,14 +28,14 @@
   .settings-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
   }
   
-  .input-group {
+  .input-group-settings {
     text-align: left;
   }
   
-  .input-group label {
+  .input-group-settings label {
     font-size: 16px;
     font-weight: 600;
     color: #555;
@@ -43,8 +43,11 @@
     display: block;
   }
   
-  .input-group input {
-    padding: 12px;
+  .input-group-settings input {
+    width: 96%;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    padding-left: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 14px;
@@ -52,13 +55,13 @@
     transition: all 0.3s ease;
   }
   
-  .input-group input:focus {
+  .input-group-settings input:focus {
     outline: none;
     border-color: #1d9265;
     background-color: #e6f9f0;
   }
   
-  .update-button {
+  .update-button-settings {
     padding: 12px;
     font-size: 16px;
     background-color: #1d9265;
@@ -70,7 +73,7 @@
     transition: all 0.3s ease;
   }
   
-  .update-button:hover {
+  .update-button-settings:hover {
     background-color: #146a48;
     transform: scale(1.05);
   }

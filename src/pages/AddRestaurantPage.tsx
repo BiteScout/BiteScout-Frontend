@@ -6,8 +6,8 @@ import { useRestaurantActions } from "../services/RestaurantFunctions.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../store.tsx";
 import LocationPicker from "../components/LocationPicker.tsx";
-import { confirmAlert } from "react-confirm-alert"; // Import react-confirm-alert
-import "../styles/react-confirm-alert.css"; // Import default styles
+import Swal from 'sweetalert2'; // Import SweetAlert2
+import "../styles/react-confirm-alert.css"; // You may remove this if not using react-confirm-alert
 
 const mockRestaurantData: addRestaurant = {
   ownerId: "",
@@ -62,26 +62,24 @@ const AddRestaurantPage = () => {
 
     setErrors(newErrors);
 
-    // If no errors, show confirmation dialog
+    // If no errors, show confirmation dialog using SweetAlert2
     const hasErrors = Object.values(newErrors).some((error) => error !== "");
     if (!hasErrors) {
-      confirmAlert({
-        title: "Confirm to Submit",
-        message: "Are you sure you want to create this restaurant?",
-        buttons: [
-          {
-            label: "Yes",
-            onClick: () => {
-              handleAddRestaurant({ ...restaurantData, ownerId: userId }).then(() => {
-                navigate(`/myRestaurants`);
-              });
-            },
-          },
-          {
-            label: "No",
-            onClick: () => {},
-          },
-        ],
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to create this restaurant?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, create it!',
+        cancelButtonText: 'No, cancel',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          handleAddRestaurant({ ...restaurantData, ownerId: userId }).then(() => {
+            navigate(`/myRestaurants`);
+          });
+        }
       });
     }
   };

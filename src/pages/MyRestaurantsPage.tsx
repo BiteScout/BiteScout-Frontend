@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { restaurant, useRestaurantActions } from "../services/RestaurantFunctions.tsx";
 import { RootState } from "../store.tsx";
 import { useSelector } from "react-redux";
-import { confirmAlert } from 'react-confirm-alert'; // Import react-confirm-alert
-import "../styles/react-confirm-alert.css"; // Import styles for react-confirm-alert
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import "../styles/MyRestaurantsPage.css";
 
 const MyRestaurantsPage = () => {
@@ -23,7 +22,7 @@ const MyRestaurantsPage = () => {
       }
     };
     fetchRestaurants();
-  }, []);
+  }, [userId]);
 
   const handleRemoveRestaurant = async (restaurantId: string) => {
     try {
@@ -37,19 +36,24 @@ const MyRestaurantsPage = () => {
   };
 
   const handleDeleteClick = (restaurantId: string) => {
-    confirmAlert({
-      title: 'Confirm to Delete',
-      message: 'Are you sure you want to delete this restaurant?',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: () => handleRemoveRestaurant(restaurantId),
-        },
-        {
-          label: 'No',
-          onClick: () => {},
-        }
-      ]
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to delete this restaurant?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleRemoveRestaurant(restaurantId);
+        Swal.fire(
+          'Deleted!',
+          'Your restaurant has been deleted.',
+          'success'
+        );
+      }
     });
   };
 
@@ -80,7 +84,7 @@ const MyRestaurantsPage = () => {
             </button>
             <button 
               className="delete-button2"
-              onClick={() => handleDeleteClick(restaurant.id)} // Trigger the confirm alert
+              onClick={() => handleDeleteClick(restaurant.id)} // Trigger the SweetAlert2
             >
               <span className="delete-icon"></span>
             </button>
