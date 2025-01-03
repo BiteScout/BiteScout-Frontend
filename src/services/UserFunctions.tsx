@@ -8,6 +8,23 @@ export interface user {
     enabled: boolean
 }
 
+export interface userUpdate {
+    id: string;
+    username: string;
+    password?: string;
+    firstName?: string;
+    lastName?: string;
+    phoneNumber?: string;
+    country?: string;
+    city?: string;
+    postalCode?: string;
+    address?: string;
+    profilePicture?: string;
+    email?: string;
+    enabled?: boolean;
+  }
+  
+
 export interface favorite {
     id: string,
     userId: string,
@@ -15,12 +32,30 @@ export interface favorite {
     favoritedAt: Date
 }
 
+export interface userInfo {
+    id: string;
+    username: string;
+    email: string;
+    enabled: boolean;
+    userDetails: {
+      firstName: string;
+      lastName: string;
+      phoneNumber: string;
+      country: string;
+      city: string;
+      postalCode: string;
+      address: string;
+    };
+  }
+  
 
 interface UserActionsContextProps {
     handleFetchUser: (userId: string) => Promise<user | undefined>;
     handleFetchFavorites: (userId: string) => Promise<favorite[] | undefined>;
     handleAddFavorite: (userId: string, restaurantId: string) => Promise<void>;
     handleRemoveFavorite: (userId: string, restaurantId: string) => Promise<void>;
+    handleUpdateUser: (userData: userUpdate) => Promise<void>;
+    handleFetchUserInfo: (userId: string) => Promise<userInfo | undefined>;
 }
 
 interface UserActionsProviderProps {
@@ -83,9 +118,43 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
         }
     };
 
+    const handleUpdateUser = async (userData: userUpdate): Promise<void> => {
+        try {
+          // Filter out empty fields
+          const payload = Object.fromEntries(
+            Object.entries(userData).filter(([_, value]) => value !== "")
+          );
+      
+          const response = await useAxios().put('/users/update', payload);
+          if (response.status === 200) {
+            console.log('User updated successfully');
+          }
+        } catch (err) {
+          console.error('Error updating user:', err);
+        }
+      };
+      
+      const handleFetchUserInfo = async (userId: string): Promise<userInfo | undefined> => {
+        try {
+          const response = await useAxios().get(`/users/${userId}`);
+          if (response.status === 200) {
+            return response.data;
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
 
     return (
-        <UserActionsContext.Provider value={{handleFetchUser, handleFetchFavorites, handleAddFavorite, handleRemoveFavorite}}>
+        <UserActionsContext.Provider value={{
+            handleFetchUser, 
+            handleFetchFavorites, 
+            handleAddFavorite, 
+            handleRemoveFavorite, 
+            handleUpdateUser,
+            handleFetchUserInfo
+            }}>
             {children}
         </UserActionsContext.Provider>
     );

@@ -36,10 +36,13 @@ const elementsSlice = createSlice({
             state.role = "";
             state.userId = "";
             state.isAuthenticated = false;
+        },
+        updateUsername: (state, action: PayloadAction<string>) => {
+            state.name = action.payload;
         }
     },
 });
 
 // Export actions and reducer
-export const {addElement, removeElement} = elementsSlice.actions;
+export const {addElement, removeElement, updateUsername} = elementsSlice.actions;
 export default elementsSlice.reducer;

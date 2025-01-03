@@ -1,29 +1,63 @@
-import React, { useState } from "react";
 import "../styles/SettingsPage.css";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../store.tsx";
+import { useUserActions, userUpdate } from "../services/UserFunctions.tsx";
+import { useState, useEffect } from "react";
+import { addElement, updateUsername } from "../elementSlice.tsx";
 
 const SettingsPage = () => {
-  const [userData, setUserData] = useState({
-    id: "2e5144e0-9ff6-46df-b254-bb98c8a2a8a6",
-    username: "newUsername",
+
+  const dispatch = useDispatch();
+  const { handleUpdateUser, handleFetchUserInfo } = useUserActions();
+  const userId = useSelector((state: RootState) => state.userId);
+
+  const [userData, setUserData] = useState<userUpdate>({
+    id: userId,
+    username: "",
     password: "",
-    firstName: "John",
-    lastName: "Doe",
-    phoneNumber: "1234567890",
-    country: "USA",
-    city: "New York",
-    postalCode: "10001",
-    address: "123 Main Street",
-    profilePicture: "profilePic.jpg",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    country: "",
+    city: "",
+    postalCode: "",
+    address: "",
   });
 
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const user = await handleFetchUserInfo(userId);
+      if (user) {
+        setUserData({
+          id: user.id,
+          username: user.username,
+          firstName: user.userDetails.firstName,
+          lastName: user.userDetails.lastName,
+          phoneNumber: user.userDetails.phoneNumber,
+          country: user.userDetails.country,
+          city: user.userDetails.city,
+          postalCode: user.userDetails.postalCode,
+          address: user.userDetails.address,
+        });
+      }
+    };
+    fetchUserDetails();
+  }, [userId, handleFetchUserInfo]);
+  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleUpdate = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Updated data:", userData);
-    alert("Your information has been updated successfully!");
+    try {
+      await handleUpdateUser(userData);
+      dispatch(updateUsername(userData.username));
+      alert("Your information has been updated successfully!");
+    } catch (err) {
+      alert("Failed to update user information.");
+    }
   };
 
   return (
@@ -60,7 +94,6 @@ const SettingsPage = () => {
               name="firstName"
               value={userData.firstName}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="input-group">
@@ -71,7 +104,6 @@ const SettingsPage = () => {
               name="lastName"
               value={userData.lastName}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="input-group">
@@ -82,7 +114,6 @@ const SettingsPage = () => {
               name="phoneNumber"
               value={userData.phoneNumber}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="input-group">
@@ -93,7 +124,6 @@ const SettingsPage = () => {
               name="country"
               value={userData.country}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="input-group">
@@ -104,7 +134,6 @@ const SettingsPage = () => {
               name="city"
               value={userData.city}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="input-group">
@@ -115,7 +144,6 @@ const SettingsPage = () => {
               name="postalCode"
               value={userData.postalCode}
               onChange={handleChange}
-              required
             />
           </div>
           <div className="input-group">
@@ -126,7 +154,6 @@ const SettingsPage = () => {
               name="address"
               value={userData.address}
               onChange={handleChange}
-              required
             />
           </div>
           <button type="submit" className="update-button">
