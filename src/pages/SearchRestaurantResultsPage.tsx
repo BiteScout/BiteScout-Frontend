@@ -28,7 +28,7 @@ const SearchRestaurantResultsPage = () => {
                 setCuisines(data);
             }
         })
-    }, [restaurantNameQuery])
+    }, [])
 
     useEffect(() => {
         const fetchCuisine = async () => {

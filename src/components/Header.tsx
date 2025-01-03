@@ -20,13 +20,13 @@ const Header = () => {
   const {isAuthenticated, logout} = useAuth();
   const notify = (msg: string) => alert(msg);
   const userName = useSelector((state: RootState) => state.name);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("all");
   const toggleNotificationMenu = () => {
     setIsNotificationMenuOpen((prevState) => !prevState);
   };
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/searchRestaurant/" + searchQuery);
+    navigate("/searchRestaurant/" + (searchQuery === "" ? "all" : searchQuery));
   };
 
   // Close the menu when clicking outside
@@ -51,7 +51,7 @@ const Header = () => {
 
   return (
     <header className="header" style={{zIndex: 1000000000}}>
-      <img className="header__logo" src={bitescoutLogo11} alt="Logo" />
+      <a onClick={() => navigate("/")}><img className="header__logo" src={bitescoutLogo11} alt="Logo" /></a>
       <nav className="header__nav">
 
       <div className="search-section">

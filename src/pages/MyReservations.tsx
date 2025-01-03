@@ -3,11 +3,13 @@ import "../styles/MyReservations.css";
 import ReservationCard from "../components/ReservationCard";
 import {Reservation, useReservationActions} from "../services/ReservationFunctions.tsx";
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const MyReservationsPage = () => {
     const {handleFetchReservationsForUser} = useReservationActions();
     const [reservations, setReservations] = useState<Reservation[]>([]);
     const [reloadKey, setReloadKey] = useState<number>(0);
+    const navigate = useNavigate();
     const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
     useEffect(() => {
@@ -35,7 +37,7 @@ const MyReservationsPage = () => {
           ) : (
             <div className="no-reservations">
               <p>You have no reservations yet.</p>
-              <button className="reserve-button">Find Restaurants</button>
+              <button className="reserve-button" onClick={() => navigate("/searchRestaurant/all")}>Find Restaurants</button>
             </div>
           )}
         </div>
