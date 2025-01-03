@@ -1,4 +1,4 @@
-import {useEffect, useReducer, useState} from "react";
+import React, {useEffect, useReducer, useState} from "react";
 import "../styles/RestaurantReviewsPage.css";
 import filterIcon from "../assets/filter-icon.png";
 import {review, useRestaurantActions} from "../services/RestaurantFunctions.tsx";
@@ -236,28 +236,44 @@ const RestaurantReviewsPage = () => {
           </div>
           <button className="add-review-button" onClick={() => setReviewButton(true)}>Add Review</button>
           {reviewButton && (
-              <div className="add-review-form">
-                <input
-                type="text"
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                className="review-input"
-                placeholder="Write your comment here"
-                />
-                <input
-                type="number"
-                value={rating}
-                max={5}
-                onChange={(e) => setRating(Number(e.target.value))}
-                className="review-input"
-                placeholder="Rating (1-5)"
-                />
-                  <button className="send-button" onClick={() => {
+              <div className="add-review-form-page">
+                  <form onSubmit={() => {
                       setSent(handleSendReview(restaurantId === undefined ? "" : restaurantId, rating, comment));
-                      setReviewButton(false)
-                  }}>Send
-                  </button>
-                  <button className="cancel-button" onClick={() => setReviewButton(false)}>Cancel</button>
+                      setReviewButton(false);
+                  }}>
+                      <input
+                          type="text"
+                          value={comment}
+                          minLength={8}
+                          required
+                          onChange={(e) => setComment(e.target.value)}
+                          className="review-input"
+                          placeholder="Write your comment here"
+                      />
+                      <input
+                          type="number"
+                          value={rating}
+                          min={0}
+                          max={5}
+                          onChange={(e) => setRating(Number(e.target.value))}
+                          className="review-input"
+                          placeholder="Rating (1-5)"
+                      />
+                      <div className="review-actions">
+                          <button
+                              className="send-button"
+                              type={"submit"}
+                          >
+                              Send
+                          </button>
+                          <button
+                              className="cancel-button"
+                              onClick={() => setReviewButton(false)}
+                          >
+                              Cancel
+                          </button>
+                      </div>
+                  </form>
               </div>)}
       </div>
   )

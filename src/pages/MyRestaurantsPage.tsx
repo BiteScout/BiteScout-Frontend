@@ -15,7 +15,7 @@ const MyRestaurantsPage = () => {
 
   useEffect(() => {
     const fetchRestaurants = async () => {
-      await delay(300);
+      await delay(50);
       const restaurants = await handleFetchMyRestaurants(userId);
       if (restaurants !== undefined) {
         setRestaurants(restaurants);

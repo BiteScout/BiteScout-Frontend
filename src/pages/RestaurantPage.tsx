@@ -144,8 +144,8 @@ const RestaurantPage = () => {
         />
 
 
-        {userRole === "ROLE_CUSTOMER" ? <button className={"edit-button"} onClick={() => {setToggleReservation(!toggleReservation)}}>Make Reservation</button>: null}
-        {userRole === "ROLE_CUSTOMER" && toggleReservation ? (
+        <button className={"edit-button"} onClick={() => {setToggleReservation(!toggleReservation)}}>Make Reservation</button>
+        {toggleReservation ? (
             <div className={"input-group"}>
               <input  type={"datetime-local"} value={dateTime} onChange={(e) => setDateTime(e.target.value)} />
               <button className="btn btn-primary" style={{width:"30vh", alignSelf:"flex-end"}} onClick={() => {handleMakeReservation(restaurantId === undefined? "": restaurantId, dateTime); setToggleReservation(!toggleReservation)}}>Submit</button>
@@ -167,9 +167,13 @@ const RestaurantPage = () => {
 <button className="add-review-button" onClick={() => setReviewButton(true)}>Add Review</button>
 {reviewButton && (
   <div className="add-review-form-page">
+    <form onSubmit={() => {setSent(handleSendReview(restaurantId === undefined ? "" : restaurantId, rating, comment));
+      setReviewButton(false);}}>
     <input
       type="text"
       value={comment}
+      minLength={8}
+      required
       onChange={(e) => setComment(e.target.value)}
       className="review-input"
       placeholder="Write your comment here"
@@ -177,6 +181,7 @@ const RestaurantPage = () => {
     <input
       type="number"
       value={rating}
+      min={0}
       max={5}
       onChange={(e) => setRating(Number(e.target.value))}
       className="review-input"
@@ -185,10 +190,7 @@ const RestaurantPage = () => {
     <div className="review-actions">
       <button
         className="send-button"
-        onClick={() => {
-          setSent(handleSendReview(restaurantId === undefined ? "" : restaurantId, rating, comment));
-          setReviewButton(false);
-        }}
+        type={"submit"}
       >
         Send
       </button>
@@ -199,6 +201,7 @@ const RestaurantPage = () => {
         Cancel
       </button>
     </div>
+    </form>
   </div>
 )}
       </div>

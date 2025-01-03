@@ -28,13 +28,15 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
                                                        reviews,
                                                        setEdited,
                                                    }) => {
+    const userId = useSelector((state:RootState) => state.userId)
     const {handleFetchUser} = useUserActions()
     const {
         handleFetchReviewInteractions,
         handleEditReview,
         handleSendingReply,
         handleSendingInteraction,
-        handleDeleteReview
+        handleDeleteReview,
+        handleDeleteReply
     } = useRestaurantActions()
     const [realReviews, setRealReviews] = useState<realReview[]>([])
     const [editReviewOn, setEditReviewOn] = useState<boolean[]>([]);
@@ -43,11 +45,13 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
     const [editRating, setEditRating] = useState(0);
     const [editOrReply, setEditOrReply] = useState<boolean>(false);
 
+
     const [replyCommentOn, setReplyCommentOn] = useState<boolean[]>([]);
     const MAX_REPLYCOMMENTONLENGTH = reviews !== undefined ? reviews.length : 0;
     const [replyComment, setReplyComment] = useState("");
     const [replyRating, setReplyRating] = useState(0);
     const [replyResponse, setReplyResponse] = useState<any>(undefined)
+    const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const userName = useSelector((state: RootState) => state.name)
     /*const [replies, setReplies] = useState<reviewReply[]>([])*/
@@ -82,6 +86,7 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
 
         const fetchRealReviews = async () => {
             if (reviews !== undefined) {
+                await delay(100);
                 const updatedReviews = await Promise.all(
                     reviews.map(async (review: review) => {
                         const realReview: realReview = {
@@ -116,7 +121,7 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
                                             const replyUserData = await handleFetchUser(reply.interactingUserId);
                                             return {
                                                 ...reply,
-                                                interactingUserId: replyUserData !== undefined ? replyUserData.username : "Unknown User",
+                                                interactingUserName: replyUserData !== undefined ? replyUserData.username : "Unknown User",
                                             };
                                         } catch (error) {
                                             console.error(`Error fetching username for reply ${reply.id}:`, error);
@@ -169,13 +174,15 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
                     </p>
                     <p> {"creationDate: "} {review.createdAt} </p>
                     {review.updatedAt !== review.createdAt ? <p>{"updateDate: "}{review.updatedAt}</p> : null}
-                    <p>Likes: {review.likeCount}</p>
+                    <p>Upvotes: {review.likeCount}</p>
                     <button onClick={() => {
                         handleSendingInteraction(review.id, "LIKE")
+                        setEdited(true)
                     }}> Like
                     </button>
                     <button onClick={() => {
                         handleSendingInteraction(review.id, "DISLIKE")
+                        setEdited(true)
                     }}> Dislike
                     </button>
                     <button onClick={() => {
@@ -205,15 +212,18 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
 
                     {replyCommentOn[index] ?
                         <div>
-                            <label>
-                                Comment:
-                                <input type={"text"} value={replyComment}
-                                       onChange={(e) => setReplyComment(e.target.value)}/>
-                            </label>
-                            <button onClick={() => {
+                            <form onSubmit={() => {
                                 setReplyResponse(handleSendingReply(review.id, replyComment));
-                            }}>Send Reply
-                            </button>
+                            }}>
+                                <label>
+                                    Comment:
+                                    <input type={"text"} minLength={8} value={replyComment} required
+                                           onChange={(e) => setReplyComment(e.target.value)}/>
+                                </label>
+                                <button type={"submit"}>Send Reply
+                                </button>
+                                <button onClick={() => {setReplyCommentOn((prevArray) => prevArray.map(() => false))}}>Cancel</button>
+                            </form>
 
 
                         </div>
@@ -221,20 +231,25 @@ const ReviewListFull: React.FC<ReviewListProps> = ({
 
 
                     {editReviewOn[index] ? <div>
-                        <input type={"text"} value={editComment} onChange={(e) => setEditComment(e.target.value)}/>
-                        <input type={"number"} value={editRating}
-                               onChange={(e) => setEditRating(Number(e.target.value))}/>
-                        <button onClick={() => {
+                        <form onSubmit={() => {
                             handleEditReview(review.id, editRating, editComment);
                             setEdited(true)
-                        }}>Send
-                        </button>
+                        }}>
+                            <input type={"text"} minLength={8} required value={editComment}
+                                   onChange={(e) => setEditComment(e.target.value)}/>
+                            <input type={"number"} min={0} max={5} required value={editRating}
+                                   onChange={(e) => setEditRating(Number(e.target.value))}/>
+                            <button type={"submit"}>
+                                Send
+                            </button>
+                        </form>
                     </div> : null}
                     {review.replies.map((reply: reviewReply, replyIndex: number) => (
                         <div key={replyIndex} className="review" style={{marginLeft: "50px"}}>
                             <p>
-                                <strong>{reply.interactingUserId}</strong>: {reply.replyText}
+                                <strong>{reply.interactingUserName}</strong>: {reply.replyText}
                             </p>
+                            {userId === reply.interactingUserId ? (<button onClick={() => {handleDeleteReply(reply.id); setReplyResponse(0)}}>Delete</button>) : null}
                         </div>
                     ))}
                 </div>

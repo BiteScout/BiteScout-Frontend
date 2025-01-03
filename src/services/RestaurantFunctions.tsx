@@ -64,6 +64,7 @@ export interface reviewReply {
     id: string,
     reviewId: string,
     interactingUserId: string,
+    interactingUserName?: string,
     interactionType: string,
     replyText: string,
     createdAt: string
@@ -96,6 +97,7 @@ interface RestaurantActionsContextProps {
     handleSearchRestaurantsByCuisine: (cuisineType: string) => Promise<restaurant[] | undefined>;
     handleSearchRestaurantsByPriceRange: (priceRange: string) => Promise<restaurant[] | undefined>;
     handleDeleteRestaurant: (restaurantId: string) => Promise<void>;
+    handleDeleteReply: (reviewId: string) => Promise<void>;
 }
 
 interface RestaurantActionsProviderProps {
@@ -117,7 +119,7 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
 
     const handleSearchRestaurants = async (restaurantNameQuery:string) => {
         try{
-            if (restaurantNameQuery === ""){
+            if (restaurantNameQuery === "all"){
                 const response = await useAxios().get("/restaurants");
                 if (response.status === 200) {
                     return response.data;
@@ -376,12 +378,24 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             const response = await useAxios().post(`/reviews/interaction`, {
                 reviewId: reviewId,
                 interactionType: interactionType,
-                replyText: ""
+                replyText: "aaaaaaaaaaaaaa"
             });
             if (response.status === 200) {
                 return response.data;
             }
         } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const handleDeleteReply = async (reviewId: string) => {
+        try{
+            const response = await useAxios().delete(`/reviews/interaction/${reviewId}`);
+            if (response.status === 200) {
+                return response.data;
+            }
+        }
+        catch (err) {
             console.log(err);
         }
     }
@@ -408,7 +422,8 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleGetAllCuisineTypes,
             handleSearchRestaurantsByCuisine,
             handleSearchRestaurantsByPriceRange,
-            handleDeleteRestaurant
+            handleDeleteRestaurant,
+            handleDeleteReply
         }}>
             {children}
         </RestaurantActionsContext.Provider>
