@@ -14,7 +14,7 @@ const MyReservationsPage = () => {
 
     useEffect(() => {
         const fetchReservations = async () => {
-            await delay(20);
+            await delay(100);
             const reservations = await handleFetchReservationsForUser();
             if (reservations !== undefined)
                 setReservations(reservations);

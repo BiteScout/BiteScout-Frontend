@@ -77,6 +77,12 @@ const MyRestaurantsPage = () => {
               Offers
             </button>
             <button
+              className="edit-button"
+              onClick={() => navigate(`/reservationApproval/${restaurant.id}`)}
+            >
+              Reservation Requests
+            </button>
+            <button
               className="edit-button2"
               onClick={() => navigate(`/editRestaurant/${restaurant.id}`)}
             >

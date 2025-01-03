@@ -59,9 +59,9 @@ const Sidebar = () => {
         <Button
           class="sidebar__menu__Button"
           src={contact}
-          text="Contacts"
-          func={notify}
-          msg="Contacts"
+          text="Contact"
+          func={() => navigate("/contact")}
+          msg="Contact"
         />
       </div>
     </div>
