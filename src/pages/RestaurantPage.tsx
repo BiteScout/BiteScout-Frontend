@@ -1,8 +1,9 @@
 import "../styles/RestaurantPage.css";
 import sushihouse from "../assets/sushihouse.png";
-import image1 from "../assets/sushi1.png";
-import image2 from "../assets/sushi2.png";
-import image3 from "../assets/sushi3.png";
+import image1 from "../assets/sushi1.png"; //example image
+import image2 from "../assets/sushi1.png";
+import image3 from "../assets/sushi1.png";
+
 
 import RestaurantHeader from "../components/RestaurantHeader";
 import ImageGallery from "../components/ImageGallery";
@@ -22,7 +23,6 @@ import { useReservationActions } from "../services/ReservationFunctions.tsx";
 import Swal from "sweetalert2";
 
 const RestaurantPage = () => {
-  const restaurantImages = [image1, image2, image3];
   const baseRestaurant: restaurant = {
     id: "",
     ownerId: "",
@@ -40,7 +40,7 @@ const RestaurantPage = () => {
   };
 
   const { restaurantId } = useParams<{ restaurantId: string }>();
-  const { handleFetchRestaurant, handleFetchRestaurantReviews, handleSendReview, handleFetchRanking,handleCalculateRating } = useRestaurantActions();
+  const { handleFetchRestaurant, handleFetchRestaurantReviews, handleSendReview, handleFetchRanking,handleCalculateRating, handleGetRestaurantPictures } = useRestaurantActions();
   const { handleMakeReservation } = useReservationActions();
   const [restaurantData, setRestaurantData] = useState<restaurant>(baseRestaurant);
   const [reviewArray, setReviewArray] = useState<review[]>([]);
@@ -59,6 +59,8 @@ const RestaurantPage = () => {
   const [rank, setRank] = useState<number>(0);
   const [tierRanking, setTierRanking] = useState<string>("");
   const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  const [restaurantImages, setRestaurantImages] = useState<string[]>([]);
+  
 
   useEffect(() => {
     if (userId) {
@@ -96,8 +98,6 @@ const RestaurantPage = () => {
         }
         fetchReviewData()
 
-
-
         const rankData = handleFetchRanking(restaurantId);
         rankData.then((data) => {
           if (data !== undefined){
@@ -111,6 +111,20 @@ const RestaurantPage = () => {
       navigate("/");
     }
   }, [reviewButton, sent, edited]);
+
+
+  // Second useEffect for fetching images
+useEffect(() => {
+  if (restaurantId) {
+    handleGetRestaurantPictures(restaurantId).then((fetchedImages) => {
+      if (fetchedImages) {
+        setRestaurantImages(fetchedImages);  // Update state with fetched images
+      } else {
+        setRestaurantImages([image1, image2, image3]);  // Fallback to mock images
+      }
+    });
+  }
+}, [restaurantId]);
 
   const isFavorite = favorites.includes(restaurantId || "");
 
@@ -148,7 +162,7 @@ const RestaurantPage = () => {
 
   return (
     <div className="restaurant-page">
-      <RestaurantHeader name={restaurantData.name} logo={sushihouse} rating={rating} rank={tierRanking} />
+      <RestaurantHeader name={restaurantData.name} logo={restaurantImages[0]} rating={rating} rank={tierRanking} />
 
       <button
         className={`favorite-button ${isFavorite ? "favorited" : ""}`}
@@ -167,9 +181,18 @@ const RestaurantPage = () => {
       </button>
 
       <div className="main-content">
-        <ImageGallery images={restaurantImages} />
+        <ImageGallery images={restaurantImages.slice(1)} />
         <RestaurantDetails address={restaurantData.description} cuisineType={restaurantData.cuisineType} />
 
+        {userId === restaurantData.ownerId && (
+          <button
+            className="add-offer-button2"
+            style={{ width: "auto" }}
+            onClick={() => navigate("/updateRestaurantPictures/" + restaurantId)}
+          >
+          Update Restaurant Pictures
+          </button>
+        )}
 
           <button className={"edit-button"} onClick={() => { setToggleReservation(!toggleReservation); }}>
             Make Reservation

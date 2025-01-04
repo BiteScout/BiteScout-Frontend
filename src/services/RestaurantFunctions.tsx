@@ -107,7 +107,9 @@ interface RestaurantActionsContextProps {
     handleFetchRanking: (restaurantId: string) => Promise<ranking | undefined>;
     handleCalculateRating: () => Promise<void | undefined>;
     handleFetchNearbyRestaurants: (latitude: number, longitude: number, radiusInKm: number) => Promise<restaurant[] | undefined>;
-
+    handleUpdateRestaurantPicture: (restaurantId: string, picture: File) => Promise<string | undefined>;
+    handleGetRestaurantPictures: (restaurantId: string) => Promise<string[] | undefined>;
+    handleDeleteAllPictures: (restaurantId: string) => Promise<string | undefined>;
 }
 interface RestaurantActionsProviderProps {
     children: ReactNode;
@@ -446,6 +448,44 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
         }
     }
     
+    const handleUpdateRestaurantPicture = async (restaurantId: string, picture: File) => {
+        try {
+            const formData = new FormData();
+            formData.append("image", picture);
+            const response = await useAxios().put(`/restaurants/${restaurantId}/upload-picture`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+            if (response.status === 200) {
+                return response.data;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const handleGetRestaurantPictures = async (restaurantId: string) => {
+        try {
+            const response = await useAxios().get(`/restaurants/images/${restaurantId}`);
+            if (response.status === 200) {
+                return response.data;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const handleDeleteAllPictures = async (restaurantId: string) => {
+        try {
+            const response = await useAxios().delete(`/restaurants/${restaurantId}/delete-picture`);
+            if (response.status === 200) {
+                return response.data;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
 
     return (
@@ -473,7 +513,10 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleDeleteReply,
             handleFetchRanking,
             handleCalculateRating,
-            handleFetchNearbyRestaurants
+            handleFetchNearbyRestaurants,
+            handleUpdateRestaurantPicture,
+            handleGetRestaurantPictures,
+            handleDeleteAllPictures
         }}>
             {children}
         </RestaurantActionsContext.Provider>

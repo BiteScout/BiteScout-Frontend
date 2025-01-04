@@ -44,6 +44,7 @@ const SettingsPage = lazy(() => import("./pages/SettingsPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const NearMePage = lazy(() => import("./pages/NearMePage"));
 const UpdateProfilePicturePage = lazy(() => import("./pages/UpdateProfilePicturePage"));
+const UpdateRestaurantPicturesPage = lazy(() => import("./pages/UpdateRestaurantPicturesPage"));
 
 
 function App() {
@@ -226,6 +227,17 @@ function App() {
                         <UpdateProfilePicturePage/>
                     </UserActionsProvider>
                 } />
+                <Route
+                path="/updateRestaurantPictures/:restaurantId"
+                element={
+                    <ProtectedRouteRestaurantOwner>
+                        <RestaurantActionsProvider>
+                            <UserActionsProvider>
+                                <UpdateRestaurantPicturesPage/>
+                            </UserActionsProvider>
+                        </RestaurantActionsProvider>
+                    </ProtectedRouteRestaurantOwner>
+                }/>
 
             </Route>
 
