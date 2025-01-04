@@ -1,20 +1,16 @@
-import "../styles/SettingsPage.css";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../store.tsx";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useUserActions, userUpdate } from "../services/UserFunctions.tsx";
-import { useState, useEffect } from "react";
-import { addElement, updateUsername } from "../elementSlice.tsx";
 import Swal from 'sweetalert2'; // Import SweetAlert2
-import "../styles/react-confirm-alert.css"; // Import default styles
-import { useNavigate } from "react-router-dom";
+import "../styles/SettingsPage.css"; // Assuming styles are similar
 
-const SettingsPage = () => {
-  const dispatch = useDispatch();
-  const { handleUpdateUser, handleFetchUserInfo } = useUserActions();
-  const userId = useSelector((state: RootState) => state.userId);
+const AdminEditUsersPage = () => {
+  const { userId } = useParams(); // Get the userId from URL
+  const { handleFetchUserInfo, handleUpdateUser } = useUserActions();
   const navigate = useNavigate();
+
   const [userData, setUserData] = useState<userUpdate>({
-    id: userId,
+    id: "",
     username: "",
     password: "",
     firstName: "",
@@ -28,19 +24,21 @@ const SettingsPage = () => {
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-      const user = await handleFetchUserInfo(userId);
-      if (user) {
-        setUserData({
-          id: user.id,
-          username: user.username,
-          firstName: user.userDetails.firstName,
-          lastName: user.userDetails.lastName,
-          phoneNumber: user.userDetails.phoneNumber,
-          country: user.userDetails.country,
-          city: user.userDetails.city,
-          postalCode: user.userDetails.postalCode,
-          address: user.userDetails.address,
-        });
+      if (userId) {
+        const user = await handleFetchUserInfo(userId);
+        if (user) {
+          setUserData({
+            id: user.id,
+            username: user.username,
+            firstName: user.userDetails.firstName,
+            lastName: user.userDetails.lastName,
+            phoneNumber: user.userDetails.phoneNumber,
+            country: user.userDetails.country,
+            city: user.userDetails.city,
+            postalCode: user.userDetails.postalCode,
+            address: user.userDetails.address,
+          });
+        }
       }
     };
     fetchUserDetails();
@@ -56,7 +54,7 @@ const SettingsPage = () => {
     // Show a stylish confirmation dialog using SweetAlert2
     Swal.fire({
       title: 'Are you sure?',
-      text: "Do you really want to update your information?",
+      text: "Do you really want to update this user's information?",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, update!',
@@ -67,8 +65,8 @@ const SettingsPage = () => {
       if (result.isConfirmed) {
         handleUpdateUser(userData)
           .then(() => {
-            dispatch(updateUsername(userData.username));
-            Swal.fire('Updated!', 'Your information has been updated.', 'success');
+            Swal.fire('Updated!', 'The user information has been updated.', 'success');
+            navigate('/adminUsers'); // Redirect to the user list after updating
           })
           .catch(() => {
             Swal.fire('Failed!', 'Failed to update user information.', 'error');
@@ -84,7 +82,7 @@ const SettingsPage = () => {
   return (
     <div className="settings-page">
       <div className="form-container-settings">
-        <h1 className="title-settings">Account Settings</h1>
+        <h1 className="title-settings">Edit User</h1>
         <form onSubmit={handleUpdate} className="settings-form">
           <div className="input-group-settings">
             <label htmlFor="username">Username</label>
@@ -193,4 +191,4 @@ const SettingsPage = () => {
   );
 };
 
-export default SettingsPage;
+export default AdminEditUsersPage;
