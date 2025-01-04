@@ -47,12 +47,21 @@ const Sidebar = () => {
           func={() => navigate("/nearMe")}
           msg="Near Me"
         />
-        {userRole === "ROLE_RESTAURANT_OWNER" || userRole=== "ROLE_ADMIN" ?
+        {userRole === "ROLE_RESTAURANT_OWNER" ?
         <Button
           class="sidebar__menu__Button"
           src={offer}
           text="Restaurant Management"
           func={() => navigate("/myRestaurants")}
+          msg="Offers"
+        />
+        : null}
+        {userRole === "ROLE_ADMIN" ?
+        <Button
+          class="sidebar__menu__Button"
+          src={offer}
+          text="Restaurant Manager"
+          func={() => navigate("/adminRestaurants")}
           msg="Offers"
         />
         : null}

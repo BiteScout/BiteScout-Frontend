@@ -26,6 +26,7 @@ import EditRestaurantPage from "./pages/EditRestaurantPage.tsx";
 import AddOfferPage from "./pages/AddOfferPage.tsx";
 import AddRestaurantPage from "./pages/AddRestaurantPage.tsx";
 import SearchRestaurantResultsPage from "./pages/SearchRestaurantResultsPage.tsx";
+import ProtectedRouteADMIN from "./routes/ProtectedRouteADMIN.tsx";
 
 const RestaurantPage = lazy(() => import("./pages/RestaurantPage"));
 /*import RestaurantPage from "./pages/RestaurantPage.tsx";*/
@@ -45,7 +46,7 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const NearMePage = lazy(() => import("./pages/NearMePage"));
 const UpdateProfilePicturePage = lazy(() => import("./pages/UpdateProfilePicturePage"));
 const UpdateRestaurantPicturesPage = lazy(() => import("./pages/UpdateRestaurantPicturesPage"));
-
+const AdminRestaurantsPage = lazy(() => import("./pages/AdminRestaurantsPage"));
 
 function App() {
   return (
@@ -238,6 +239,18 @@ function App() {
                         </RestaurantActionsProvider>
                     </ProtectedRouteRestaurantOwner>
                 }/>
+                <Route
+                    path={"/adminRestaurants" }
+                    element={
+                    <ProtectedRouteADMIN>
+                        <RestaurantActionsProvider>
+                            <UserActionsProvider>
+                                <AdminRestaurantsPage/>
+                            </UserActionsProvider>
+                        </RestaurantActionsProvider>
+                    </ProtectedRouteADMIN>
+                    }
+                />
 
             </Route>
 

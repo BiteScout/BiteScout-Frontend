@@ -59,11 +59,11 @@ const EditRestaurantPage = () => {
       console.log(data);
     });
 
-    navigate(`/myRestaurants`);
+    navigate(-1);
   };
 
   const handleCancel = () => {
-    navigate(`/myRestaurants`);
+    navigate(-1);
   };
 
   const handleConfirmation = () => {

@@ -77,7 +77,7 @@ const AddRestaurantPage = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           handleAddRestaurant({ ...restaurantData,location:{type: "Point", coordinates:[position.lng,position.lat]} ,ownerId: userId }).then(() => {
-            navigate(`/myRestaurants`);
+            navigate(-1);
           });
         }
       });
@@ -91,7 +91,7 @@ const AddRestaurantPage = () => {
 
   // Cancel adding restaurant
   const handleCancel = () => {
-    navigate(`/myRestaurants`);
+    navigate(-1);
   };
 
   return (

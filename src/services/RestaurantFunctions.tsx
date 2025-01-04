@@ -110,6 +110,7 @@ interface RestaurantActionsContextProps {
     handleUpdateRestaurantPicture: (restaurantId: string, picture: File) => Promise<string | undefined>;
     handleGetRestaurantPictures: (restaurantId: string) => Promise<string[] | undefined>;
     handleDeleteAllPictures: (restaurantId: string) => Promise<string | undefined>;
+    handleFetchAllRestaurants: () => Promise<restaurant[] | undefined>;
 }
 interface RestaurantActionsProviderProps {
     children: ReactNode;
@@ -562,6 +563,17 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
         }
     }
 
+    const handleFetchAllRestaurants = async () => {
+        try {
+            const response = await useAxios().get("/restaurants");
+            if (response.status === 200) {
+                return response.data;
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
 
     return (
         <RestaurantActionsContext.Provider value={{
@@ -591,7 +603,8 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             handleFetchNearbyRestaurants,
             handleUpdateRestaurantPicture,
             handleGetRestaurantPictures,
-            handleDeleteAllPictures
+            handleDeleteAllPictures,
+            handleFetchAllRestaurants
         }}>
             {children}
         </RestaurantActionsContext.Provider>
