@@ -29,7 +29,7 @@ const OfferList: React.FC<OfferListProps> = ({ restaurantId }) => {
 
   const userId = useSelector((state: RootState) => state.userId);
   const [restaurantData, setRestaurantData] = useState<restaurant | undefined>(undefined);
-
+  const userRole = useSelector((state: RootState) => state.role);
   useEffect(() => {
     const fetchRestaurantData = async () => {
       const data = await handleFetchRestaurant(restaurantId);
@@ -174,7 +174,7 @@ const OfferList: React.FC<OfferListProps> = ({ restaurantId }) => {
                 <p><b>Until: </b> {offer.endDate}</p>
 
                 {/* Edit and Delete buttons */}
-                {userId === restaurantData.ownerId && (
+                {(userId === restaurantData.ownerId || userRole === "ROLE_ADMIN") && (
                   <div className="offer-actions">
                     <button
                       className="edit-button-offers"
@@ -194,7 +194,7 @@ const OfferList: React.FC<OfferListProps> = ({ restaurantId }) => {
             )}
           </div>
         ))}
-        {userId === restaurantData.ownerId && (
+        {(userId === restaurantData.ownerId || userRole === "ROLE_ADMIN") && (
           <button
             className="add-offer-button2"
             style={{ width: "auto" }}

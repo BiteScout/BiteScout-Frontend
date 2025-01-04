@@ -212,7 +212,7 @@ useEffect(() => {
         <ImageGallery images={restaurantImages.slice(1)} />
         <RestaurantDetails address={restaurantData.description} cuisineType={restaurantData.cuisineType} />
 
-        {userId === restaurantData.ownerId && (
+        {(userId === restaurantData.ownerId || userRole === "ROLE_ADMIN") && (
           <button
             className="add-offer-button2"
             style={{ width: "auto" }}
