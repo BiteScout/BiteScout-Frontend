@@ -76,10 +76,10 @@
 @media screen and (max-width: 1923px) {
   .sidebar {
     width: 250px; /* Reduce width for 1920px screens */
-    margin-top: 150px; /* Adjust margin */
-    padding-top: 80px;
-    padding-bottom: 80px;
-    max-height: 1000px;
+    margin-top: 130px; /* Adjust margin */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-height: 700px;
     min-height: 100px;
   }
 
