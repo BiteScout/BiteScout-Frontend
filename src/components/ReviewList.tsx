@@ -90,7 +90,7 @@ const ReviewList: React.FC<ReviewListProps> = ({
 
         const fetchRealReviews = async () => {
             if (reviews !== undefined) {
-                await delay(200);
+                await delay(300);
                 const updatedReviews = await Promise.all(
                     reviews.map(async (review: review) => {
                         const realReview: realReview = {

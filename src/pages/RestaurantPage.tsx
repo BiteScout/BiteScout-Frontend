@@ -1,8 +1,8 @@
 import "../styles/RestaurantPage.css";
-import sushihouse from "../assets/sushihouse.png";
-import image1 from "../assets/sushi1.png"; //example image
-import image2 from "../assets/sushi1.png";
-import image3 from "../assets/sushi1.png";
+import defaultLogo from "../assets/no-image-available.png";
+import image1 from "../assets/no-image-available.png";
+import image2 from "../assets/no-image-available.png";
+import image3 from "../assets/no-image-available.png";
 
 
 import RestaurantHeader from "../components/RestaurantHeader";
@@ -38,7 +38,7 @@ const RestaurantPage = () => {
     createdAt: "",
     updatedAt: ""
   };
-
+  
   const { restaurantId } = useParams<{ restaurantId: string }>();
   const { handleFetchRestaurant, handleFetchRestaurantReviews, handleSendReview, handleFetchRanking,handleCalculateRating, handleGetRestaurantPictures } = useRestaurantActions();
   const { handleMakeReservation } = useReservationActions();
@@ -162,7 +162,7 @@ useEffect(() => {
 
   return (
     <div className="restaurant-page">
-      <RestaurantHeader name={restaurantData.name} logo={restaurantImages[0]} rating={rating} rank={tierRanking} />
+      <RestaurantHeader name={restaurantData.name} logo={restaurantImages[0] || defaultLogo} rating={rating} rank={tierRanking} />
 
       <button
         className={`favorite-button ${isFavorite ? "favorited" : ""}`}

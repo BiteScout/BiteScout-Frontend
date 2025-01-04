@@ -69,7 +69,15 @@ const NearMePage = () => {
                             position={[restaurant.location.latitude, restaurant.location.longitude]}
                             icon={restaurantIcon} // Using custom restaurant icon
                         >
-                            <Popup>{restaurant.name}</Popup>
+                            <Popup>
+                                <p className='resto-name'>{restaurant.name}</p>
+                            <button
+                                    className="go-to-restaurant-btn"
+                                    onClick={() => handleNavigateToRestaurant(restaurant.id)}
+                                >
+                                    Go to Restaurant Page
+                            </button>
+                            </Popup>
                         </Marker>
                     ))}
                 </MapContainer>

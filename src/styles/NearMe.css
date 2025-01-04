@@ -109,6 +109,30 @@
     color: #4CAF50;
 }
 
+.resto-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.go-to-restaurant-btn
+{
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.go-to-restaurant-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+
 
 /* Responsive Design for Smaller Screens */
 
