@@ -102,12 +102,6 @@ const Header = () => {
                 msg=""
             />}
 
-        <ImgButton
-          class="button__onlyimg"
-          src={globe}
-          func={notify}
-          msg="language"
-        />
       </nav>
       {/* Notification Menu */}
       <div

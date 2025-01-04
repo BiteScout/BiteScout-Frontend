@@ -142,6 +142,16 @@ const MyProfilePage = () => {
               <p className="button__text">Restaurant Manager</p>
             </button>
           )}
+          {userRole === "ROLE_ADMIN" && (
+            <button
+              className={"buttons__section__button"}
+              onClick={() => {
+                navigate("/adminUsers", { state: { refresh: true } });
+              }}
+            >
+              <p className="button__text">User Manager</p>
+            </button>
+          )}
         </div>
       </div>
     </>

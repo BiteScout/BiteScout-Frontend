@@ -66,6 +66,15 @@ const Sidebar = () => {
           msg="Offers"
         />
         : null}
+        {userRole === "ROLE_ADMIN" ?
+        <Button
+          class="sidebar__menu__Button"
+          src={offer}
+          text="Users Manager"
+          func={() => navigate("/adminUsers")}
+          msg="Offers"
+        />
+        : null}
         <Button
           class="sidebar__menu__Button"
           src={contact}
