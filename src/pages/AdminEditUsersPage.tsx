@@ -5,12 +5,12 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 import "../styles/SettingsPage.css"; // Assuming styles are similar
 
 const AdminEditUsersPage = () => {
-  const { userId } = useParams(); // Get the userId from URL
+  const { userId } = useParams<{userId:string}>(); // Get the userId from URL
   const { handleFetchUserInfo, handleUpdateUser } = useUserActions();
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState<userUpdate>({
-    id: "",
+    id: userId,
     username: "",
     password: "",
     firstName: "",

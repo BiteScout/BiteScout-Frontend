@@ -10,7 +10,7 @@ export interface user {
 }
 
 export interface userUpdate {
-    id: string;
+    id: string | undefined;
     username: string;
     password?: string;
     firstName?: string;
