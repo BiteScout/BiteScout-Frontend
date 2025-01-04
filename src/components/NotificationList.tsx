@@ -6,19 +6,22 @@ import {Notification} from "../services/NotificationFunctions.tsx";
 interface NotificationListProps {
   notifications: Notification[];
   setNotificationIsRead: React.Dispatch<React.SetStateAction<number>>
+  showAll: boolean
+  deletable: boolean
 }
 
-const NotificationList:React.FC<NotificationListProps> = ({notifications, setNotificationIsRead}) => {
+const NotificationList:React.FC<NotificationListProps> = ({notifications, setNotificationIsRead, showAll, deletable}) => {
 
   return (
     <div className="notification-list">
       {notifications &&
         notifications
-          .filter((notification) => notification === undefined ? notification :!notification.isRead)
+          .filter((notification) => notification === undefined ? notification :(showAll? notification:!notification.isRead))
           .map((notification) => (
               <div key={notification.id}>
                 <NotificationItem key={notification.id} notification={notification}
-                                  setNotificationIsRead={setNotificationIsRead}/>
+                                  setNotificationIsRead={setNotificationIsRead}
+                                  deletable={deletable}/>
               </div>
       ))}
     </div>

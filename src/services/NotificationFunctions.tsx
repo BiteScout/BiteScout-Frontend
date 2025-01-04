@@ -16,6 +16,7 @@ export interface Notification {
 interface NotificationActionsContextProps {
     handleFetchNotifications: () => Promise<Notification[] | undefined>;
     handleMarkNotificationAsSeen: (notificationId:number) => Promise<void>;
+    handleDeleteNotification: (notificationId:number) => Promise<void>;
 }
 
 interface NotificationActionsProviderProps {
@@ -63,6 +64,20 @@ export const NotificationActionsProvider: React.FC<NotificationActionsProviderPr
             console.error(err);
         }
     }
+    const handleDeleteNotification = async (notificationId:number):Promise<void> => {
+        try{
+            const response = await useAxios().delete(`/notifications/${notificationId}`);
+            if (response && response.status === 200) {
+                return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
+            }
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
 
 
 
@@ -70,6 +85,7 @@ export const NotificationActionsProvider: React.FC<NotificationActionsProviderPr
         <NotificationActionsContext.Provider value={{
             handleFetchNotifications,
             handleMarkNotificationAsSeen,
+            handleDeleteNotification
         }}>
             {children}
         </NotificationActionsContext.Provider>

@@ -16,7 +16,7 @@ const NotificationPage = () => {
         const notifications = handleFetchNotifications();
         notifications.then((data) => {
             if (data !== undefined){
-                /*setNotifications(data);*/
+                setNotifications(data);
             }
         })
 
@@ -25,7 +25,7 @@ const NotificationPage = () => {
     <div className="notification-page">
       <main className="notification-content">
         <h1 className="notification-title">Notifications</h1>{" "}
-        <NotificationList notifications={notifications} setNotificationIsRead={setNotificationIsRead} />
+        <NotificationList notifications={notifications} setNotificationIsRead={setNotificationIsRead} showAll={true} deletable={true} />
       </main>
     </div>
   );

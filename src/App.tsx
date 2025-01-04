@@ -19,7 +19,7 @@ import ProtectedRouteRestaurantOwner from "./routes/ProtectedRouteRestaurantOwne
 /*import MyReservations from "./pages/MyReservations.tsx";*/
 import {ReservationActionsProvider} from "./services/ReservationFunctions.tsx";
 /*const NotificationPage = lazy(() => import("./pages/NotificationPage"));*/
-import NotificationPage from "./unusedPages/NotificationPage.tsx";
+import NotificationPage from "./pages/NotificationPage.tsx";
 import OffersPage from "./pages/OffersPage.tsx";
 import MyRestaurantsPage from "./pages/MyRestaurantsPage.tsx";
 import EditRestaurantPage from "./pages/EditRestaurantPage.tsx";
@@ -27,6 +27,7 @@ import AddOfferPage from "./pages/AddOfferPage.tsx";
 import AddRestaurantPage from "./pages/AddRestaurantPage.tsx";
 import SearchRestaurantResultsPage from "./pages/SearchRestaurantResultsPage.tsx";
 import ProtectedRouteADMIN from "./routes/ProtectedRouteADMIN.tsx";
+import {NotificationActionsProvider} from "./services/NotificationFunctions.tsx";
 
 const RestaurantPage = lazy(() => import("./pages/RestaurantPage"));
 /*import RestaurantPage from "./pages/RestaurantPage.tsx";*/
@@ -103,9 +104,14 @@ function App() {
                         </ProtectedRoute>
                     }/>
 
-                {/*<Route
+                <Route
                     path="/notifications"
-                    element={<NotificationPage />} />*/}
+                    element={
+                    <ProtectedRoute>
+                        <NotificationActionsProvider>
+                        <NotificationPage />
+                        </NotificationActionsProvider>
+                    </ProtectedRoute>} />
                 <Route
                     path="/reservations"
                     element={
