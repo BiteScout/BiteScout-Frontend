@@ -1,5 +1,6 @@
 import useAxios from "../interceptors/AxiosInstance.tsx";
 import React, {createContext, ReactNode, useContext} from "react";
+import {useAuth} from "../context/AuthContext.tsx";
 
 
 export interface Reservation {
@@ -27,6 +28,7 @@ interface ReservationActionsProviderProps {
 
 const ReservationActionsContext = createContext<ReservationActionsContextProps | null>(null);
 
+
 export const useReservationActions = () => {
     const context = useContext(ReservationActionsContext);
     if (!context) {
@@ -36,13 +38,16 @@ export const useReservationActions = () => {
 }
 
 export const ReservationActionsProvider: React.FC<ReservationActionsProviderProps> = ({children}) => {
-
+    const {logout} = useAuth()
 
     const handleFetchReservationsForUser = async (): Promise<Reservation[] | undefined> => {
         try {
             const response = await useAxios().get("/reservations/users")
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         } catch (err) {
             console.error(err);
@@ -55,6 +60,9 @@ export const ReservationActionsProvider: React.FC<ReservationActionsProviderProp
             if (response.status === 204) {
                 return response.data
             }
+            else if (response.status === 401) {
+                logout()
+            }
         } catch (err) {
             console.error(err);
         }
@@ -65,6 +73,9 @@ export const ReservationActionsProvider: React.FC<ReservationActionsProviderProp
             const response = await useAxios().get(`/reservations/restaurants/${restaurantId}`)
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         } catch (err) {
             console.error(err);
@@ -79,6 +90,9 @@ export const ReservationActionsProvider: React.FC<ReservationActionsProviderProp
             if (response.status === 200) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         } catch (err) {
             console.error(err);
         }
@@ -90,6 +104,9 @@ export const ReservationActionsProvider: React.FC<ReservationActionsProviderProp
             const response = await useAxios().delete(`/reservations/${reservationId}`);
             if (response.status === 204) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         } catch (err) {
             console.error(err);
@@ -104,6 +121,9 @@ export const ReservationActionsProvider: React.FC<ReservationActionsProviderProp
             })
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         }
         catch (err) {
