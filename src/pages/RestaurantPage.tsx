@@ -151,7 +151,22 @@ useEffect(() => {
       return; // Prevent form submission
     }
   
-    // Display SweetAlert2 confirmation dialog if date is selected
+    // Get the current date and time
+    const currentDateTime = new Date();
+    const selectedDateTime = new Date(dateTime);
+  
+    // Check if the selected date is in the past
+    if (selectedDateTime < currentDateTime) {
+      Swal.fire({
+        title: "Invalid Date",
+        text: "You cannot make a reservation for a past date and time.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return; // Prevent form submission
+    }
+  
+    // Display SweetAlert2 confirmation dialog if date is valid
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to submit your reservation?",
@@ -170,6 +185,7 @@ useEffect(() => {
       }
     });
   };
+  
   
 
   return (
@@ -223,7 +239,9 @@ useEffect(() => {
 
         <div className="restaurant-menu">
           <h2>Menu</h2>
+          <a href={restaurantData.menu} target="_blank" rel="noreferrer">
           <QrCodeComponent link={restaurantData.menu} />
+          </a>
         </div>
 
         <ReviewList
