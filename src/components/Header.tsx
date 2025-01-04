@@ -12,6 +12,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../store.tsx";
 import {useAuth} from "../context/AuthContext.tsx";
 import NotificationsInHeader from "./NotificationsInHeader.tsx";
+import notificationWithRedDot from "../assets/notification-redDot.png"
 
 const Header = () => {
   const [isNotificationMenuOpen, setIsNotificationMenuOpen] = useState(false);
@@ -21,6 +22,7 @@ const Header = () => {
   const notify = (msg: string) => alert(msg);
   const userName = useSelector((state: RootState) => state.name);
   const [searchQuery, setSearchQuery] = useState("");
+  const [thereIsNotifications, setThereIsNotifications] = useState<boolean>(false);
   const toggleNotificationMenu = () => {
     setIsNotificationMenuOpen((prevState) => !prevState);
   };
@@ -85,12 +87,20 @@ const Header = () => {
                   logout()
               }}>Logout</button>
           )}
-        <ImgButton
-          class="button__onlyimg"
-          src={notification}
-          func={toggleNotificationMenu}
-          msg=""
-        />
+        {thereIsNotifications ?
+            <ImgButton
+                class="button__onlyimg"
+                src={notificationWithRedDot}
+                func={toggleNotificationMenu}
+                msg=""
+            />
+            :
+            <ImgButton
+                class="button__onlyimg"
+                src={notification}
+                func={toggleNotificationMenu}
+                msg=""
+            />}
 
       </nav>
       {/* Notification Menu */}
@@ -100,7 +110,7 @@ const Header = () => {
           isNotificationMenuOpen ? "open" : ""
         }`}
       >
-        <NotificationsInHeader/>
+        <NotificationsInHeader menuOpen={isNotificationMenuOpen} setThereIsNotifications={setThereIsNotifications}/>
       </div>
     </header>
   );

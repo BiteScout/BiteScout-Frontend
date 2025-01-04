@@ -9,6 +9,7 @@ import star from "../assets/star.png";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState} from "../store.tsx";
+import notification from "../assets/ios-notification.png"
 
 const Sidebar = () => {
   const userRole = useSelector((state:RootState) => state.role);
@@ -33,13 +34,13 @@ const Sidebar = () => {
           func={() => navigate("/reservations")}
           msg="Recents"
         />
-        {/*<Button
+        <Button
           class="sidebar__menu__Button"
-          src={fire}
-          text="Trending"
-          func={notify}
-          msg="Trending"
-        />*/}
+          src={notification}
+          text="Notifications"
+          func={() => navigate("/notifications")}
+          msg="Notifications"
+        />
         <Button
           class="sidebar__menu__Button"
           src={pin}

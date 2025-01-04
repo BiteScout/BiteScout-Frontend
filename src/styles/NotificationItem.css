@@ -30,6 +30,15 @@
     padding-right: 25px;
 }
 
+.notification-message-read {
+    font-size: 16px;
+    font-weight: 500;
+    color: #a8a8a8;
+    margin: 0;
+    flex-grow: 1;
+    padding-right: 25px;
+}
+
 .notification-actions {
     display: flex;
     gap: 15px;
