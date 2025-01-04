@@ -1,6 +1,6 @@
 import useAxios from "../interceptors/AxiosInstance.tsx";
 import React, {createContext, ReactNode, useContext} from "react";
-
+import {useAuth} from "../context/AuthContext.tsx";
 
 
 
@@ -117,6 +117,7 @@ interface RestaurantActionsProviderProps {
 
 const RestaurantActionsContext = createContext<RestaurantActionsContextProps | null>(null);
 
+
 export const useRestaurantActions = () => {
     const context = useContext(RestaurantActionsContext);
     if (!context) {
@@ -126,7 +127,7 @@ export const useRestaurantActions = () => {
 }
 
 export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps> = ({children}) => {
-
+    const {logout} = useAuth()
 
     const handleSearchRestaurants = async (restaurantNameQuery:string) => {
         try{
@@ -134,6 +135,8 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
                 const response = await useAxios().get("/restaurants");
                 if (response.status === 200) {
                     return response.data;
+                }else if (response.status === 401) {
+                    logout()
                 }
             }
             else {
@@ -144,6 +147,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
                 })
                 if (response.status === 200) {
                     return response.data;
+                }
+                else if (response.status === 401) {
+                    logout()
                 }
             }
         }
@@ -156,6 +162,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             const response = await useAxios().delete(`/restaurants/${restaurantId}`);
             if (response.status === 204) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         }
         catch (error){
@@ -173,6 +182,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 200) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         }
         catch(error){
             console.error(error);
@@ -188,6 +200,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 200) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         }
         catch(error){
             console.error(error);
@@ -201,6 +216,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 200) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         }
         catch(error){
             console.error(error);
@@ -213,6 +231,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 200) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         } catch (err) {
             console.log(err);
         }
@@ -222,6 +243,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             const response = await useAxios().post("/restaurants", addRestaurant);
             if (response.status === 201) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         }
         catch(err){
@@ -235,6 +259,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 201) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         }
         catch(err){
             console.log(err);
@@ -246,6 +273,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             const response = await useAxios().get(`/restaurants/owner/${ownerId}`);
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
 
         }
@@ -260,6 +290,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 200) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
 
         }
         catch (err) {
@@ -273,6 +306,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 201) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         }
         catch (err) {
             console.error(err);
@@ -284,6 +320,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             const response = await useAxios().put(`/restaurants/${restaurantId}/offers/${offerId}`, offerRequest);
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         }
         catch (err) {
@@ -297,6 +336,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 203) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         }
         catch (err) {
             console.error(err);
@@ -308,6 +350,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             const response = await useAxios().get(`/reviews/restaurants/${restaurantId}`);
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         } catch (err) {
             console.log(err);
@@ -324,6 +369,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 200) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         } catch (err) {
             console.log(err);
         }
@@ -339,6 +387,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 200) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         } catch (err) {
             console.log(err);
         }
@@ -349,6 +400,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             const response = await useAxios().delete(`/reviews/${reviewId}`);
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         }
         catch (error) {
@@ -362,6 +416,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             const response = await useAxios().get(`/reviews/interaction/${reviewId}`);
             if (response.status === 200)
                 return response.data;
+            else if (response.status === 401) {
+                logout()
+            }
         } catch (err) {
             console.log(err);
         }
@@ -377,6 +434,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             });
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         } catch (err) {
             console.log(err);
@@ -394,6 +454,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 200) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         } catch (err) {
             console.log(err);
         }
@@ -404,6 +467,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             const response = await useAxios().delete(`/reviews/interaction/${reviewId}`);
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         }
         catch (err) {
@@ -417,6 +483,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             if (response.status === 200) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
         }
         catch (err){
             console.log(err);
@@ -426,6 +495,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
     const handleCalculateRating = async () => {
         try{
             const response = await useAxios().post(`/ranking/submit`)
+            if (response.status === 401) {
+                    logout()
+                }
         }
         catch (err) {
             console.log(err);
@@ -442,6 +514,9 @@ export const RestaurantActionsProvider: React.FC<RestaurantActionsProviderProps>
             });
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         } catch (err) {
             console.log(err);

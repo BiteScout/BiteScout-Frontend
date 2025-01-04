@@ -17,7 +17,7 @@ const mockRestaurantData: addRestaurant = {
   menu: "",
   location: {
     type: "Point",
-    coordinates: [41.015137, 28.97953],
+    coordinates: [28.97953, 41.015137],
   },
   priceRange: "",
 };
@@ -27,9 +27,9 @@ const AddRestaurantPage = () => {
   const [restaurantData, setRestaurantData] = useState<addRestaurant>(mockRestaurantData);
   const { handleAddRestaurant } = useRestaurantActions();
   const userId = useSelector((state: RootState) => state.userId);
-  const [position, setPosition] = useState<{ lat: number; lng: number }>({
-    lat: 41.015137,
+  const [position, setPosition] = useState<{ lng: number; lat: number }>({
     lng: 28.97953,
+    lat: 41.015137,
   });
 
   // State to track errors
@@ -76,7 +76,7 @@ const AddRestaurantPage = () => {
         cancelButtonColor: '#d33',
       }).then((result) => {
         if (result.isConfirmed) {
-          handleAddRestaurant({ ...restaurantData, ownerId: userId }).then(() => {
+          handleAddRestaurant({ ...restaurantData,location:{type: "Point", coordinates:[position.lng,position.lat]} ,ownerId: userId }).then(() => {
             navigate(`/myRestaurants`);
           });
         }

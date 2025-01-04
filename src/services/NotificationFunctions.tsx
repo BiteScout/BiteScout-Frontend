@@ -1,5 +1,6 @@
 import useAxios from "../interceptors/AxiosInstance.tsx";
 import React, {createContext, ReactNode, useContext} from "react";
+import {useAuth} from "../context/AuthContext.tsx";
 
 
 export interface Notification {
@@ -23,6 +24,7 @@ interface NotificationActionsProviderProps {
 
 const NotificationActionsContext = createContext<NotificationActionsContextProps | null>(null);
 
+
 export const useNotificationActions = () => {
     const context = useContext(NotificationActionsContext);
     if (!context) {
@@ -32,12 +34,15 @@ export const useNotificationActions = () => {
 }
 
 export const NotificationActionsProvider: React.FC<NotificationActionsProviderProps> = ({children}) => {
-
+    const {logout} = useAuth()
     const handleFetchNotifications = async ():Promise<Notification[] | undefined> => {
         try{
             const response = await useAxios().get("/notifications");
             if (response && response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         }
         catch(err){
@@ -49,6 +54,9 @@ export const NotificationActionsProvider: React.FC<NotificationActionsProviderPr
             const response = await useAxios().put(`/notifications/${notificationId}`);
             if (response && response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         }
         catch (err) {

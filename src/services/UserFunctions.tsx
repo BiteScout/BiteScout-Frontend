@@ -1,5 +1,6 @@
 import useAxios from "../interceptors/AxiosInstance.tsx";
 import React, {createContext, ReactNode, useContext} from "react";
+import {useAuth} from "../context/AuthContext.tsx";
 
 export interface user {
     id: string,
@@ -76,12 +77,16 @@ export const useUserActions = () => {
 }
 
 export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ children })=> {
+    const {logout} = useAuth()
 
     const handleFetchUser = async (userId: string): Promise<user | undefined> => {
         try{
             const response =await useAxios().get("/users/"+ userId )
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         }
         catch(err){
@@ -94,6 +99,9 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
             if (response.status === 200) {
                 return response.data;
             }
+            else if (response.status === 401) {
+                logout()
+            }
 
         } catch (err) {
             console.error(err);
@@ -105,6 +113,9 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
             if (response.status === 201) {
                 console.log("Restaurant added to favorites");
             }
+            else if (response.status === 401) {
+                logout()
+            }
         } catch (err) {
             console.error(err);
         }
@@ -115,6 +126,9 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
             const response = await useAxios().delete(`/users/${userId}/favorites/${restaurantId}`);
             if (response.status === 204) {
                 console.log("Restaurant removed from favorites");
+            }
+            else if (response.status === 401) {
+                logout()
             }
         } catch (err) {
             console.error(err);
@@ -132,6 +146,9 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
           if (response.status === 200) {
             console.log('User updated successfully');
           }
+          else if (response.status === 401) {
+              logout()
+          }
         } catch (err) {
           console.error('Error updating user:', err);
         }
@@ -143,6 +160,9 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
           if (response.status === 200) {
             return response.data;
           }
+          else if (response.status === 401) {
+              logout()
+          }
         } catch (err) {
           console.error(err);
         }
@@ -153,6 +173,9 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
           const response = await useAxios().delete(`/users/${userId}`);
           if (response.status === 204) {
             console.log('User deleted successfully');
+          }
+          else if (response.status === 401) {
+              logout()
           }
         } catch (err) {
           console.error('Error deleting user:', err);
@@ -174,6 +197,9 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
                   console.log('Profile picture updated successfully');
                   return response.data; // The URL of the updated profile picture
               }
+              else if (response.status === 401) {
+                  logout()
+              }
           } catch (err) {
               console.error('Error updating profile picture:', err);
           }
@@ -184,6 +210,9 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
             const response = await useAxios().get(`/users/getPicture/${userId}`);
             if (response.status === 200) {
                 return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
             }
         } catch (err) {
             console.error(err);
