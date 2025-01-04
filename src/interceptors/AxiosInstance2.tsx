@@ -4,7 +4,7 @@ const useAxios2 = () => {
     const token = localStorage.getItem("token");
 
     const axiosInstance = axios.create({
-        baseURL: 'http://34.123.245.191:8222',
+        baseURL: '/api',
     });
 
     // Attach the token to requests
