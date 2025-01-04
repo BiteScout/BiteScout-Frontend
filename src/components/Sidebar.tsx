@@ -47,7 +47,7 @@ const Sidebar = () => {
           func={() => navigate("/nearMe")}
           msg="Near Me"
         />
-        {userRole === "ROLE_RESTAURANT_OWNER" ?
+        {userRole === "ROLE_RESTAURANT_OWNER" || userRole=== "ROLE_ADMIN" ?
         <Button
           class="sidebar__menu__Button"
           src={offer}
