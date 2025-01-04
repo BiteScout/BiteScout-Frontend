@@ -5,6 +5,7 @@ const useAxios2 = () => {
 
     const axiosInstance = axios.create({
         baseURL: 'https://104.154.34.122:8222/v1',
+        httpsAgent: new (require('https').Agent)({ rejectUnauthorized: false }),
     });
 
     // Attach the token to requests
