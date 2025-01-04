@@ -112,16 +112,16 @@ const SearchRestaurantResultsPage = () => {
                     </select>
                 </label>
             </div>
-            <div className="restaurant-list">
+            <div className="restaurant-list2">
                 {restaurants.map((restaurant, index) => (
                     <a key={index} onClick={() => navigate("/restaurantPage/" + restaurant.id)}>
-                        <div className="restaurant-card" key={index}>
+                        <div className="restaurant-card2" key={index}>
                             <img
                                 src={restaurantImages[restaurant.id] || defaultImage}
                                 alt={restaurant.name}
-                                className="restaurant-image"
+                                className="restaurant-image2"
                             />
-                            <div className="restaurant-name">{restaurant.name}</div>
+                            <div className="restaurant-name2">{restaurant.name}</div>
                         </div>
                     </a>
                 ))}
