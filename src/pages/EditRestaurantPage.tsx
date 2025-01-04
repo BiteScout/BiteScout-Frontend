@@ -27,9 +27,9 @@ const EditRestaurantPage = () => {
   const { handleUpdateRestaurant, handleFetchRestaurant } = useRestaurantActions();
   const { restaurantId } = useParams<{ restaurantId: string }>();
   const userId = useSelector((state: RootState) => state.userId);
-  const [position, setPosition] = useState<{ lat: number; lng: number }>({
-    lat: 41.015137,
+  const [position, setPosition] = useState<{ lng: number; lat: number;  }>({
     lng: 28.97953,
+    lat: 41.015137,
   });
 
   const handleInputChange = (field: string, value: string) => {
@@ -50,16 +50,10 @@ const EditRestaurantPage = () => {
       alert("Please fill out all fields before saving.");
       return;
     }
-
-    setRestaurantData((prev) => ({ ...prev, ownerId: userId }));
-    setRestaurantData((prev) => ({
-      ...prev,
-      location: { type: "Point", coordinates: [position.lat, position.lng] },
-    }));
-
+    console.log(restaurantData);
     const response = handleUpdateRestaurant(
       restaurantId === undefined ? "" : restaurantId,
-      restaurantData
+        {...restaurantData, location: { type: "Point", coordinates: [position.lng, position.lat]}}
     );
     response.then((data) => {
       console.log(data);
@@ -102,7 +96,7 @@ const EditRestaurantPage = () => {
           menu: data.menu,
           location: {
             type: "Point",
-            coordinates: [data.location.latitude, data.location.longitude],
+            coordinates: [data.location.longitude, data.location.latitude],
           },
           priceRange: data.priceRange,
         };
