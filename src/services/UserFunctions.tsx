@@ -60,6 +60,7 @@ interface UserActionsContextProps {
     handleRemoveUser: (userId: string) => Promise<void>;
     handleUpdateUserPicture: (userId: string, image: File) => Promise<string | undefined>;
     handleGetUserPicture: (userId: string) => Promise<string | undefined>;
+    handleFetchAllUsers: () => Promise<user[] | undefined>;
 }
 
 interface UserActionsProviderProps {
@@ -218,6 +219,20 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
             console.error(err);
         }
     }
+
+    const handleFetchAllUsers = async (): Promise<user[] | undefined> => {
+        try {
+            const response = await useAxios().get('/users/getAll');
+            if (response.status === 200) {
+                return response.data;
+            }
+            else if (response.status === 401) {
+                logout()
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
       
 
     return (
@@ -230,7 +245,8 @@ export const UserActionsProvider: React.FC<UserActionsProviderProps> = ({ childr
             handleFetchUserInfo,
             handleRemoveUser,
             handleUpdateUserPicture,
-            handleGetUserPicture
+            handleGetUserPicture,
+            handleFetchAllUsers
             }}>
             {children}
         </UserActionsContext.Provider>

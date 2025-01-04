@@ -47,6 +47,8 @@ const NearMePage = lazy(() => import("./pages/NearMePage"));
 const UpdateProfilePicturePage = lazy(() => import("./pages/UpdateProfilePicturePage"));
 const UpdateRestaurantPicturesPage = lazy(() => import("./pages/UpdateRestaurantPicturesPage"));
 const AdminRestaurantsPage = lazy(() => import("./pages/AdminRestaurantsPage"));
+const AdminUsersPage = lazy(() => import("./pages/AdminUsersPage.tsx"));
+const AdminEditUsersPage = lazy(() => import("./pages/AdminEditUsersPage.tsx"));
 
 function App() {
   return (
@@ -246,6 +248,30 @@ function App() {
                         <RestaurantActionsProvider>
                             <UserActionsProvider>
                                 <AdminRestaurantsPage/>
+                            </UserActionsProvider>
+                        </RestaurantActionsProvider>
+                    </ProtectedRouteADMIN>
+                    }
+                />
+                <Route
+                    path={"/adminUsers" }
+                    element={
+                    <ProtectedRouteADMIN>
+                        <RestaurantActionsProvider>
+                            <UserActionsProvider>
+                                <AdminUsersPage/>
+                            </UserActionsProvider>
+                        </RestaurantActionsProvider>
+                    </ProtectedRouteADMIN>
+                    }
+                />
+                <Route
+                    path={"/editUser/:userId" }
+                    element={
+                    <ProtectedRouteADMIN>
+                        <RestaurantActionsProvider>
+                            <UserActionsProvider>
+                                <AdminEditUsersPage/>
                             </UserActionsProvider>
                         </RestaurantActionsProvider>
                     </ProtectedRouteADMIN>
