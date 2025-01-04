@@ -140,7 +140,18 @@ useEffect(() => {
   };
 
   const handleSubmitReservation = () => {
-    // Display SweetAlert2 confirmation dialog
+    // Check if dateTime is selected
+    if (!dateTime) {
+      Swal.fire({
+        title: "Error",
+        text: "Please select a date and time for the reservation.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+      return; // Prevent form submission
+    }
+  
+    // Display SweetAlert2 confirmation dialog if date is selected
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to submit your reservation?",
@@ -159,6 +170,7 @@ useEffect(() => {
       }
     });
   };
+  
 
   return (
     <div className="restaurant-page">
@@ -201,7 +213,7 @@ useEffect(() => {
         {toggleReservation ? (
             <div className={"input-group"}>
               <input  type={"datetime-local"} value={dateTime} onChange={(e) => setDateTime(e.target.value)} />
-              <button className="btn btn-primary" style={{width:"30vh", alignSelf:"flex-end"}} onClick={() => {handleMakeReservation(restaurantId === undefined? "": restaurantId, dateTime); setToggleReservation(!toggleReservation)}}>Submit</button>
+              <button className="submit-reservation-btn" style={{width:"30vh", alignSelf:"flex-end"}} onClick={handleSubmitReservation}>Submit</button>
             </div>): null}
         <OfferList restaurantId={restaurantId === undefined? "": restaurantId} />
 

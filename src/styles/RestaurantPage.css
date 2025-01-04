@@ -270,6 +270,74 @@
     animation: heart-pop 0.3s ease;
   }
   
+  .submit-reservation-btn {
+    background-color: #1d9265;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    margin-left: auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(45deg, #1d9265, #146a48);
+    background-size: 200% 200%;
+  }
+  
+  .submit-reservation-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: width 0.4s ease, height 0.4s ease, top 0.4s ease, left 0.4s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .submit-reservation-btn:hover {
+    background-position: 100% 0%;
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  }
+  
+  .submit-reservation-btn:hover::before {
+    width: 400%;
+    height: 400%;
+    top: -50%;
+    left: -50%;
+  }
+  
+  .submit-reservation-btn:active {
+    transform: translateY(2px) scale(1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .submit-reservation-btn span {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+  }
+  
+  .submit-reservation-btn:hover {
+    animation: glowing 1.5s infinite alternate;
+  }
+  
+  @keyframes glowing {
+    0% {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), 0 0 10px #fffa82, 0 0 20px #fffa82;
+    }
+    100% {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.4), 0 0 20px #fff88b, 0 0 50px #fff88b;
+    }
+  }
+  
 
 /* Responsive Design */
 @media (max-width: 768px) {
