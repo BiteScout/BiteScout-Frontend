@@ -180,8 +180,16 @@ const ReviewList: React.FC<ReviewListProps> = ({
           <p>
               <strong>{review.customerName === ""? "Unknown User": review.customerName}</strong>: {review.comment}
           </p>
-                <p> {"creationDate: "} {review.createdAt} </p>
-                {review.updatedAt !== review.createdAt ? <p>{"updateDate: "}{review.updatedAt}</p> : null}
+                <p> {"creationDate: "} {` ${new Date(review.createdAt).getDate()}/${
+                    new Date(review.createdAt).getMonth() + 1
+                }/${new Date(review.createdAt).getFullYear()} at ${new Date(
+                    review.createdAt
+                ).getHours()}:${new Date(review.createdAt).getMinutes()}`} </p>
+                {review.updatedAt !== review.createdAt ? <p>{"updateDate: "}{` ${new Date(review.updatedAt).getDate()}/${
+                    new Date(review.updatedAt).getMonth() + 1
+                }/${new Date(review.updatedAt).getFullYear()} at ${new Date(
+                    review.updatedAt
+                ).getHours()}:${new Date(review.updatedAt).getMinutes()}`}</p> : null}
                 <p>Upvotes: {review.likeCount}</p>
                 <button className="like-button" onClick={() => {
                     handleSendingInteraction(review.id, "LIKE")
