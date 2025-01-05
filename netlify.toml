@@ -1,4 +1,0 @@
-[[redirects]]
-  from = "/api/*"
-  to = "https://bitescout.space/:splat"
-  status = 200
