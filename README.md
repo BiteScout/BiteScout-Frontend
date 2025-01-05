@@ -74,6 +74,35 @@ This project is licensed under the **Apache License 2.0**. See the [LICENSE](LIC
 
 ---
 
+## Running the React App
+
+Follow the steps below to set up and run the React app locally:
+
+### Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- [Node.js](https://nodejs.org/) (version 16 or higher)
+- [npm](https://www.npmjs.com/) (Node Package Manager, usually comes with Node.js)
+
+### Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/BiteScout/BiteScout-Frontend.git
+   cd BiteScout-Backend
+   ```
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+
+   ```bash
+   npm start
+   ```
 ## Contributing
 We welcome contributions to BiteScout! To contribute:
 1. 🪝 **Fork the repository.**
