@@ -7,13 +7,29 @@ import { addElement, updateUsername } from "../elementSlice.tsx";
 import Swal from 'sweetalert2'; // Import SweetAlert2
 import "../styles/react-confirm-alert.css"; // Import default styles
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.tsx";  // Import useAuth for logout functionality
+
 
 const SettingsPage = () => {
+  const { logout } = useAuth();  // Access logout function
   const dispatch = useDispatch();
   const { handleUpdateUser, handleFetchUserInfo } = useUserActions();
   const userId = useSelector((state: RootState) => state.userId);
   const navigate = useNavigate();
   const [userData, setUserData] = useState<userUpdate>({
+    id: userId,
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    country: "",
+    city: "",
+    postalCode: "",
+    address: "",
+  });
+
+  const [initialUserData, setInitialUserData] = useState<userUpdate>({
     id: userId,
     username: "",
     password: "",
@@ -41,6 +57,17 @@ const SettingsPage = () => {
           postalCode: user.userDetails.postalCode,
           address: user.userDetails.address,
         });
+        setInitialUserData({
+          id: user.id,
+          username: user.username,
+          firstName: user.userDetails.firstName,
+          lastName: user.userDetails.lastName,
+          phoneNumber: user.userDetails.phoneNumber,
+          country: user.userDetails.country,
+          city: user.userDetails.city,
+          postalCode: user.userDetails.postalCode,
+          address: user.userDetails.address,
+        });
       }
     };
     fetchUserDetails();
@@ -52,8 +79,7 @@ const SettingsPage = () => {
 
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // Show a stylish confirmation dialog using SweetAlert2
+  
     Swal.fire({
       title: 'Are you sure?',
       text: "Do you really want to update your information?",
@@ -63,17 +89,41 @@ const SettingsPage = () => {
       cancelButtonText: 'No, cancel',
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        handleUpdateUser(userData)
-          .then(() => {
-            dispatch(updateUsername(userData.username));
-            Swal.fire('Updated!', 'Your information has been updated.', 'success');
+        try {
+          // Check if username or password has changed
+          const usernameChanged = userData.username !== initialUserData.username;
+          const passwordChanged = userData.password !== initialUserData.password;
+
+          // First, update the user information
+          await handleUpdateUser(userData);
+          dispatch(updateUsername(userData.username));
+
+          // Show success message
+          Swal.fire('Updated!', 'Your information has been updated.', 'success');
+
+          // Check if username or password was updated
+          if (usernameChanged || passwordChanged) {
+            // Show warning about re-login
+            Swal.fire({
+              title: 'Re-login Required',
+              text: 'Your credentials have changed. Please log in again.',
+              icon: 'warning',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'OK',
+            }).then(() => {
+              logout(); // Trigger logout
+              navigate('/login'); // Redirect to login page
+            });
+          } else {
+            // If no sensitive fields were changed, navigate back
             navigate(-1);
-          })
-          .catch(() => {
-            Swal.fire('Failed!', 'Failed to update user information.', 'error');
-          });
+          }
+        } catch (error) {
+          // Handle update failure
+          Swal.fire('Failed!', 'Failed to update user information.', 'error');
+        }
       }
     });
   };
