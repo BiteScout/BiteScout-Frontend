@@ -4,7 +4,7 @@ const useAxios2 = () => {
     const token = localStorage.getItem("token");
 
     const axiosInstance = axios.create({
-        baseURL: 'https://bitescout.space',
+        baseURL: '',
     });
 
     // Attach the token to requests
