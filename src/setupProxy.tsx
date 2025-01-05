@@ -5,7 +5,7 @@ export default function setupProxy(app: Application) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'http://67.207.86.85:8080',
+      target: 'https://bitescout.space',
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
     })
