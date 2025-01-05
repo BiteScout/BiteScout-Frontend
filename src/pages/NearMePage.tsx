@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 // You can replace this with the actual path to your SVG icon
 const restaurantIcon = new L.Icon({
-    iconUrl: "../src/assets/restaurant.png", // Replace with your SVG icon URL or path
+    iconUrl: "./restaurant.png", // Replace with your SVG icon URL or path
     iconSize: [48, 48], // Adjust size if needed
     iconAnchor: [16, 32], // Adjust anchor point if needed
     popupAnchor: [0, -32], // Adjust popup position if needed

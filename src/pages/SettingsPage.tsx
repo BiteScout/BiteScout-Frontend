@@ -69,6 +69,7 @@ const SettingsPage = () => {
           .then(() => {
             dispatch(updateUsername(userData.username));
             Swal.fire('Updated!', 'Your information has been updated.', 'success');
+            navigate(-1);
           })
           .catch(() => {
             Swal.fire('Failed!', 'Failed to update user information.', 'error');
