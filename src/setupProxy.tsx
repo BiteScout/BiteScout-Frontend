@@ -7,6 +7,7 @@ export default function setupProxy(app: Application) {
     createProxyMiddleware({
       target: 'https://bitescout.space',
       changeOrigin: true,
+      pathRewrite: { '^/api': '' },
     })
   );
 }
