@@ -14,6 +14,14 @@ const restaurantIcon = new L.Icon({
     popupAnchor: [0, -32], // Adjust popup position if needed
 });
 
+const clickedLocationIcon = new L.Icon({
+    iconUrl: "./clicked-location.png", // Use your custom PNG or SVG icon
+    iconSize: [48, 48], // Adjust the size based on your icon
+    iconAnchor: [24, 48], // Anchor point for accurate positioning
+    popupAnchor: [0, -48], // Adjust popup position
+});
+
+
 const NearMePage = () => {
     const [selectedLocation, setSelectedLocation] = useState<{ latitude: number; longitude: number } | null>(null);
     const [radius, setRadius] = useState<number>(5); // Default radius in km
@@ -32,7 +40,10 @@ const NearMePage = () => {
         });
 
         return selectedLocation ? (
-            <Marker position={[selectedLocation.latitude, selectedLocation.longitude]}>
+            <Marker 
+                position={[selectedLocation.latitude, selectedLocation.longitude]}
+                icon={clickedLocationIcon}
+            >
                 <Popup>Selected Location</Popup>
             </Marker>
         ) : null;
