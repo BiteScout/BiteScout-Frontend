@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {MapContainer, TileLayer, Marker, useMapEvents, useMap} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
 interface LocationPickerProps {
     setPosition:  React.Dispatch<React.SetStateAction<{ lat: number;  lng: number}>>
@@ -9,7 +10,12 @@ interface LocationPickerProps {
 
 const LocationPicker:React.FC<LocationPickerProps> = ({setPosition, position}) => {
 
-
+    const clickedLocationIcon = new L.Icon({
+        iconUrl: "./clicked-location.png", // Use your custom PNG or SVG icon
+        iconSize: [48, 48], // Adjust the size based on your icon
+        iconAnchor: [24, 48], // Anchor point for accurate positioning
+        popupAnchor: [0, -48], // Adjust popup position
+    });
 
     const LocationMarker = () => {
         useMapEvents({
@@ -27,7 +33,7 @@ const LocationPicker:React.FC<LocationPickerProps> = ({setPosition, position}) =
         }, [position.lat, position.lng, map]);
 
 
-        return position ? <Marker position={position} /> : null;
+        return position ? <Marker icon={clickedLocationIcon} position={position} /> : null;
     };
 
     return (
