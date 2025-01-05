@@ -5,7 +5,7 @@ import { useUserActions } from '../services/UserFunctions'; // The API call to r
 import { useRestaurantActions, restaurant } from '../services/RestaurantFunctions.tsx';
 import { RootState } from '../store'; // The Redux store
 import { useSelector } from 'react-redux';
-import { confirmAlert } from 'react-confirm-alert';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import "../styles/react-confirm-alert.css"; 
 import '../styles/FavoritesPage.css';
 
@@ -38,25 +38,22 @@ const FavoritesPage = () => {
     }
   }, [userId, handleFetchFavorites, handleFetchRestaurant]);
 
-  // Remove a favorite restaurant with confirmation
   const handleUnfavorite = (restaurantId: string) => {
-    confirmAlert({
-      title: "Confirm to Unfavorite",
-      message: "Are you sure you want to remove this restaurant from your favorites?",
-      buttons: [
-        {
-          label: "Yes",
-          onClick: () => {
-            handleRemoveFavorite(userId, restaurantId).then(() => {
-              setFavorites(favorites.filter((restaurant) => restaurant.id !== restaurantId));
-            });
-          },
-        },
-        {
-          label: "No",
-          onClick: () => {},
-        },
-      ],
+    Swal.fire({
+      title: 'Confirm to Unfavorite',
+      text: 'Are you sure you want to remove this restaurant from your favorites?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'No',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleRemoveFavorite(userId, restaurantId).then(() => {
+          setFavorites(favorites.filter((restaurant) => restaurant.id !== restaurantId));
+          Swal.fire('Removed!', 'The restaurant has been removed from your favorites.', 'success');
+        });
+      }
     });
   };
 

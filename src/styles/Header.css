@@ -164,60 +164,6 @@
   }
 
 
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .header {
-      flex-direction: column;
-      padding: 10px;
-      text-align: center; 
-    }
-
-    .header__nav {
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .header__button {
-      margin: 5px 0; 
-    }
-  }
-
-  @media (max-width: 768px) {
-    .header {
-      padding: 10px;
-    }
-
-    .header__logo {
-      width: 120px;
-    }
-
-    .header__nav {
-      gap: 10px;
-    }
-
-    .header__button {
-      padding: 6px 12px; 
-      font-size: 14px; 
-    }
-  }
-
-
-  @media (max-width: 480px) {
-    .header {
-      padding: 8px;
-    }
-
-    .header__logo {
-      width: 100px; 
-    }
-
-    .header__button {
-      padding: 5px 10px;
-      font-size: 12px;
-    }
-  }
-
-
   .search-section {
     position: absolute; /* Header'ın içeriğine göre konumlandır */
     top: 50%; /* Yüksekliğin ortasına hizala */
@@ -268,3 +214,74 @@
   .search-input::placeholder {
     color: #2aaa79; /* Placeholder için istediğiniz renk */
   }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .header {
+      padding: 10px;
+    }
+
+    .search-form {
+      width: 70%;
+    }
+
+    .search-input {
+      padding: 10px;
+    }
+
+
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      padding: 10px;
+    }
+
+    .header .header__logo {
+      width: 150px;
+    }
+
+    .header__nav {
+      gap: 10px;
+    }
+
+    .header__button {
+      padding: 6px 12px; 
+      font-size: 14px; 
+    }
+
+    .search-form {
+      width: 50%;
+    }
+
+    .search-input {
+      padding: 10px;
+    }
+    
+    .search-button {
+      padding: 10px;
+      margin-right: 10px;
+    }
+
+  }
+
+
+  @media (max-width: 480px) {
+    .header {
+      padding: 8px;
+    }
+
+    .header__logo {
+      width: 100px; 
+    }
+
+    .header__button {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+    
+  }
+
+
+
+
