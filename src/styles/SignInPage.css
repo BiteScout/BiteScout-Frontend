@@ -30,7 +30,7 @@
 }
 
 .header__logo {
-  width: 1200px;
+  width: 1000px;
   height: auto;
   margin-bottom: 20px;
   margin-right: 210px;
@@ -150,7 +150,7 @@
   }
 
   .header__logo {
-    width: 1000px;
+    width: 700px;
     margin-right: 150px;
   }
 
@@ -170,14 +170,50 @@
 }
 
 /* For screens with a max-width of 1366px (Large laptop/Tablet) */
-@media screen and (max-width: 1366px) {
+@media screen and (max-height: 950px) {
+  .sign-in-page {
+    padding-top: 20px;
+  }
+  .sign-in-form-container {
+    width: 650px;
+    margin-right: 100px;
+    height: 680px;
+  }
+
+  .header__logo {
+    width: 600px;
+    margin-right: 100px;
+  }
+
+  .input-group input {
+    font-size: 10px;
+    padding: 10px;
+  }
+
+  .sign-in-button {
+    font-size: 20px;
+    padding: 10px 50px;
+  }
+
+  .login-link {
+    margin-top: 2px;
+  }
+
+  .login-link a {
+    font-size: 16px;
+  }
+
+}
+
+/* For screens with a max-width of 1366px (Large laptop/Tablet) */
+@media screen and (max-width: 1600px) {
   .sign-in-form-container {
     width: 450px;
     margin-right: 100px;
   }
 
   .header__logo {
-    width: 900px;
+    width: 700px;
     margin-right: 100px;
   }
 
@@ -196,24 +232,19 @@
   }
 }
 
-/* For screens with a max-width of 1024px (Tablets/Small laptops) */
-@media screen and (max-width: 1024px) {
-  .sign-in-page {
-    padding-top: 60px;
-  }
-
+@media screen and (max-width: 1440px) {
   .sign-in-form-container {
-    width: 90%;
-    margin-right: 0;
+    width: 400px;
+    margin-right: 100px;
   }
 
   .header__logo {
-    width: 80%;
-    margin-right: 0;
+    width: 600px;
+    margin-right: 100px;
   }
 
   .sign-in-form h1 {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .input-group input {
@@ -223,7 +254,41 @@
 
   .sign-in-button {
     font-size: 18px;
-    padding: 12px 50px;
+    padding: 15px 50px;
+  }
+  
+}
+
+/* For screens with a max-width of 1024px (Tablets/Small laptops) */
+@media screen and (max-width: 1024px) {
+  .sign-in-page {
+    padding-top: 10px;
+  }
+
+  .sign-in-form-container {
+    width: 90%;
+    margin-right: 0;
+    padding: 40px;
+  }
+
+  .header__logo {
+    width: 50%;
+    margin-right: 30px;
+    margin-left: 8px;
+  }
+
+  .sign-in-form h1 {
+    font-size: 28px;
+  }
+
+  .input-group input {
+    font-size: 16px;
+    padding: 16px;
+  }
+
+  .sign-in-button {
+    font-size: 16px;
+    padding: 12px 40px;
   }
 }
 

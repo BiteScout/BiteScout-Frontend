@@ -33,12 +33,13 @@
 }
 
 .login-page .header__logo {
-  width: 1200px !important;
-  height: auto !important;
+  width: 1200px;
+  height: auto;
   margin-bottom: 20px;
   margin-right: 210px;
   align-self: center;
   animation: logoFadeIn 1s ease-in-out;
+  margin-left: 15px;
 }
 
 .title {
@@ -179,13 +180,14 @@
   }
 
   .login-page .header__logo {
-    width: 1000px !important;
-    margin-right: 150px;
+    width: 800px !important;
+    margin-right: 110px;
+    margin-left: 10px;
   }
 }
 
 /* For tablets and mobile screens */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1368px) {
   .login-form-container {
     width: 90%;
     margin-right: 0;
@@ -193,8 +195,9 @@
   }
 
   .login-page .header__logo {
-    width: 800px !important;
-    margin-right: 0;
+    width: 650px !important;
+    margin-right: 40px;
+    margin-left: 20px;
   }
 
   .login-button {
@@ -212,7 +215,7 @@
 }
 
 /* For smaller mobile screens */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   .login-page {
     padding-top: 40px;
   }
@@ -224,8 +227,8 @@
   }
 
   .login-page .header__logo {
-    width: 600px !important;
-    margin-right: 0;
+    width: 500px !important;
+    margin-right: 30px;
   }
 
   .login-button {

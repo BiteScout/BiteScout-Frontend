@@ -158,9 +158,23 @@
   }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1600px) {
   .restaurant-list2 {
     width: 1000px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .restaurant-list2 {
+    width: 800px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 1154px) {
+  .restaurant-list2 {
+    width: 600px;
     padding: 20px;
   }
 }
